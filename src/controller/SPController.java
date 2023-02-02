@@ -17,43 +17,24 @@ import controller.gameControllers.GameController;
  *
  */
 public class SPController extends Thread {
-
   private Deck deck;
-  private LinkedList<Ai> aiPlayers = new LinkedList<Ai>();
-  private int numberOfAi;
-  private int playTurn = 0;
-  private int dealer = 0;
-  private int currentPlayer = 0;
-  private int bigBlindPlayer;
-  private int smallBlindPlayer;
-  private int smallBlind;
-  private int bigBlind = 10;
-  private int potSize;
-  private int currentPotSize;
-  private int currentMaxBet;
-  private int blindCounter;
-  private Card card1;
-  private Card card2;
-  private Card turn;
-  private Card river;
-  private Card[] flop = new Card[3];
-  private int numberOfPlayers = 0;
-  private boolean allCalledOrFolded = false;
-  private boolean winnerDeclared = false;
-  private ArrayList<String> name = new ArrayList<String>();
   private GameController gameController;
-  private int fixedNumberOfAIs;
+  private Card card1, card2, turn, river;
+  private Card[] flop = new Card[3];
+  private int numberOfAi, bigBlindPlayer, smallBlindPlayer, smallBlind,
+          potSize, currentPotSize, currentMaxBet, blindCounter, fixedNumberOfAIs;
+  private int playTurn, dealer, currentPlayer, numberOfPlayers, psCounter = 0;
+  private int bigBlind = 10;
   private int[][] potSplits;
   private boolean doAllInCheck;
+  private boolean allCalledOrFolded, winnerDeclared = false;
   private volatile boolean active = false;
-  private int psCounter = 0;
   private ArrayList<Card> allKnownCards = new ArrayList<>();
-
-
+  private ArrayList<String> name = new ArrayList<String>();
+  private LinkedList<Ai> aiPlayers = new LinkedList<Ai>();
 
   /**
    * Method which receives and sets a number of starting variables and for the game to be set up.
-   * 
    * @param noOfAi Number of AI-players
    * @param potSize The potsize for the table(game).
    * @param playerName The players' name.
@@ -96,7 +77,6 @@ public class SPController extends Thread {
    * @param gController An instance of GameController
    */
   public void setGameController(GameController gController) {
-
     this.gameController = gController;
 
   }
@@ -108,7 +88,6 @@ public class SPController extends Thread {
    * @return currentMaxbet the current max bet
    */
   public int getCurrentMaxBet() {
-
     return currentMaxBet;
   }
 
@@ -119,7 +98,6 @@ public class SPController extends Thread {
    * @return potSize The pot.
    */
   public int getPotSize() {
-
     return potSize;
   }
 
@@ -128,7 +106,6 @@ public class SPController extends Thread {
    * Method that creates a list of names for AI-Players to pull from
    */
   public void setNames() {
-
     name.add("Max");
     name.add("Vedrana");
     name.add("Lykke");
@@ -136,6 +113,13 @@ public class SPController extends Thread {
     name.add("Rikard");
     name.add("Kristina");
     name.add("Rolf");
+    name.add("Erik");
+    name.add("Jens");
+    name.add("Yunbro");
+    name.add("Viktstor");
+    name.add("Evan");
+    name.add("Amidala");
+    name.add("Anthon");
     Collections.shuffle(name);
   }
 
@@ -148,7 +132,6 @@ public class SPController extends Thread {
    * @throws InstantiationException
    */
   private void setupPhase() throws InstantiationException, IllegalAccessException, InterruptedException{
-
     // Check if the player lost last turn
     if (gameController.getPlayerPot() > bigBlind) {
       /*
@@ -204,14 +187,11 @@ public class SPController extends Thread {
     } else {
       gameController.playerLost();
     }
-
   }
-
 
   public ArrayList<Card> getAllKnownCards() {
     return allKnownCards;
   }
-
 
   /**
    * Method that runs the gameround itself
@@ -333,15 +313,13 @@ public class SPController extends Thread {
             if (currentPlayer != numberOfPlayers - 1 && active) {
               aiPlayers.get(currentPlayer).setSameTurn(true);
             }
-
             if(active) {
               // move on to the next player
               currentPlayer = (currentPlayer + 1) % numberOfPlayers;
             }
             // check if everyone has checked, called or folded.
-
             if(active) {
-              allCallorFold();
+              allCallOrFold();
             }
           }
           // Next turn
@@ -366,7 +344,6 @@ public class SPController extends Thread {
         if (playTurn >= 4 && !winnerDeclared && active) {
           checkWinner();
         }
-
         if(active) {
           // If an AI player has run out of money, they have lost.
           for (Ai ai : aiPlayers) {
@@ -377,10 +354,8 @@ public class SPController extends Thread {
               gameController.setUIAiStatus(aiPlayers.indexOf(ai), "inactive");
             }
             System.out.println(ai.getName() + " : " + ai.getDecision() + (ai.aiPot() < bigBlind));
-
           }
         }
-
         if(active) {
           // Reset values
           winnerDeclared = false;
@@ -395,12 +370,10 @@ public class SPController extends Thread {
           smallBlind = bigBlind / 2;
           blindCounter = 0;
         }
-
         if(active) {
           // Set new dealer
           dealer = (dealer + 1) % numberOfPlayers;
         }
-
         if(active) {
           try {
             setupPhase();
@@ -421,7 +394,6 @@ public class SPController extends Thread {
    * Method which checks who the winner is.
    */
   private void checkWinner() {
-
     // if someone has gone all in, check winners through the all-in method instead.
     if (doAllInCheck) {
       checkAllInWinners();
@@ -495,7 +467,6 @@ public class SPController extends Thread {
             for (int i : secWin) {
               aiPlayers.get(i).updateWinner(divBy);
             }
-
           } else {
             bestHandPlayer.updateWinner(currentPotSize);
             winner = bestHandPlayer.getName();
@@ -525,11 +496,9 @@ public class SPController extends Thread {
    * Method which checks the winners if there was one or more all-ins
    */
   private void checkAllInWinners() {
+     //This method does the same thing as checkWinners except the pot is split over multiple subpots
+     //and one winner is declared for each subpot
 
-    /*
-     * This method does the same thing as checkWinners except the pot is split over multiple subpots
-     * and one winner is declared for each subpot
-     */
     int allInPotSize;
     for (int i = potSplits.length - 1; i >= 0; i--) {
       if (potSplits[i][0] > 0) {
@@ -589,7 +558,6 @@ public class SPController extends Thread {
                 for (int x : secWin) {
                   aiPlayers.get(x).updateWinner(divBy);
                 }
-
               } else {
                 bestHandPlayer.updateWinner(allInPotSize);
                 winner = bestHandPlayer.getName();
@@ -623,9 +591,7 @@ public class SPController extends Thread {
         }
       }
     }
-
   }
-
 
   /**
    * Method which checks the amount of "living" players. The amount of players whose decision is not
@@ -634,7 +600,6 @@ public class SPController extends Thread {
    * @return Number of "living" players
    */
   private int checkLivePlayers() {
-
     int livePlayers = 0;
     for (Ai ai : aiPlayers) {
       if (!ai.getDecision().equals("fold") && !ai.getDecision().contains("lost")) {
@@ -647,20 +612,17 @@ public class SPController extends Thread {
     return livePlayers;
   }
 
-
   /**
    * Method which asks the GUi to give the player a choice and calls an action when a decision has
    * been made.
-   * 
    * @param currentMaxBet2 the currentmaxbet.
    */
   private void askForPlayerDecision(int currentMaxBet2) throws InterruptedException {
-
     if (!gameController.getPlayerDecision().contains("allin")) {
       gameController.askForPlayerDecision();
       playerAction();
     } else {
-      allCallorFold();
+      allCallOrFold();
     }
   }
 
@@ -669,14 +631,12 @@ public class SPController extends Thread {
    * A method which controls what to do depending on the players' action.
    */
   private void playerAction() {
-
     String playerDecision = gameController.getPlayerDecision();
     playerDecision.toLowerCase();
 
     String[] split;
     split = playerDecision.split(",");
     if (playerDecision.contains("raise")) {
-
       currentMaxBet = Integer.parseInt(split[1]);
       currentPotSize += Integer.parseInt(split[1]);
       gameController.addLogMessage(gameController.getUsername() + " höjde med " + Integer.parseInt(split[1]));
@@ -695,7 +655,6 @@ public class SPController extends Thread {
       int allin = Integer.parseInt(split[1]);
       // if all-in
       if (currentMaxBet < allin) {
-
         if ((Integer.parseInt(split[1]) + Integer.parseInt(split[2])) > currentMaxBet) {
           currentMaxBet = Integer.parseInt(split[1]) + Integer.parseInt(split[2]);
         }
@@ -715,13 +674,11 @@ public class SPController extends Thread {
         if ((Integer.parseInt(split[1]) + Integer.parseInt(split[2])) > currentMaxBet) {
           currentMaxBet = Integer.parseInt(split[1]) + Integer.parseInt(split[2]);
         }
-
         currentPotSize += allin;
         allin = currentPotSize;
         doAllInCheck = true;
         potSplits[psCounter][0] = allin;
         gameController.setAllInViability(psCounter);
-
         // Check if AiPlayers are viable for the same subpot
         for (Ai aips : aiPlayers) {
           if ((aips.getPaidThisTurn() + aips.aiPot()) > allin) {
@@ -732,7 +689,7 @@ public class SPController extends Thread {
       }
     }
     // Check all call or fold
-    allCallorFold();
+    allCallOrFold();
   }
 
 
@@ -740,7 +697,6 @@ public class SPController extends Thread {
    * Method which asks the current AIplayer to make a decision based on the current max bet.
    */
   private void askForAiDecision() throws InterruptedException{
-
     Ai ai = aiPlayers.get(currentPlayer);
     // Starting Hand
     if (playTurn == 0) {
@@ -760,7 +716,7 @@ public class SPController extends Thread {
       aiAction(currentPlayer);
     }
     // Check all call or fold
-    allCallorFold();
+    allCallOrFold();
   }
 
 
@@ -770,9 +726,7 @@ public class SPController extends Thread {
    * @param currentPlayer current AI player
    */
   private void aiAction(int currentPlayer) {
-
     Ai ai = aiPlayers.get(currentPlayer);
-
     String aiDecision = ai.getDecision();
     String[] split = aiDecision.split(",");
     if (aiDecision.contains("raise")) {
@@ -796,7 +750,6 @@ public class SPController extends Thread {
         gameController.aiAction(currentPlayer, split[0]);
         gameController.addLogMessage(ai.getName() + " synar med " + Integer.parseInt(split[1]));
       }
-
     } else if (aiDecision.contains("check")) {
       gameController.aiAction(currentPlayer, aiDecision);
       gameController.addLogMessage(ai.getName() + " passar insats");
@@ -813,7 +766,6 @@ public class SPController extends Thread {
         allin = Integer.parseInt(split[1]);
       }
       if (currentMaxBet < allin) {
-
         currentMaxBet = allin;
         currentPotSize += allin;
         doAllInCheck = true;
@@ -828,9 +780,7 @@ public class SPController extends Thread {
             aips.setAllInViability(psCounter);
           }
         }
-        psCounter++;
       } else {
-
         currentPotSize += allin;
         doAllInCheck = true;
         potSplits[psCounter][0] = allin;
@@ -843,8 +793,8 @@ public class SPController extends Thread {
             aips.setAllInViability(psCounter);
           }
         }
-        psCounter++;
       }
+      psCounter++;
       gameController.aiAction(currentPlayer, aiDecision);
       gameController.addLogMessage(ai.getName() + " går all-in med " + Integer.parseInt(split[1]));
     }
@@ -857,8 +807,6 @@ public class SPController extends Thread {
    * @param noOfPlayers Number of players in the game
    */
   private void setBlinds(int noOfPlayers) {
-
-
     currentMaxBet = bigBlind;
     smallBlind = bigBlind / 2;
     // In heads-up play
@@ -900,7 +848,6 @@ public class SPController extends Thread {
       aiPlayers.get(smallBlindPlayer).setSmallBlind(smallBlind, true);
       gameController.playerBigBlind(bigBlind);
     } else {
-
       aiPlayers.get(smallBlindPlayer).setSmallBlind(smallBlind, true);
       aiPlayers.get(bigBlindPlayer).setBigBlind(bigBlind, true);
       aiPlayers.get(smallBlindPlayer).setDecision("SmallBlind");
@@ -922,36 +869,31 @@ public class SPController extends Thread {
   /**
    * Method which checks if everyone has folded or checked/called.
    */
-  public void allCallorFold() {
-
-    int noOfAIFoldedorCalled = 0;
+  public void allCallOrFold() {
+    int nmOfAiFoldOrCall = 0;
     // For each AI player
     for (Ai ai : aiPlayers) {
       // Check if folded.
       if (ai.getDecision().contains("fold") || ai.getDecision().contains("lost")) {
-        noOfAIFoldedorCalled++;
+        nmOfAiFoldOrCall++;
         // if not folded, check if checked or called.
       } else if (ai.getDecision().contains("call") && ai.getPaidThisTurn() == currentMaxBet
           || ai.getDecision().contains("check") && ai.getPaidThisTurn() == currentMaxBet
           || ai.getDecision().contains("all-in")) {
-        noOfAIFoldedorCalled++;
+        nmOfAiFoldOrCall++;
         // if neither checked, called or folded, at least one AI is live.
       } else {
         allCalledOrFolded = false;
       }
     }
     // If all AI have folded or called, check if player has folded or called.
-    if (noOfAIFoldedorCalled >= numberOfAi) {
+    if (nmOfAiFoldOrCall >= numberOfAi) {
       String[] split = gameController.getPlayerDecision().split(",");
-
-      if (gameController.getPlayerDecision().contains("fold")
-          || gameController.getPlayerDecision().contains("call")) {
+      if (gameController.getPlayerDecision().contains("fold") || gameController.getPlayerDecision().contains("call")) {
         allCalledOrFolded = true;
-      } else if (gameController.getPlayerDecision().contains("raise")
-          && Integer.parseInt(split[1]) == currentMaxBet) {
+      } else if (gameController.getPlayerDecision().contains("raise") && Integer.parseInt(split[1]) == currentMaxBet) {
         allCalledOrFolded = true;
-      } else if (gameController.getPlayerDecision().contains("check")
-          || gameController.getPlayerDecision().contains("allin")) {
+      } else if (gameController.getPlayerDecision().contains("check") || gameController.getPlayerDecision().contains("allin")) {
         allCalledOrFolded = true;
       } else {
         allCalledOrFolded = false;
@@ -959,36 +901,27 @@ public class SPController extends Thread {
     }
   }
 
-
   /**
    * Method which returns the small blind value.
-   * 
    * @return Current small blind
    */
   public int getSmallBlind() {
-
     return smallBlind;
   }
 
-
   /**
    * Method which returns the big blind value.
-   * 
    * @return Current big blind
    */
   public int getBigBlind() {
-
     return bigBlind;
   }
 
-
   /**
    * Method which Saves chosen number of AIs
-   * 
    * @return Number of chosen AIs as int
    */
   public int getFixedNumberOfAIs() {
-
     return this.fixedNumberOfAIs;
   }
 
