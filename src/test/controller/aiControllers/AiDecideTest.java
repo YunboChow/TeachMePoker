@@ -362,7 +362,7 @@ class AiDecideTest {
 
         AiDecide decision = new AiDecide(aiCards, 4500, 1000, 500, false);
 
-        assertTrue(strengthLevels.contains(decision.gethandStrength()));
+        assertTrue(strengthLevels.contains(decision.getHandStrength()));
     }
 
     /*

@@ -3,7 +3,6 @@ package controller.aiControllers;
 import model.Card;
 import model.Deck;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import java.util.ArrayList;
 
@@ -144,7 +143,7 @@ class AiCalculationTest {
 
         AiCalculation calculation = new AiCalculation(cards);
 
-        assertTrue(calculation.calcHandstrenght() >= 0 && calculation.calcHandstrenght() < 9);
+        assertTrue(calculation.calcHandStrength() >= 0 && calculation.calcHandStrength() < 9);
     }
 
     @Test

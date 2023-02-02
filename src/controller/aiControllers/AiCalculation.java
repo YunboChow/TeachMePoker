@@ -11,7 +11,6 @@ import java.util.Arrays;
  *
  */
 public class AiCalculation {
-
 	private ArrayList<String> aiCards;
 	private ArrayList<Integer> cardNbr = new ArrayList<Integer>();
 	private ArrayList<String> cardClr = new ArrayList<String>();
@@ -32,7 +31,7 @@ public class AiCalculation {
 		checkPairAndMore();
 		checkStraight();
 		System.out.println(aiCards);
-		System.out.println(calcHandstrenght());
+		System.out.println(calcHandStrength());
 	}
 	
 	/**
@@ -46,7 +45,6 @@ public class AiCalculation {
 			int tempInt = Integer.parseInt(splitter[0]);
 			cardNbr.add(tempInt);
 		}
-
 		for (int i = 0; i < aiCards.size(); i++) { // CardColor
 			String temp = aiCards.get(i);
 			String[] splitter = temp.split(",");
@@ -61,16 +59,12 @@ public class AiCalculation {
  */
 	public boolean checkHighCards() {
 		boolean high = false;
-
 		int card1 = cardNbr.get(0);
 		int card2 = cardNbr.get(1);
-
 		int total = (card1 + card2);
-
 		if (total >= 17) {
 			high = true;
 		}
-
 		return high;
 	}
 	
@@ -84,7 +78,6 @@ public class AiCalculation {
 		int H = 0;
 		int D = 0;
 		int color = 0;
-
 		for (String x : cardClr) {
 			if (x.equals("S")) {
 				S++;
@@ -99,29 +92,18 @@ public class AiCalculation {
 				H++;
 			}
 		}
-
 		if (S > color) {
-
 			color = S;
-
 		}
-
 		if (H > color) {
-
 			color = H;
-
 		}
 		if (D > color) {
-
 			color = D;
-
 		}
 		if (C > color) {
-
 			color = C;
-
 		}
-
 		return color;
 	}
 
@@ -130,7 +112,6 @@ public class AiCalculation {
  * @return returns how main pairs or more that the ai has.
  */
 	public int checkPairAndMore() {
-		
 		int nbrOftemp = 0;
 		int nbrOftemp1 = 0;
 		int nbrOftemp2 = 0;
@@ -139,7 +120,6 @@ public class AiCalculation {
 		for (int i = 0; i < cardNbr.size(); i++) {
 			cards[i] = cardNbr.get(i);
 		}
-
 		if (cards[0] == cards[1]) {
 			int temp = cards[0];
 			nbrOftemp = 2;
@@ -149,9 +129,7 @@ public class AiCalculation {
 					nbrOftemp++;
 				}
 			}
-		}
-
-		else {
+		} else {
 			int temp1 = cards[0];
 			int temp2 = cards[1];
 
@@ -168,26 +146,21 @@ public class AiCalculation {
 				}
 			}
 		}
-
 		if (nbrOftemp > 0) {
 			same = nbrOftemp;
 		}
-
 		if (nbrOftemp1 > 1) {
 			same = nbrOftemp1;
 		}
-
 		if (nbrOftemp2 > 1) {
 			if (nbrOftemp1 > 1) {
 				same = Integer.parseInt(nbrOftemp1 + "" + nbrOftemp2);
 			} else
 				same = nbrOftemp2;
 		}
-
 		if (same == 1) {
 			same = 0;
 		}
-
 		return same;
 	}
 
@@ -199,18 +172,14 @@ public class AiCalculation {
 		if(cardNbr.get(cardNbr.size()-1) == 14){
 			cardNbr.add(1);
 		}
-		
 		int[] tempArray = new int[cardNbr.size()];
 		int treshold = 0;
-
 		for (int i = 0; i < cardNbr.size(); i++) {
 			tempArray[i] = cardNbr.get(i);
 		}
-
 		Arrays.sort(tempArray);
-	
+
 		int inStraight;
-		
 		for (int x = 0; x < tempArray.length; x++) {			
 			int currentHighestInStraight = tempArray[x] + 4;
 			int currentLowestInStraight = currentHighestInStraight-4;
@@ -218,16 +187,13 @@ public class AiCalculation {
 			
 			for (int i = 0; i < tempArray.length; i++) {
 				if (tempArray[i] >= currentHighestInStraight-4 && tempArray[i] <= currentHighestInStraight) {			//	 temp-4> i <temp  when i is within this range
-	
 					if (i > 0) {
 						if (!(tempArray[i] == tempArray[i - 1]) && (tempArray[i-1] >= currentLowestInStraight && tempArray[i-1] <= currentHighestInStraight)){ // kollar om 1-4 är samma som nån annan.
 							inStraight++;
 						}
 					}
-
 				}
 			}
-
 			if (inStraight > treshold) {
 				treshold = inStraight;
 			}
@@ -239,11 +205,10 @@ public class AiCalculation {
 	}
 	
 	/**
-	 * Sets the handStrenght of the ai-player.
-	 * @return returns the ai-players current handStrenght.
+	 * Sets the handStrength of the ai-player.
+	 * @return returns the ai-players current handStrength.
 	 */
-	public int calcHandstrenght(){
-		
+	public int calcHandStrength(){
 		if(same==2){
 			handStrenght=1;	
 		}
