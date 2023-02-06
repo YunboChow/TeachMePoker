@@ -22,7 +22,6 @@ public class CorrectHandCalc {
         this.allKnownCards = allKnownCards;
     }
 
-
     /**
      * Makes a calculation based on all known cards
      * @return A string that says what the player holds

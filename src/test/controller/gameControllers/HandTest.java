@@ -1,5 +1,6 @@
-package controller.gameControllers;
+package gameControllers;
 
+import controller.gameControllers.Hand;
 import model.Card;
 import model.Deck;
 import org.junit.jupiter.api.Test;
