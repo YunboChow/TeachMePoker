@@ -36,6 +36,8 @@ public class GameController {
     @FXML
     private ImageView btRaise;
     @FXML
+    private ImageView btAllIn;
+    @FXML
     private Slider slider;
     @FXML
     private Label lbPlayerAction;
@@ -391,50 +393,62 @@ public class GameController {
         /*
          * If the player hasn't matched the current maxbet
          */
-        if (spController.getCurrentMaxBet() != alreadyPaid) {
+        if (spController.getCurrentMaxBet() != alreadyPaid) {}
+
+            int raisedBet = (int) (slider.getValue());
+            this.playerPot -= raisedBet;
+            /*
+             * (raised amount + the amount the player has to match(if the player has to match)) = THE
+             * PLAYER'S POT
+             */
+            this.decision = "raise," + (raisedBet + spController.getCurrentMaxBet()); // Chosen
+            // raised
+            // amount
+
+            playerMadeDecision = true;
+            Sound.playSound("chipMulti");
+
+            updatePlayerValues("Raise, §" + raisedBet);
+
+            try {
+                if (playerPot == 0) { // Checks if the player has gone all in.
+                    updatePlayerValues("All-In, §" + raisedBet);
+                    this.decision = "allin," + (raisedBet) + "," + alreadyPaid;
+                    this.alreadyPaid += raisedBet;
+                    slider.setDisable(true);
+                    //showAllIn();
+                    disableButtons();
+                } else {
+                    updatePlayerValues("Raise, §" + raisedBet);
+                    this.alreadyPaid += raisedBet;
+
+                    /*
+                     * Already paid + (raised amount + the amount the player has to match(if the player has to
+                     * match)) = WHAT THE PLAYER HAS ALREADY PAID
+                     */
+                }
+            } catch (Exception e) {
         }
-
-        int raisedBet = (int) (slider.getValue());
-        this.playerPot -= raisedBet;
-        /*
-         * (raised amount + the amount the player has to match(if the player has to match)) = THE
-         * PLAYER'S POT
-         */
-
-        this.decision = "raise," + (raisedBet + spController.getCurrentMaxBet()); // Chosen
-        // raised
-        // amount
-
-        playerMadeDecision = true;
-        Sound.playSound("chipMulti");
-
-        updatePlayerValues("Raise, §" + raisedBet);
-
-        try {
-            if (playerPot == 0) { // Checks if the player has gone all in.
-                updatePlayerValues("All-In, §" + raisedBet);
-                this.decision = "allin," + (raisedBet) + "," + alreadyPaid;
-                this.alreadyPaid += raisedBet;
-                slider.setDisable(true);
-                showAllIn();
-                disableButtons();
-
-
-            } else {
-                updatePlayerValues("Raise, §" + raisedBet);
-                this.alreadyPaid += raisedBet;
-
-                /*
-                 * Already paid + (raised amount + the amount the player has to match(if the player has to
-                 * match)) = WHAT THE PLAYER HAS ALREADY PAID
-                 */
-            }
-        } catch (Exception e) {
-        }
-
     }
 
+    /**
+     * Puts player fully all-in no matter the circumstance
+     */
+    public void playerAllIn() {
+        int currentAllIn = this.playerPot;
 
+        disableButtons();
+        slider.setValue(this.playerPot);
+        playerMadeDecision = true;
+        this.decision = "allin," + currentAllIn + "," + this.alreadyPaid;
+        this.alreadyPaid += this.playerPot;
+        this.playerPot -= currentAllIn;
+        updatePlayerValues("All in, $" + currentAllIn);
+        slider.setDisable(true);
+        showAllIn();
+        disableButtons();
+        Sound.playSound("allin");
+    }
     /**
      * Updates player-frame's labels (action and player pot) based on action.
      *
@@ -442,7 +456,7 @@ public class GameController {
      */
     public void updatePlayerValues(String action) {
 
-        lbPotValue.setText("§" + (playerPot));
+        lbPotValue.setText("$" + (playerPot));
         lbPlayerAction.setText(action);
         setSliderValues();
     }
@@ -942,6 +956,7 @@ public class GameController {
             btCall.setVisible(false);
             btRaise.setVisible(true);
             btFold.setVisible(true);
+            btAllIn.setVisible(true);
         } else {
             if (alreadyPaid < spController.getCurrentMaxBet()
                     && (playerPot + alreadyPaid) >= spController.getCurrentMaxBet()) {
@@ -949,21 +964,24 @@ public class GameController {
                 btCheck.setVisible(false);
                 btCall.setVisible(true);
                 btFold.setVisible(true);
+                btAllIn.setVisible(true);
             } else {
                 // hide call, hide check
                 btCheck.setVisible(false);
                 btCall.setVisible(false);
                 btFold.setVisible(true);
-
+                btAllIn.setVisible(true);
             }
 
             if ((spController.getCurrentMaxBet() - alreadyPaid) + spController.getBigBlind() <= playerPot
                     && playerPot != 0) {
-                // show raise
+                // show raise and all-in-button
                 btRaise.setVisible(true);
+                btAllIn.setVisible(true);
             } else {
-                // hide raise
+                // hide raise and all-in-button
                 btRaise.setVisible(false);
+                btAllIn.setVisible(false);
             }
         }
         inactivateAllAiCardGlows();
@@ -979,6 +997,7 @@ public class GameController {
         btRaise.setVisible(false);
         btCheck.setVisible(false);
         btFold.setVisible(false);
+        btAllIn.setVisible(false);
     }
 
 

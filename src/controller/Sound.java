@@ -22,7 +22,8 @@ public class Sound {
 	public static AudioClip chipSingle = new AudioClip(Sound.class.getResource("/sounds/chipsStacksSingle.wav").toString());
 	public static AudioClip chipMulti = new AudioClip(Sound.class.getResource("/sounds/ChipMe.m4a").toString());
 	public static AudioClip coinSound = new AudioClip(Sound.class.getResource("/sounds/ChingChingChip.m4a").toString());
-	public static AudioClip wrongSound = new AudioClip(Sound.class.getResource("/sounds/buttonSoundWrong.mp3").toString());
+	public static AudioClip wrongSound = new AudioClip(Sound.class.getResource("/sounds/bruh.mp3").toString());
+	public static AudioClip allin = new AudioClip(Sound.class.getResource("/sounds/allin.mp3").toString());
 	private static double volume = 1;
 	
 
@@ -48,6 +49,8 @@ public class Sound {
 				coinSound.play();
 			} else if (whatSound.equals("wrong")) {
 				wrongSound.play();
+			} else if(whatSound.equals("allin")){
+				allin.play();
 			}
 		}
 	}
