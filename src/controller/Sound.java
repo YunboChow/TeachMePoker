@@ -33,24 +33,16 @@ public class Sound {
 	 */
 	public static void playSound(String whatSound) {
 		if (!mp.isMute()) {
-			if (whatSound.equals("check")) {
-				checkSound.play();
-			} else if (whatSound.equals("fold")) {
-				cardFold.play();
-			} else if (whatSound.equals("shuffle")) {
-				shuffleSound.play();
-			} else if (whatSound.equals("singleCard")) {
-				singleCard.play();
-			} else if (whatSound.equals("chipSingle")) {
-				chipSingle.play();
-			} else if (whatSound.equals("chipMulti")) {
-				chipMulti.play();
-			} else if (whatSound.equals("coinSound")) {
-				coinSound.play();
-			} else if (whatSound.equals("wrong")) {
-				wrongSound.play();
-			} else if(whatSound.equals("allin")){
-				allin.play();
+			switch (whatSound) {
+				case "check" 		-> checkSound.play();
+				case "fold" 		-> cardFold.play();
+				case "shuffle" 	-> shuffleSound.play();
+				case "singleCard" 	-> singleCard.play();
+				case "chipSingle" 	-> chipSingle.play();
+				case "chipMulti" 	-> chipMulti.play();
+				case "coinSound" 	-> coinSound.play();
+				case "wrong" 		-> wrongSound.play();
+				case "allin" 		-> allin.play();
 			}
 		}
 	}

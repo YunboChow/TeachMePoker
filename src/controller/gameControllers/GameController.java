@@ -276,7 +276,7 @@ public class GameController {
      */
     public void setLabelUIAiBarPot(int position, String pot) {
 
-        collectionOfLabelsAi[position][1].setText("§" + pot);
+        collectionOfLabelsAi[position][1].setText("$" + pot);
     }
 
 
@@ -379,7 +379,7 @@ public class GameController {
         this.decision = "call," + Integer.toString(alreadyPaid);
         playerMadeDecision = true;
         Sound.playSound("chipSingle");
-        updatePlayerValues("Call, §" + Integer.toString(alreadyPaid));
+        updatePlayerValues("Call, $" + Integer.toString(alreadyPaid));
     }
 
 
@@ -408,18 +408,18 @@ public class GameController {
             playerMadeDecision = true;
             Sound.playSound("chipMulti");
 
-            updatePlayerValues("Raise, §" + raisedBet);
+            updatePlayerValues("Raise, $" + raisedBet);
 
             try {
                 if (playerPot == 0) { // Checks if the player has gone all in.
-                    updatePlayerValues("All-In, §" + raisedBet);
+                    updatePlayerValues("All-In, $" + raisedBet);
                     this.decision = "allin," + (raisedBet) + "," + alreadyPaid;
                     this.alreadyPaid += raisedBet;
                     slider.setDisable(true);
                     //showAllIn();
                     disableButtons();
                 } else {
-                    updatePlayerValues("Raise, §" + raisedBet);
+                    updatePlayerValues("Raise, $" + raisedBet);
                     this.alreadyPaid += raisedBet;
 
                     /*
@@ -1153,27 +1153,20 @@ public class GameController {
 
         String actionText = "Error";
 
-        if (decision.contains("fold")) {
-            actionText = "Fold";
-        } else if (decision.contains("lost")) {
-            actionText = "Lost";
-        } else if (decision.contains("check")) {
-            actionText = "Check";
-        } else if (decision.contains("call")) {
-            actionText = "Call";
-        } else if (decision.contains("raise")) {
-            String[] decisionAi = decision.split(",");
-            actionText = "Raise, §" + decisionAi[1];
-        } else if (decision.contains("all-in")) {
-            actionText = "All-In";
-        } else if (decision.contains("Dealer")) {
-            actionText = "Dealer";
-        } else if (decision.contains("SmallBlind")) {
-            actionText = "Small Blind, §" + spController.getSmallBlind();
-        } else if (decision.contains("BigBlind")) {
-            actionText = "Big Blind, §" + spController.getBigBlind();
+        switch (decision) {
+            case "fold"     -> actionText = "Fold";
+            case "lost"     -> actionText = "Lost";
+            case "check"    -> actionText = "Check";
+            case "call"     -> actionText = "Call";
+            case "raise"    -> {
+                String[] decisionAi = decision.split(",");
+                actionText = "Raise, $" + decisionAi[1];
+            }
+            case "all-in"       -> actionText = "All-In";
+            case "Dealer"       -> actionText = "Dealer";
+            case "SmallBlind"   -> actionText = "Small Blind, $" + spController.getSmallBlind();
+            case "BigBlind"     -> actionText = "Big Blind, $" + spController.getBigBlind();
         }
-
         return actionText;
     }
 
@@ -1207,14 +1200,11 @@ public class GameController {
     public void playerLost() {
 
         Platform.runLater(() -> {
-
             winnerBox = new WinnerBox();
             winnerBox.displayWinner("Förlust",
                     "Tyvärr, du förlorade och dina pengar är slut. Bättre lycka nästa gång!", 5,
                     winnerHand);
-
             SceneController.switchScene(Scenes.MainMenu);
-
         });
     }
 
@@ -1260,8 +1250,6 @@ public class GameController {
             if (bigBlindPlayer <= 4) {
                 ivBigBlind.relocate(markerPos[bigBlindPlayer][0], markerPos[bigBlindPlayer][1]);
             }
-
-
         });
     }
 
@@ -1296,41 +1284,19 @@ public class GameController {
      */
     public void setWinnerLabel(String winner, int hand) {
 
-        if (hand == 0) {
-            winnerHand = "högsta kort";
-        }
-        if (hand == 1) {
-            winnerHand = "ett par";
-        }
-        if (hand == 2) {
-            winnerHand = "två par";
-        }
-        if (hand == 3) {
-            winnerHand = "triss";
-        }
-        if (hand == 4) {
-            winnerHand = "straight";
-        }
-        if (hand == 5) {
-            winnerHand = "flush";
-        }
-        if (hand == 6) {
-            winnerHand = "full house";
-        }
-        if (hand == 7) {
-            winnerHand = "four of a kind";
-        }
-        if (hand == 8) {
-            winnerHand = "straight flush";
-        }
-        if (hand == 99) {
-            winnerHand = "Du vann när resten av spelarna foldade!";
-        }
-        if (hand == 98) {
-            winnerHand = "när resterande spelare foldade.";
-        }
-        if (hand == 97) {
-            winnerHand = "Du förlorade!";
+        switch (hand) {
+            case 0 -> winnerHand = "högsta kort";
+            case 1 -> winnerHand = "ett par";
+            case 2 -> winnerHand = "två par";
+            case 3 -> winnerHand = "triss";
+            case 4 -> winnerHand = "straight";
+            case 5 -> winnerHand = "flush";
+            case 6 -> winnerHand = "full house";
+            case 7 -> winnerHand = "four of a kind";
+            case 8 -> winnerHand = "straight flush";
+            case 99 -> winnerHand = "Du vann när resten av spelarna foldade!";
+            case 98 -> winnerHand = "när resterande spelare foldade.";
+            case 97 -> winnerHand = "Du förlorade!";
         }
 
         if (!winner.equals(getUsername()) && (hand < 10)) {
@@ -1395,8 +1361,7 @@ public class GameController {
     public void updatePots(int[][] potSplits, int tablePot) {
 
         if (spController.getFixedNumberOfAIs() == 5) {
-            this.collectionOfPots =
-                    new Label[]{subPotOne, subPotTwo, subPotThree, subPotFour, subPotFive, subPotSix};
+            this.collectionOfPots = new Label[]{subPotOne, subPotTwo, subPotThree, subPotFour, subPotFive, subPotSix};
         } else if (spController.getFixedNumberOfAIs() == 3) {
             this.collectionOfPots = new Label[]{subPotOne, subPotTwo, subPotThree, subPotFour};
         } else if (spController.getFixedNumberOfAIs() == 1) {
@@ -1407,7 +1372,7 @@ public class GameController {
                     "Sub-Pot Five: ", "Sub-Pot Six: "};
             for (int i = 0; i < collectionOfPots.length; i++) {
                 if (potSplits[i][0] > 0) {
-                    collectionOfPots[i].setText(potOrder[i] + "§" + potSplits[i][0]);
+                    collectionOfPots[i].setText(potOrder[i] + "$" + potSplits[i][0]);
                     collectionOfPots[i].setVisible(true);
                     collectionOfPots[i].setLayoutX(10);
                     collectionOfPots[i].setLayoutY(30 * (i + 1) + 70);
@@ -1415,12 +1380,10 @@ public class GameController {
                     collectionOfPots[i].setVisible(false);
                 }
             }
-            mainPot.setText("Table Pot: §" + tablePot);
+            mainPot.setText("Table Pot: $" + tablePot);
             mainPot.setLayoutX(295.0);
             mainPot.setLayoutY(290.0);
             mainPot.setVisible(true);
         });
     }
-
-
 }
