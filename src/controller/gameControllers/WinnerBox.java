@@ -15,8 +15,10 @@ import javafx.stage.Stage;
 /**
  * Box that shows the winner of round.
  *
- * @author Lykke Levin
  * version 1.0
+ * @author Lykke Levin
+ * version 1.1
+ * @author Anthon Haväng, Jens Bjerre, Erik Larsson
  */
 public class WinnerBox {
 

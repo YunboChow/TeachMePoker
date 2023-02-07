@@ -21,49 +21,24 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 /**
- * @author Amin Harirchian, Vedrana Zeba, Lykke Levin, Rikard Almgren
  * @version 1.0
+ * @author Amin Harirchian, Vedrana Zeba, Lykke Levin, Rikard Almgren
+ * @version 1.1
+ * @author Anthon Haväng, Jens Bjerre, Erik Larsson
  */
 
 public class GameController {
 
     @FXML
-    private ImageView btCheck;
-    @FXML
-    private ImageView btCall;
-    @FXML
-    private ImageView btFold;
-    @FXML
-    private ImageView btRaise;
-    @FXML
-    private ImageView btAllIn;
+    private ImageView btCheck, btCall, btFold, btRaise, btAllIn;
     @FXML
     private Slider slider;
     @FXML
-    private Label lbPlayerAction;
+    private Label lbPlayerAction, lbPotValue, lbAllIn;
     @FXML
-    private Label lbPotValue;
+    private Pane powerBarArea, playerCardsArea, tableCardArea;
     @FXML
-    private Label lbAllIn;
-    @FXML
-    private Pane powerBarArea;
-    @FXML
-    private ImageView cardOne;
-    @FXML
-    private Pane playerCardsArea;
-    @FXML
-    private Label adviceLabel;
-    @FXML
-    private Label helpLabel;
-    @FXML
-    private Label userName;
-    @FXML
-    private Label raiseLabel;
-    @FXML
-    private Pane tableCardArea;
-    @FXML
-    private AnchorPane AnchorPaneAll;
-
+    private Label adviceLabel, helpLabel, userName, raiseLabel;
     @FXML
     private ImageView imgRoundStatus;
     @FXML
@@ -199,6 +174,7 @@ public class GameController {
     private String winnerHand = " ";
     private int AllInViability = 0;
     private Label[] collectionOfPots;
+    private int roundsWon;
 
 
     /**
@@ -1309,14 +1285,14 @@ public class GameController {
                 Sound.playSound("coinSound");
                 winnerBox = new WinnerBox();
                 winnerBox.displayWinner("Rundans vinnare", winner, 1, winnerHand);
-
+                roundsWon++;
             });
         } else if (winner.equals(getUsername()) && (hand > 10)) {
             Platform.runLater(() -> {
                 Sound.playSound("coinSound");
                 winnerBox = new WinnerBox();
                 winnerBox.displayWinner("Rundans vinnare", winner, 3, winnerHand);
-
+                roundsWon++;
             });
         } else if (!winner.equals(getUsername()) && (hand > 10)) {
             Platform.runLater(() -> {
@@ -1340,7 +1316,7 @@ public class GameController {
 
 
     /**
-     * Method which sets a viabilitylevel
+     * Method which sets a viability level
      *
      * @param allInViability
      */
