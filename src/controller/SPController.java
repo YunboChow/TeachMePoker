@@ -115,8 +115,8 @@ public class SPController extends Thread {
     name.add("Rolf");
     name.add("Erik");
     name.add("Jens");
-    name.add("Yunbro");
-    name.add("Viktstor");
+    name.add("Yunbo");
+    name.add("Viktor");
     name.add("Evan");
     name.add("Amidala");
     name.add("Anthon");
@@ -198,7 +198,6 @@ public class SPController extends Thread {
    */
   public void run() {
       if(active) {
-        gameController.hideAllIn();
         gameController.activeSlider();
         String winner = "";
 

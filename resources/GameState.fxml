@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.gameControllers.GameController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.gameControllers.GameController">
 	<children>
 		<AnchorPane id="AnchorPaneAll" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0">
 			<children>
@@ -43,7 +54,7 @@
 				</ImageView>
 				<Accordion layoutX="17.0" layoutY="432.0" />
 				<AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-				<Slider fx:id="slider" blockIncrement="1.0" layoutX="693.0" layoutY="610.0" majorTickUnit="500.0" max="2000.0" min="50.0" minorTickCount="100" mouseTransparent="false" onDragDetected="#sliderChange" onDragDone="#sliderChange" onDragDropped="#sliderChange" onScrollFinished="#showAllIn" orientation="HORIZONTAL" pickOnBounds="false" prefWidth="214.0" showTickLabels="true" showTickMarks="true" snapToTicks="false" value="50.0">
+				<Slider fx:id="slider" blockIncrement="1.0" layoutX="693.0" layoutY="610.0" majorTickUnit="500.0" max="2000.0" min="50.0" minorTickCount="100" mouseTransparent="false" onDragDetected="#sliderChange" onDragDone="#sliderChange" onDragDropped="#sliderChange" orientation="HORIZONTAL" pickOnBounds="false" prefWidth="214.0" showTickLabels="true" showTickMarks="true" snapToTicks="false" value="50.0">
 					<effect>
 						<Lighting diffuseConstant="1.5238095238095237" specularConstant="2.0" surfaceScale="0.0">
 							<bumpInput>
@@ -168,9 +179,20 @@
             	            	               <font>
                   <Font name="System Bold" size="18.0" />
                </font></Label>
-            	
-            	
-            	
+
+				<!--
+				<Label fx:id="handsWonLabel"
+					   layoutX="1008.0"
+					   layoutY="33.0"
+					   maxHeight="-Infinity"
+					   maxWidth="-Infinity"
+					   minHeight="-Infinity"
+					   minWidth="-Infinity"
+					   prefHeight="100.0"
+					   prefWidth="100.0">
+				</Label>
+				-->
+
 				<Label fx:id="labelPlayerThreeName" alignment="TOP_CENTER" font="$x3" layoutX="653.0" layoutY="109.0" text="PlayerThreeName" visible="false" />
 				<Label fx:id="labelPlayerFourName" font="$x3" layoutX="1005.0" layoutY="119.0" text="PlayerFourName" visible="false" />
 				<Label fx:id="labelPlayerFiveName" font="$x3" layoutX="1118.0" layoutY="364.0" text="PlayerFiveName" visible="false" />
@@ -188,6 +210,22 @@
 				<Label fx:id="labelPlayerFiveAction" font="$decisionFont" layoutX="1118.0" layoutY="413.0" text="PlayerFiveAction" visible="false" />
 				<Label fx:id="labelPlayerOneAction" font="$decisionFont" layoutX="193.0" layoutY="413.0" text="PlayerOneAction" visible="false" />
 				<Label fx:id="labelPlayerTwoAction" font="$decisionFont" layoutX="280.0" layoutY="169.0" text="PlayerTwoAction" visible="false" />
+
+				<AnchorPane id="winCounter" layoutX="1180.0" layoutY="1.0" minHeight="80" minWidth="140">
+   					<ImageView id="handsWon.png" fx:id="handsWonImage" fitHeight="56.0" fitWidth="120.0" layoutX="-31.0" layoutY="13.0">
+   						<Image url="@images/handsWon.png" />
+   					</ImageView>
+					<Label id="handsWonLabel" fx:id="handsWonLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="-30.0" layoutY="30.0" prefHeight="18.0" prefWidth="82.0" text="Hands won: 0" textOverrun="CLIP">
+						<labelFor>
+							<TextField fx:id="handsWonField" editable="false" />
+						</labelFor>
+                  <font>
+                     <Font size="11.0" />
+                  </font>
+					</Label>
+				</AnchorPane>
+
+
 
 				<ImageView id="checkButton.png" fx:id="btCheck" fitHeight="44.0" fitWidth="101.0" layoutX="693.0" layoutY="550.0" onMouseReleased="#playerCheck">
 					<image>
@@ -215,7 +253,6 @@
 					</image>
 
 				</ImageView>
-				<Label fx:id="lbAllIn" disable="false" focusTraversable="false" font="$x3" labelFor="$slider" layoutX="870.0" layoutY="650.0" prefHeight="28.0" prefWidth="49.0" text="ALL IN" textFill="WHITE" visible="false" />
 				<Pane fx:id="tableCardArea" layoutX="435.0" layoutY="231.0" prefHeight="164.0" prefWidth="471.0" />
 				<!-- <ImageView id="img1Table.png" fx:id="imgCard1" fitHeight="166.0" 
 					fitWidth="120.0" layoutX="0.0" layoutY="0.0" visible="false"> </ImageView> 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Does the actuall calculation and decides what help
+ * Does the actual calculation and decides what help
  * the noob player gets.
  *
  * @author Max Frennessen, Oscar Kareld
@@ -59,8 +59,8 @@ public class HandCalculation {
 
 
     /**
-     * converts the cards value into two diffirent arraylists.
-     * one for cardnumber and one for cardcolor.
+     * converts the cards value into two different arraylists.
+     * one for card number and one for card color.
      *
      * @param aiCards current card being used
      */
@@ -94,7 +94,8 @@ public class HandCalculation {
         int size = aiCards.size(); //Antal kort i spelarens hand + kort på bordet.
         int[] cards = new int[size + 1];
 
-        //Oscars kod: (Den här biten är för att highlighta även par och dylikt som finns bland community-korten på bordet)
+        // Oscars kod: den här biten är för att highlight:a även par och dylikt som finns bland community-korten på
+        // bordet.
         boolean[] isPaired = new boolean[size + 1];
 
         for (int i = 0; i < size; i++) {
@@ -120,7 +121,6 @@ public class HandCalculation {
             }
         }
         //Slut på Oscars kod.
-
 
         if (cards[0] == cards[1]) { //Kollar om man har par på hand
             int temp = cards[0]; //temp = första kortet på hand

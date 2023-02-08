@@ -17,7 +17,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 /**
@@ -28,6 +27,7 @@ import javafx.scene.layout.Pane;
  */
 
 public class GameController {
+
 
     @FXML
     private ImageView btCheck, btCall, btFold, btRaise, btAllIn;
@@ -147,6 +147,12 @@ public class GameController {
     public Label subPotSix;
     @FXML
     public Label mainPot;
+    @FXML
+    private ImageView handsWonImage;
+    @FXML
+    private Label handsWonLabel;
+    @FXML
+    private TextField handsWonField;
 
     private WinnerBox winnerBox;
     private int powerBarValue = 0;
@@ -174,7 +180,8 @@ public class GameController {
     private String winnerHand = " ";
     private int AllInViability = 0;
     private Label[] collectionOfPots;
-    private int roundsWon;
+    private int handsWon;
+    private int matchesWon;
 
 
     /**
@@ -421,7 +428,6 @@ public class GameController {
         this.playerPot -= currentAllIn;
         updatePlayerValues("All in, $" + currentAllIn);
         slider.setDisable(true);
-        showAllIn();
         disableButtons();
         Sound.playSound("allin");
     }
@@ -523,25 +529,6 @@ public class GameController {
 
         return userName.getText();
     }
-
-
-    /**
-     * Set Allin label visible
-     */
-    public void showAllIn() {
-
-        lbAllIn.setVisible(true);
-    }
-
-
-    /**
-     * Set Allin label deactive
-     */
-    public void hideAllIn() {
-
-        lbAllIn.setVisible(false);
-    }
-
 
     /**
      * Set slider active
@@ -1251,6 +1238,11 @@ public class GameController {
         });
     }
 
+    public void updateHandsWon(int wins){
+        handsWonLabel.setText("Hands won: " + wins);
+        System.out.println("I updated hands won with " + wins);
+    }
+
 
     /**
      * Creates a winnerWindow that displays the winner of the round.
@@ -1259,47 +1251,57 @@ public class GameController {
      * @param hand   Int number from spController that represent the value of the winning hand.
      */
     public void setWinnerLabel(String winner, int hand) {
+        //TODO: remove
+        System.out.println("setWinnerLabel körs");
 
-        switch (hand) {
-            case 0 -> winnerHand = "högsta kort";
-            case 1 -> winnerHand = "ett par";
-            case 2 -> winnerHand = "två par";
-            case 3 -> winnerHand = "triss";
-            case 4 -> winnerHand = "straight";
-            case 5 -> winnerHand = "flush";
-            case 6 -> winnerHand = "full house";
-            case 7 -> winnerHand = "four of a kind";
-            case 8 -> winnerHand = "straight flush";
-            case 99 -> winnerHand = "Du vann när resten av spelarna foldade!";
-            case 98 -> winnerHand = "när resterande spelare foldade.";
-            case 97 -> winnerHand = "Du förlorade!";
-        }
+        synchronized (this) {
+            switch (hand) {
+                case 0 -> winnerHand = "högsta kort";
+                case 1 -> winnerHand = "ett par";
+                case 2 -> winnerHand = "två par";
+                case 3 -> winnerHand = "triss";
+                case 4 -> winnerHand = "straight";
+                case 5 -> winnerHand = "flush";
+                case 6 -> winnerHand = "full house";
+                case 7 -> winnerHand = "four of a kind";
+                case 8 -> winnerHand = "straight flush";
+                case 99 -> winnerHand = "Du vann när resten av spelarna foldade!";
+                case 98 -> winnerHand = "när resterande spelare foldade.";
+                case 97 -> winnerHand = "Du förlorade!";
+            }
 
-        if (!winner.equals(getUsername()) && (hand < 10)) {
-            Platform.runLater(() -> {
-                winnerBox = new WinnerBox();
-                winnerBox.displayWinner("Rundans vinnare", winner, 2, winnerHand);
-            });
-        } else if (winner.equals(getUsername()) && (hand < 10)) {
-            Platform.runLater(() -> {
-                Sound.playSound("coinSound");
-                winnerBox = new WinnerBox();
-                winnerBox.displayWinner("Rundans vinnare", winner, 1, winnerHand);
-                roundsWon++;
-            });
-        } else if (winner.equals(getUsername()) && (hand > 10)) {
-            Platform.runLater(() -> {
-                Sound.playSound("coinSound");
-                winnerBox = new WinnerBox();
-                winnerBox.displayWinner("Rundans vinnare", winner, 3, winnerHand);
-                roundsWon++;
-            });
-        } else if (!winner.equals(getUsername()) && (hand > 10)) {
-            Platform.runLater(() -> {
-                winnerBox = new WinnerBox();
-                winnerBox.displayWinner("Rundans vinnare", winner, 4, winnerHand);
+            if (!winner.equals(getUsername()) && (hand < 10)) {
+                Platform.runLater(() -> {
+                    winnerBox = new WinnerBox();
+                    winnerBox.displayWinner("Rundans vinnare", winner, 2, winnerHand);
+                });
+            } else if (winner.equals(getUsername()) && (hand < 10)) {
+                Platform.runLater(() -> {
+                    Sound.playSound("coinSound");
+                    winnerBox = new WinnerBox();
+                    winnerBox.displayWinner("Rundans vinnare", winner, 1, winnerHand);
+                    handsWon++;
+                    updateHandsWon(handsWon);
+                    //TODO: remove
+                    System.out.println("Matches won: " + matchesWon + "\nRounds won: " + handsWon);
+                });
+            } else if (winner.equals(getUsername()) && (hand > 10)) {
+                Platform.runLater(() -> {
+                    Sound.playSound("coinSound");
+                    winnerBox = new WinnerBox();
+                    winnerBox.displayWinner("Rundans vinnare", winner, 3, winnerHand);
+                    handsWon++;
+                    updateHandsWon(handsWon);
+                    //TODO: remove
+                    System.out.println("Matches won: " + matchesWon + "\nRounds won: " + handsWon);
+                });
+            } else if (!winner.equals(getUsername()) && (hand > 10)) {
+                Platform.runLater(() -> {
+                    winnerBox = new WinnerBox();
+                    winnerBox.displayWinner("Rundans vinnare", winner, 4, winnerHand);
 
-            });
+                });
+            }
         }
     }
 
