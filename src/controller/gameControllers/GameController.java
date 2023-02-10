@@ -256,6 +256,7 @@ public class GameController {
      *
      * @param position Position on the screen (0-4).
      * @param pot      The label for the AI's pot.
+     * Amended by: Anthon Haväng, Erik Larsson, Jens Bjerre, replaced § with $
      */
     public void setLabelUIAiBarPot(int position, String pot) {
 
@@ -347,6 +348,7 @@ public class GameController {
     /**
      * Disables all buttons and shows player-frame's action as call, and the called amount. Calculates
      * and withdraws amount from player-pot.
+     * Amended by: Anthon Haväng, Erik Larsson, Jens Bjerre: replaced § with $.
      */
     public void playerCall() {
 
@@ -369,6 +371,7 @@ public class GameController {
     /**
      * Disables all buttons and shows player-frame's action as raise, and the raised amount.
      * Calculates and withdraws amount from player-pot and adjusts already paid.
+     * Amended by: Anthon Haväng, Erik Larsson, Jens Bjerre:
      */
     public void playerRaise() {
 
@@ -411,11 +414,14 @@ public class GameController {
                      */
                 }
             } catch (Exception e) {
+                e.printStackTrace();
         }
     }
 
     /**
      * Puts player fully all-in no matter the circumstance
+     * @author: Anthon Haväng, Erik Larsson, Jens Bjerre
+     * Functionality for making the "all in-move".
      */
     public void playerAllIn() {
         int currentAllIn = this.playerPot;
@@ -431,6 +437,7 @@ public class GameController {
         disableButtons();
         Sound.playSound("allin");
     }
+
     /**
      * Updates player-frame's labels (action and player pot) based on action.
      *
@@ -1111,6 +1118,8 @@ public class GameController {
      *
      * @param decision fold/lost/check/call/raise/all-in/Dealer/SmallBlind/BigBlind
      * @return Formatted decision
+     * Amended by: Anthon Haväng, Erik Larsson, Jens Bjerre: simplified a long else if-else if section to a simple
+     * switch-case. Automatically convert from else-if to switch-case by OpenAI.
      */
     public String getFormattedDecision(String decision) {
 
@@ -1249,6 +1258,8 @@ public class GameController {
      *
      * @param winner Name of the winner from spController.
      * @param hand   Int number from spController that represent the value of the winning hand.
+     * Amended by: Anthon Haväng, Erik Larsson, Jens Bjerre: simplified a long else if-else if section to a simple
+     * switch-case. Automatically convert from else-if to switch-case by OpenAI.
      */
     public void setWinnerLabel(String winner, int hand) {
         //TODO: remove

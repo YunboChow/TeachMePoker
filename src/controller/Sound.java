@@ -9,10 +9,11 @@ import javafx.scene.media.MediaPlayer;
  * 
  * @author Lykke Levin
  * @version 1.1
+ * @author Anthon Haväng, Erik Larsson, Jens Bjerre
+ * @version 1.2
  *
  */
 public class Sound {
-
 	private static Media m = new Media(Sound.class.getResource("/sounds/cool_struttin'.mp3").toString());
 	public static MediaPlayer mp = new MediaPlayer(m);
 	public static AudioClip checkSound = new AudioClip(Sound.class.getResource("/sounds/checkMeSound.m4a").toString());
@@ -30,6 +31,8 @@ public class Sound {
 	/**
 	 * Plays the AudioClip.
 	 * @param whatSound Name of sound that is being sent from the different classes that uses the audio objects.
+	 * Amended by: Anthon Haväng, Erik Larsson, Jens Bjerre: simplified a long else if-else if section to a simple
+	 * switch-case. Also changed some sound files.
 	 */
 	public static void playSound(String whatSound) {
 		if (!mp.isMute()) {

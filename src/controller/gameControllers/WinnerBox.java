@@ -14,8 +14,9 @@ import javafx.stage.Stage;
 
 /**
  * Box that shows the winner of round.
- *
+ * <p>
  * version 1.0
+ *
  * @author Lykke Levin
  * version 1.1
  * @author Anthon Haväng, Jens Bjerre, Erik Larsson
@@ -37,6 +38,8 @@ public class WinnerBox {
       * @param nr           Int to check which message should be displayed.
       * @param handStrength String to print the handstrength the player or AI won with.
       * @return answer Boolean that returns an answer.
+      * Amended by: Anthon Haväng, Erik Larsson, Jens Bjerre: simplified a long else if-else if section to a simple
+      * switch-case. Automatically convert from else-if to switch-case by OpenAI.
       */
      public boolean displayWinner(String title, String message, int nr, String handStrength) {
 
@@ -58,14 +61,13 @@ public class WinnerBox {
           messageText.setTextFill(Color.WHITE);
           messageText.setWrapText(true);
 
-		switch (nr) {
-			case 1 -> messageText.setText(playerWin);
-			case 2 -> messageText.setText(aiWin);
-			case 3 -> messageText.setText(playerWinAIFold);
-			case 4 -> messageText.setText(aiWinOthersFold);
-			case 5 -> messageText.setText(message);
-		}
-
+          switch (nr) {
+               case 1 -> messageText.setText(playerWin);
+               case 2 -> messageText.setText(aiWin);
+               case 3 -> messageText.setText(playerWinAIFold);
+               case 4 -> messageText.setText(aiWinOthersFold);
+               case 5 -> messageText.setText(message);
+          }
           btnOk.setOnMouseReleased(e -> {
                answer = true;
                closeProgram();
@@ -80,8 +82,6 @@ public class WinnerBox {
           btnOk.setFitWidth(35);
           btnOk.setLayoutX(175);
           btnOk.setLayoutY(110);
-
-
           pane.getChildren().addAll(back, messageText, btnOk);
 
           Scene scene = new Scene(pane);
