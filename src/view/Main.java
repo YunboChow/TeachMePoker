@@ -38,7 +38,7 @@ public class Main extends Application {
 
 		}
 		window.setTitle("TeachMePoker");
-		window.setResizable(true);
+		window.setResizable(false);
 		window.setOnCloseRequest(e ->{
 			e.consume();
 			closeProgram();
