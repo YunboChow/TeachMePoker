@@ -57,7 +57,9 @@ public class FMController {
 						+ "vårterminen 2017 som en del av kursen Systemutveckling och projekt 1.\n\n" +
 						"Projektet vidareutvecklades sedan av Alexandra Koch, Carl Johan Helgstrand, Cornelia Sköld, " +
 						"David Ek, Johanna Dahlborn, Markus Gerdtsson, Niklas Hultin och Oscar Kareld under våren 2021" +
-						" i kursen Systemutveckling II");
+						" i kursen Systemutveckling I \n\n" +
+						"Projektet vidareutvecklades sedan av Yun-Bo Chow, Viktor Abraham, Amidala Hoffmén, Evan Ebdo," +
+						"Anthon Haveng, Erik Larsson och Jens Bjerre under våren 2022 i kursen Systemutveckling II", "/images/dockIcon.png");
 	}
 
 	/**

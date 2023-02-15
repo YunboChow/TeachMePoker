@@ -2,7 +2,10 @@ package view;
 
 import controller.SceneController;
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 /**
  * Main method to start the program.
@@ -21,6 +24,19 @@ public class Main extends Application {
 	 */
 	public void start(Stage primaryStage) throws Exception {
 		window = primaryStage;
+		//Application Icon
+		window.getIcons().add(new Image(getClass().getResourceAsStream("/images/appIcon.png")));
+		//Taskbar Icon
+		if (Taskbar.isTaskbarSupported()) {
+			var taskbar = Taskbar.getTaskbar();
+
+			if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE)) {
+				final Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
+				var dockIcon = defaultToolkit.getImage(getClass().getResource("/images/dockIcon.png"));
+				taskbar.setIconImage(dockIcon);
+			}
+
+		}
 		window.setTitle("TeachMePoker");
 		window.setResizable(true);
 		window.setOnCloseRequest(e ->{
