@@ -29,375 +29,375 @@ import javafx.scene.layout.Pane;
 public class GameController {
 
 
-    @FXML
-    private ImageView btCheck, btCall, btFold, btRaise, btAllIn;
-    @FXML
-    private Slider slider;
-    @FXML
-    private Label lbPlayerAction, lbPotValue, lbAllIn;
-    @FXML
-    private Pane powerBarArea, playerCardsArea, tableCardArea;
-    @FXML
-    private Label adviceLabel, helpLabel, userName, raiseLabel;
-    @FXML
-    private ImageView imgRoundStatus;
-    @FXML
-    private Pane paneRounds;
+     @FXML
+     private ImageView btCheck, btCall, btFold, btRaise, btAllIn;
+     @FXML
+     private Slider slider;
+     @FXML
+     private Label lbPlayerAction, lbPotValue, lbAllIn;
+     @FXML
+     private Pane powerBarArea, playerCardsArea, tableCardArea;
+     @FXML
+     private Label adviceLabel, helpLabel, userName, raiseLabel;
+     @FXML
+     private ImageView imgRoundStatus;
+     @FXML
+     private Pane paneRounds;
 
-    @FXML
-    private ImageView imgPlayerOneCards;
-    @FXML
-    private ImageView imgPlayerTwoCards;
-    @FXML
-    private ImageView imgPlayerThreeCards;
-    @FXML
-    private ImageView imgPlayerFourCards;
-    @FXML
-    private ImageView imgPlayerFiveCards;
+     @FXML
+     private ImageView imgPlayerOneCards;
+     @FXML
+     private ImageView imgPlayerTwoCards;
+     @FXML
+     private ImageView imgPlayerThreeCards;
+     @FXML
+     private ImageView imgPlayerFourCards;
+     @FXML
+     private ImageView imgPlayerFiveCards;
 
-    @FXML
-    private Label labelPlayerOneName;
-    @FXML
-    private Label labelPlayerTwoName;
-    @FXML
-    private Label labelPlayerThreeName;
-    @FXML
-    private Label labelPlayerFourName;
-    @FXML
-    private Label labelPlayerFiveName;
+     @FXML
+     private Label labelPlayerOneName;
+     @FXML
+     private Label labelPlayerTwoName;
+     @FXML
+     private Label labelPlayerThreeName;
+     @FXML
+     private Label labelPlayerFourName;
+     @FXML
+     private Label labelPlayerFiveName;
 
-    @FXML
-    private Label labelPlayerOnePot;
-    @FXML
-    private Label labelPlayerTwoPot;
-    @FXML
-    private Label labelPlayerThreePot;
-    @FXML
-    private Label labelPlayerFourPot;
-    @FXML
-    private Label labelPlayerFivePot;
+     @FXML
+     private Label labelPlayerOnePot;
+     @FXML
+     private Label labelPlayerTwoPot;
+     @FXML
+     private Label labelPlayerThreePot;
+     @FXML
+     private Label labelPlayerFourPot;
+     @FXML
+     private Label labelPlayerFivePot;
 
-    @FXML
-    private Label labelPlayerOneAction;
-    @FXML
-    private Label labelPlayerTwoAction;
-    @FXML
-    private Label labelPlayerThreeAction;
-    @FXML
-    private Label labelPlayerFourAction;
-    @FXML
-    private Label labelPlayerFiveAction;
+     @FXML
+     private Label labelPlayerOneAction;
+     @FXML
+     private Label labelPlayerTwoAction;
+     @FXML
+     private Label labelPlayerThreeAction;
+     @FXML
+     private Label labelPlayerFourAction;
+     @FXML
+     private Label labelPlayerFiveAction;
 
-    @FXML
-    private ImageView imgCard1;
-    @FXML
-    private ImageView imgCard2;
-    @FXML
-    private ImageView imgCard3;
-    @FXML
-    private ImageView imgCard4;
-    @FXML
-    private ImageView imgCard5;
-    @FXML
-    private ImageView imgCard6;
-    @FXML
-    private ImageView imgCard7;
+     @FXML
+     private ImageView imgCard1;
+     @FXML
+     private ImageView imgCard2;
+     @FXML
+     private ImageView imgCard3;
+     @FXML
+     private ImageView imgCard4;
+     @FXML
+     private ImageView imgCard5;
+     @FXML
+     private ImageView imgCard6;
+     @FXML
+     private ImageView imgCard7;
 
-    @FXML
-    private ImageView ivBigBlind;
-    @FXML
-    private ImageView ivSmallBlind;
-    @FXML
-    private ImageView ivDealer;
+     @FXML
+     private ImageView ivBigBlind;
+     @FXML
+     private ImageView ivSmallBlind;
+     @FXML
+     private ImageView ivDealer;
 
-    //logg
-    @FXML
-    public ScrollPane logScrollPane;
-    @FXML
-    private TextFlow logTextFlow;
-    @FXML
-    public Text logText;
+     //logg
+     @FXML
+     public ScrollPane logScrollPane;
+     @FXML
+     private TextFlow logTextFlow;
+     @FXML
+     public Text logText;
 
-    @FXML
-    public ImageView ivSound;
-    @FXML
-    public MenuItem miNewGame;
-    @FXML
-    public MenuItem miClose;
-    @FXML
-    public MenuItem miSettings;
-    @FXML
-    public MenuItem miAbout;
-    @FXML
-    public MenuItem miTutorial;
+     @FXML
+     public ImageView ivSound;
+     @FXML
+     public MenuItem miNewGame;
+     @FXML
+     public MenuItem miClose;
+     @FXML
+     public MenuItem miSettings;
+     @FXML
+     public MenuItem miAbout;
+     @FXML
+     public MenuItem miTutorial;
 
-    @FXML
-    public Pane panePot;
-    @FXML
-    public Label subPotOne;
-    @FXML
-    public Label subPotTwo;
-    @FXML
-    public Label subPotThree;
-    @FXML
-    public Label subPotFour;
-    @FXML
-    public Label subPotFive;
-    @FXML
-    public Label subPotSix;
-    @FXML
-    public Label mainPot;
-    @FXML
-    private ImageView handsWonImage;
-    @FXML
-    private Label handsWonLabel;
-    @FXML
-    private TextField handsWonField;
+     @FXML
+     public Pane panePot;
+     @FXML
+     public Label subPotOne;
+     @FXML
+     public Label subPotTwo;
+     @FXML
+     public Label subPotThree;
+     @FXML
+     public Label subPotFour;
+     @FXML
+     public Label subPotFive;
+     @FXML
+     public Label subPotSix;
+     @FXML
+     public Label mainPot;
+     @FXML
+     private ImageView handsWonImage;
+     @FXML
+     private Label handsWonLabel;
+     @FXML
+     private TextField handsWonField;
 
-    private WinnerBox winnerBox;
-    private int powerBarValue = 0;
-    private Image image;
-    private ArrayList<Card> cards = new ArrayList<Card>();
-    private Hand hand;
-    private int tablePotValue;
-    private int playerPot = 0;
-    private int alreadyPaid = 0;
-    private ImageView imgPowerBar = new ImageView();
-    private SPController spController;
-    private boolean playerMadeDecision = false;
-    private boolean isReady = false;
-    private String decision;
-    private Card card1;
-    private Card card2;
-    private int handStrength;
-    private LinkedList<Ai> aiPlayers;
-    private Label[][] collectionOfLabelsAi;
-    private ImageView[] collectionOfCardsAi;
-    private ImageView[] collectionOfCardsTable;
-    private int[][] aiPositions;
-    private int highCard;
-    private int prevPlayerActive;
-    private String winnerHand = " ";
-    private int AllInViability = 0;
-    private Label[] collectionOfPots;
-    private int handsWon;
-    private int matchesWon;
-
-
-    /**
-     * Method for initializing FXML
-     */
-    public void initialize() {
-
-        // Groups together labels for each AI-position.
-        this.collectionOfLabelsAi =
-                new Label[][]{{labelPlayerOneName, labelPlayerOnePot, labelPlayerOneAction},
-                        {labelPlayerTwoName, labelPlayerTwoPot, labelPlayerTwoAction},
-                        {labelPlayerThreeName, labelPlayerThreePot, labelPlayerThreeAction},
-                        {labelPlayerFourName, labelPlayerFourPot, labelPlayerFourAction},
-                        {labelPlayerFiveName, labelPlayerFivePot, labelPlayerFiveAction}};
+     private WinnerBox winnerBox;
+     private int powerBarValue = 0;
+     private Image image;
+     private ArrayList<Card> cards = new ArrayList<Card>();
+     private Hand hand;
+     private int tablePotValue;
+     private int playerPot = 0;
+     private int alreadyPaid = 0;
+     private ImageView imgPowerBar = new ImageView();
+     private SPController spController;
+     private boolean playerMadeDecision = false;
+     private boolean isReady = false;
+     private String decision;
+     private Card card1;
+     private Card card2;
+     private int handStrength;
+     private LinkedList<Ai> aiPlayers;
+     private Label[][] collectionOfLabelsAi;
+     private ImageView[] collectionOfCardsAi;
+     private ImageView[] collectionOfCardsTable;
+     private int[][] aiPositions;
+     private int highCard;
+     private int prevPlayerActive;
+     private String winnerHand = " ";
+     private int AllInViability = 0;
+     private Label[] collectionOfPots;
+     private int handsWon;
+     private int matchesWon;
 
 
-        // Placeholders for the AI (based on their position). Shows their
-        // cardbacks/no cards or
-        // highlighted cards (AI-frame).
-        this.collectionOfPots = new Label[6];
+     /**
+      * Method for initializing FXML
+      */
+     public void initialize() {
 
-        this.collectionOfCardsAi = new ImageView[]{imgPlayerOneCards, imgPlayerTwoCards,
-                imgPlayerThreeCards, imgPlayerFourCards, imgPlayerFiveCards};
-
-        // Used to place AI-players into the right position depending on the
-        // chosen number of AI:s.
-        this.aiPositions = new int[][]{{2}, {0, 2, 4}, {0, 1, 2, 3, 4, 5}};
-
-        // Table cards placeholders.
-        this.collectionOfCardsTable =
-                new ImageView[]{imgCard3, imgCard4, imgCard5, imgCard6, imgCard7};
-
-        // Used by method: inactivateAllAiCardGlows and aiAction.
-        this.prevPlayerActive = -1;
-
-    }
+          // Groups together labels for each AI-position.
+          this.collectionOfLabelsAi =
+                    new Label[][]{{labelPlayerOneName, labelPlayerOnePot, labelPlayerOneAction},
+                              {labelPlayerTwoName, labelPlayerTwoPot, labelPlayerTwoAction},
+                              {labelPlayerThreeName, labelPlayerThreePot, labelPlayerThreeAction},
+                              {labelPlayerFourName, labelPlayerFourPot, labelPlayerFourAction},
+                              {labelPlayerFiveName, labelPlayerFivePot, labelPlayerFiveAction}};
 
 
-    /**
-     * Used to show labels and AI-frame.
-     *
-     * @param position Position on the screen (0-4).
-     */
-    public void setShowUIAiBar(int position) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                collectionOfLabelsAi[position][0].setVisible(true);
-                collectionOfLabelsAi[position][1].setVisible(true);
-                collectionOfLabelsAi[position][2].setVisible(true);
-                collectionOfCardsAi[position].setVisible(true);
-            }
-        });
+          // Placeholders for the AI (based on their position). Shows their
+          // cardbacks/no cards or
+          // highlighted cards (AI-frame).
+          this.collectionOfPots = new Label[6];
 
-    }
+          this.collectionOfCardsAi = new ImageView[]{imgPlayerOneCards, imgPlayerTwoCards,
+                    imgPlayerThreeCards, imgPlayerFourCards, imgPlayerFiveCards};
 
+          // Used to place AI-players into the right position depending on the
+          // chosen number of AI:s.
+          this.aiPositions = new int[][]{{2}, {0, 2, 4}, {0, 1, 2, 3, 4, 5}};
 
-    /**
-     * Used to change AI-label "name" based on position.
-     *
-     * @param position Position on the screen (0-4).
-     * @param name     The label for the AI's name.
-     */
-    public void setLabelUIAiBarName(int position, String name) {
+          // Table cards placeholders.
+          this.collectionOfCardsTable =
+                    new ImageView[]{imgCard3, imgCard4, imgCard5, imgCard6, imgCard7};
 
-        collectionOfLabelsAi[position][0].setText(name);
-    }
+          // Used by method: inactivateAllAiCardGlows and aiAction.
+          this.prevPlayerActive = -1;
+
+     }
 
 
-    /**
-     * Used to change AI-label "pot" based on position.
-     *
-     * @param position Position on the screen (0-4).
-     * @param pot      The label for the AI's pot.
-     * Amended by: Anthon Haväng, Erik Larsson, Jens Bjerre, replaced § with $
-     */
-    public void setLabelUIAiBarPot(int position, String pot) {
+     /**
+      * Used to show labels and AI-frame.
+      *
+      * @param position Position on the screen (0-4).
+      */
+     public void setShowUIAiBar(int position) {
+          Platform.runLater(new Runnable() {
+               @Override
+               public void run() {
+                    collectionOfLabelsAi[position][0].setVisible(true);
+                    collectionOfLabelsAi[position][1].setVisible(true);
+                    collectionOfLabelsAi[position][2].setVisible(true);
+                    collectionOfCardsAi[position].setVisible(true);
+               }
+          });
 
-        collectionOfLabelsAi[position][1].setText("$" + pot);
-    }
-
-
-    /**
-     * Used to change AI-label "action" based on position.
-     *
-     * @param position Position on the screen (0-4).
-     * @param action   The label for the AI's action.
-     */
-    public void setLabelUIAiBarAction(int position, String action) {
-
-        collectionOfLabelsAi[position][2].setText(action);
-
-    }
+     }
 
 
-    /**
-     * Changes the AI-frame based on position and state.
-     *
-     * @param position Position on the screen (0-4).
-     * @param state    The state can either be inactive (folded/lost), idle (waiting for it's turn),
-     *                 active (currently it's turn).
-     */
-    public void setUIAiStatus(int position, String state) {
+     /**
+      * Used to change AI-label "name" based on position.
+      *
+      * @param position Position on the screen (0-4).
+      * @param name     The label for the AI's name.
+      */
+     public void setLabelUIAiBarName(int position, String name) {
 
-        String resource = "resources/images/"; // 122, 158
-        Image hideCards = new Image(Paths.get(resource + "aiBarWithoutCards.png").toUri().toString(),
-                122, 158, true, true);
-        Image showCards = new Image(Paths.get(resource + "aiBarWithCards.png").toUri().toString(), 122,
-                158, true, true);
-        Image showActiveCards =
-                new Image(Paths.get(resource + "aiBarWithCardsCurrentPlayer.png").toUri().toString(), 122,
-                        158, true, true);
-
-        if (state == "inactive") {
-            collectionOfCardsAi[position].setImage(hideCards);
-        } else if (state == "idle") {
-            collectionOfCardsAi[position].setImage(showCards);
-        } else if (state == "active") {
-            collectionOfCardsAi[position].setImage(showActiveCards);
-        }
-    }
+          collectionOfLabelsAi[position][0].setText(name);
+     }
 
 
-    /**
-     * Sets the SPController for this gameController
-     *
-     * @param spController an instance of the class SPController
-     */
-    public void setSPController(SPController spController) {
+     /**
+      * Used to change AI-label "pot" based on position.
+      *
+      * @param position Position on the screen (0-4).
+      * @param pot      The label for the AI's pot.
+      * Amended by: Anthon Haväng, Erik Larsson, Jens Bjerre, replaced § with $
+      */
+     public void setLabelUIAiBarPot(int position, String pot) {
 
-        this.spController = spController;
-        spController.setGameController(this);
-    }
-
-
-    /**
-     * Disables all buttons and shows player-frame's action as check.
-     */
-    public void playerCheck() {
-
-        disableButtons();
-        this.decision = "check";
-        lbPlayerAction.setText("check");
-        playerMadeDecision = true;
-        updatePlayerValues("Check");
-        Sound.playSound("check");
-    }
+          collectionOfLabelsAi[position][1].setText("$" + pot);
+     }
 
 
-    /**
-     * Disables all buttons and shows player-frame's action as fold.
-     */
-    public void playerFold() {
+     /**
+      * Used to change AI-label "action" based on position.
+      *
+      * @param position Position on the screen (0-4).
+      * @param action   The label for the AI's action.
+      */
+     public void setLabelUIAiBarAction(int position, String action) {
 
-        disableButtons();
-        this.decision = "fold";
-        lbPlayerAction.setText("fold");
-        playerMadeDecision = true;
-        updatePlayerValues("Fold");
-        Sound.playSound("fold");
-    }
+          collectionOfLabelsAi[position][2].setText(action);
 
-
-    /**
-     * Disables all buttons and shows player-frame's action as call, and the called amount. Calculates
-     * and withdraws amount from player-pot.
-     * Amended by: Anthon Haväng, Erik Larsson, Jens Bjerre: replaced § with $.
-     */
-    public void playerCall() {
-
-        disableButtons();
-        /*
-         * Player's pot - (Current maxbet - already paid (prev rounds)) THE PLAYER'S POT
-         */
-        this.playerPot -= (spController.getCurrentMaxBet() - alreadyPaid);
-        /*
-         * Already paid + (Current maxbet - already paid) = WHAT THE PLAYER HAS ALREADY PAID
-         */
-        this.alreadyPaid += (spController.getCurrentMaxBet() - alreadyPaid);
-        this.decision = "call," + Integer.toString(alreadyPaid);
-        playerMadeDecision = true;
-        Sound.playSound("chipSingle");
-        updatePlayerValues("Call, $" + Integer.toString(alreadyPaid));
-    }
+     }
 
 
-    /**
-     * Disables all buttons and shows player-frame's action as raise, and the raised amount.
-     * Calculates and withdraws amount from player-pot and adjusts already paid.
-     * Amended by: Anthon Haväng, Erik Larsson, Jens Bjerre:
-     */
-    public void playerRaise() {
+     /**
+      * Changes the AI-frame based on position and state.
+      *
+      * @param position Position on the screen (0-4).
+      * @param state    The state can either be inactive (folded/lost), idle (waiting for it's turn),
+      *                 active (currently it's turn).
+      */
+     public void setUIAiStatus(int position, String state) {
 
-        disableButtons();
-        /*
-         * If the player hasn't matched the current maxbet
-         */
-        if (spController.getCurrentMaxBet() != alreadyPaid) {}
+          String resource = "resources/images/"; // 122, 158
+          Image hideCards = new Image(Paths.get(resource + "aiBarWithoutCards.png").toUri().toString(),
+                    122, 158, true, true);
+          Image showCards = new Image(Paths.get(resource + "aiBarWithCards.png").toUri().toString(), 122,
+                    158, true, true);
+          Image showActiveCards =
+                    new Image(Paths.get(resource + "aiBarWithCardsCurrentPlayer.png").toUri().toString(), 122,
+                              158, true, true);
 
-            int raisedBet = (int) (slider.getValue());
-            this.playerPot -= raisedBet;
-            /*
-             * (raised amount + the amount the player has to match(if the player has to match)) = THE
-             * PLAYER'S POT
-             */
-            this.decision = "raise," + (raisedBet + spController.getCurrentMaxBet()); // Chosen
-            // raised
-            // amount
+          if (state == "inactive") {
+               collectionOfCardsAi[position].setImage(hideCards);
+          } else if (state == "idle") {
+               collectionOfCardsAi[position].setImage(showCards);
+          } else if (state == "active") {
+               collectionOfCardsAi[position].setImage(showActiveCards);
+          }
+     }
 
-            playerMadeDecision = true;
-            Sound.playSound("chipMulti");
 
-            updatePlayerValues("Raise, $" + raisedBet);
+     /**
+      * Sets the SPController for this gameController
+      *
+      * @param spController an instance of the class SPController
+      */
+     public void setSPController(SPController spController) {
 
-            try {
-                if (playerPot == 0) { // Checks if the player has gone all in.
+          this.spController = spController;
+          spController.setGameController(this);
+     }
+
+
+     /**
+      * Disables all buttons and shows player-frame's action as check.
+      */
+     public void playerCheck() {
+
+          disableButtons();
+          this.decision = "check";
+          lbPlayerAction.setText("check");
+          playerMadeDecision = true;
+          updatePlayerValues("Check");
+          Sound.playSound("check");
+     }
+
+
+     /**
+      * Disables all buttons and shows player-frame's action as fold.
+      */
+     public void playerFold() {
+
+          disableButtons();
+          this.decision = "fold";
+          lbPlayerAction.setText("fold");
+          playerMadeDecision = true;
+          updatePlayerValues("Fold");
+          Sound.playSound("fold");
+     }
+
+
+     /**
+      * Disables all buttons and shows player-frame's action as call, and the called amount. Calculates
+      * and withdraws amount from player-pot.
+      * Amended by: Anthon Haväng, Erik Larsson, Jens Bjerre: replaced § with $.
+      */
+     public void playerCall() {
+
+          disableButtons();
+          /*
+           * Player's pot - (Current maxbet - already paid (prev rounds)) THE PLAYER'S POT
+           */
+          this.playerPot -= (spController.getCurrentMaxBet() - alreadyPaid);
+          /*
+           * Already paid + (Current maxbet - already paid) = WHAT THE PLAYER HAS ALREADY PAID
+           */
+          this.alreadyPaid += (spController.getCurrentMaxBet() - alreadyPaid);
+          this.decision = "call," + Integer.toString(alreadyPaid);
+          playerMadeDecision = true;
+          Sound.playSound("chipSingle");
+          updatePlayerValues("Call, $" + Integer.toString(alreadyPaid));
+     }
+
+
+     /**
+      * Disables all buttons and shows player-frame's action as raise, and the raised amount.
+      * Calculates and withdraws amount from player-pot and adjusts already paid.
+      * Amended by: Anthon Haväng, Erik Larsson, Jens Bjerre:
+      */
+     public void playerRaise() {
+
+          disableButtons();
+          /*
+           * If the player hasn't matched the current maxbet
+           */
+          if (spController.getCurrentMaxBet() != alreadyPaid) {}
+
+          int raisedBet = (int) (slider.getValue());
+          this.playerPot -= raisedBet;
+          /*
+           * (raised amount + the amount the player has to match(if the player has to match)) = THE
+           * PLAYER'S POT
+           */
+          this.decision = "raise," + (raisedBet + spController.getCurrentMaxBet()); // Chosen
+          // raised
+          // amount
+
+          playerMadeDecision = true;
+          Sound.playSound("chipMulti");
+
+          updatePlayerValues("Raise, $" + raisedBet);
+
+          try {
+               if (playerPot == 0) { // Checks if the player has gone all in.
                     updatePlayerValues("All-In, $" + raisedBet);
                     this.decision = "allin," + (raisedBet) + "," + alreadyPaid;
                     this.alreadyPaid += raisedBet;

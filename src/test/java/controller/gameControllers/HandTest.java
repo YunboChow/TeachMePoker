@@ -1,4 +1,4 @@
-package gameControllers;
+package controller.gameControllers;
 
 import controller.gameControllers.Hand;
 import model.Card;

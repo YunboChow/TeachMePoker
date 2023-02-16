@@ -1,4 +1,4 @@
-package test.controller.gameControllers;
+package controller.gameControllers;
 
 import controller.gameControllers.GameController;
 import org.junit.jupiter.api.Test;
@@ -16,6 +16,4 @@ public class GameControllerTest {
           gameController.playerAllIn();
           assertEquals(gameController.getPlayerPot(), 0);
      }
-
-
 }
