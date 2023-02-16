@@ -483,7 +483,7 @@ public class SPController extends Thread {
                     }
                }
           }
-
+          // TODO: 2023-02-16 HÄR KAN VI LÄGGA TLL ATT DEN KOLLAR OM ALLA ANDRA HAR ÅKT UT FÖR O KUNNA VINNA SPELET
      }
 
 
