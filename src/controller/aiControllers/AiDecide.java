@@ -42,6 +42,11 @@ public class AiDecide {
     this.alreadyPaid = alreadyPaid;
     this.sameTurn = sameTurn;
 
+    if(aiPot == 0){
+      toDo="lost";
+      return;
+    }
+
     if (toBet != 0) {
       this.toBet = this.toBet - alreadyPaid;
     }

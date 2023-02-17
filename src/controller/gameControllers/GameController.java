@@ -294,13 +294,18 @@ public class GameController {
         Image showActiveCards =
                 new Image(Paths.get(resource + "aiBarWithCardsCurrentPlayer.png").toUri().toString(), 122,
                         158, true, true);
+        Image showOutCards =
+                new Image(Paths.get(resource + "aiBarWithCardsOut.png").toUri().toString(), 122, 158,
+                        true, true);
 
-        if (state == "inactive") {
+        if (state.equals("inactive")) {
             collectionOfCardsAi[position].setImage(hideCards);
-        } else if (state == "idle") {
+        } else if (state.equals("idle")) {
             collectionOfCardsAi[position].setImage(showCards);
-        } else if (state == "active") {
+        } else if (state.equals("active")) {
             collectionOfCardsAi[position].setImage(showActiveCards);
+        } else if (state.equals("out")){
+            collectionOfCardsAi[position].setImage(showOutCards);
         }
     }
 
@@ -1081,7 +1086,11 @@ public class GameController {
             Ai ai = aiPlayers.get(currentAI);
 
             if (decision.contains("fold") || decision.contains("lost") || decision.isEmpty()) {
-                setUIAiStatus(currentAIPosition, "inactive");
+                if(decision.contains("lost")){
+                    setUIAiStatus(currentAIPosition, "out");
+                } else {
+                    setUIAiStatus(currentAIPosition, "inactive");
+                }
             } else {
                 setUIAiStatus(currentAIPosition, "active");
                 this.prevPlayerActive = currentAIPosition;
