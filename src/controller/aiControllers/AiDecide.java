@@ -106,6 +106,7 @@ public class AiDecide {
     if (likelihood < 35 && roll <= 15 && !(check)) { // BLUFF
       if (aiPot > toBet) {
         toDo = "call," + toBet;
+        // TODO: remove System.out.println("BLUFF!!!");
         System.out.println("BLUFF!!!");
         howMuchToTakeAwayFromAiPot = toBet;
       }
@@ -293,6 +294,7 @@ public class AiDecide {
     if (likelihood < 35 && roll <= 15 && !(check)) { // BLUFF
       if (aiPot > toBet) {
         toDo = "call," + toBet;
+        //TODO: remove System.out.println("BLUFF!!!");
         System.out.println("BLUFF!!!");
         howMuchToTakeAwayFromAiPot = toBet;
       }
