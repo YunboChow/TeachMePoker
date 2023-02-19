@@ -349,7 +349,7 @@ public class SPController extends Thread {
                               gameController.addLogMessage(ai.getName() + " förlorade...");
                               ai.setDecision("lost");
                               ai.updateWinner(-ai.aiPot());
-                              gameController.setUIAiStatus(aiPlayers.indexOf(ai), "inactive");
+                              gameController.setUIAiStatus(aiPlayers.indexOf(ai), "out");
                          }
                          System.out.println(ai.getName() + " : " + ai.getDecision() + (ai.aiPot() < bigBlind));
                     }
@@ -695,6 +695,11 @@ public class SPController extends Thread {
       */
      private void askForAiDecision() throws InterruptedException {
           Ai ai = aiPlayers.get(currentPlayer);
+          if(ai.aiPot() == 0){
+               ai.setDecision("lost");
+               aiAction(currentPlayer);
+               return;
+          }
           // Starting Hand
           if (playTurn == 0) {
                ai.makeDecision(currentMaxBet);
