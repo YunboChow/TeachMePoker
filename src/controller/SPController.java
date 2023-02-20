@@ -32,6 +32,9 @@ public class SPController extends Thread {
      private ArrayList<String> name = new ArrayList<String>();
      private LinkedList<Ai> aiPlayers = new LinkedList<Ai>();
 
+     //used for win con.
+     private int nbrOfAiOut;
+
      /**
       * Method which receives and sets a number of starting variables and for the game to be set up.
       *
@@ -137,6 +140,7 @@ public class SPController extends Thread {
                 * if not, reset the all-in check and potsplit counter Create a new deck, shuffle it and deal
                 * cards
                 */
+               nbrOfAiOut = 0;
                doAllInCheck = false;
                psCounter = 0;
                deck = new Deck();
@@ -350,6 +354,8 @@ public class SPController extends Thread {
                               ai.setDecision("lost");
                               ai.updateWinner(-ai.aiPot());
                               gameController.setUIAiStatus(aiPlayers.indexOf(ai), "out");
+                              // TODO: 2023-02-20 Öka variabel för hur många som har åkt ut för win con.
+                              nbrOfAiOut++;
                          }
                          System.out.println(ai.getName() + " : " + ai.getDecision() + (ai.aiPot() < bigBlind));
                     }
@@ -486,6 +492,10 @@ public class SPController extends Thread {
                }
           }
           // TODO: 2023-02-16 HÄR KAN VI LÄGGA TLL ATT DEN KOLLAR OM ALLA ANDRA HAR ÅKT UT FÖR O KUNNA VINNA SPELET
+          if(nbrOfAiOut == aiPlayers.size()){
+               // TODO: 2023-02-20 Win method  
+               gameController.playerWon();
+          }
      }
 
 

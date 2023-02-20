@@ -1199,6 +1199,19 @@ public class GameController {
         });
     }
 
+    public void playerWon() {
+
+        Platform.runLater(() -> {
+            winnerBox = new WinnerBox();
+            winnerBox.displayWinner("Grattis",
+                    "Wallah du mycket djurig och vann detta", 5,
+                    winnerHand);
+            SceneController.switchScene(Scenes.MainMenu);
+        });
+    }
+
+
+
 
     /**
      * Method which returns the players highCard
