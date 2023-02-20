@@ -140,6 +140,7 @@ public class SPController extends Thread {
                 * if not, reset the all-in check and potsplit counter Create a new deck, shuffle it and deal
                 * cards
                 */
+               gameController.resetUnchangeableImages();
                nbrOfAiOut = 0;
                doAllInCheck = false;
                psCounter = 0;
@@ -493,7 +494,7 @@ public class SPController extends Thread {
           }
           // TODO: 2023-02-16 HÄR KAN VI LÄGGA TLL ATT DEN KOLLAR OM ALLA ANDRA HAR ÅKT UT FÖR O KUNNA VINNA SPELET
           if(nbrOfAiOut == aiPlayers.size()){
-               // TODO: 2023-02-20 Win method  
+               // TODO: 2023-02-20 Win method
                gameController.playerWon();
           }
      }
