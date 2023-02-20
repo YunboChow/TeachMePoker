@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import controller.aiControllers.Ai;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.Card;
 import model.Deck;
 import controller.gameControllers.GameController;
@@ -483,7 +485,7 @@ public class SPController extends Thread {
                     }
                }
           }
-
+          // TODO: 2023-02-16 HÄR KAN VI LÄGGA TLL ATT DEN KOLLAR OM ALLA ANDRA HAR ÅKT UT FÖR O KUNNA VINNA SPELET
      }
 
 

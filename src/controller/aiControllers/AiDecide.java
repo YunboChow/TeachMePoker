@@ -42,6 +42,11 @@ public class AiDecide {
     this.alreadyPaid = alreadyPaid;
     this.sameTurn = sameTurn;
 
+    if(aiPot == 0){
+      toDo="lost";
+      return;
+    }
+
     if (toBet != 0) {
       this.toBet = this.toBet - alreadyPaid;
     }
@@ -101,6 +106,7 @@ public class AiDecide {
     if (likelihood < 35 && roll <= 15 && !(check)) { // BLUFF
       if (aiPot > toBet) {
         toDo = "call," + toBet;
+        // TODO: remove System.out.println("BLUFF!!!");
         System.out.println("BLUFF!!!");
         howMuchToTakeAwayFromAiPot = toBet;
       }
@@ -288,6 +294,7 @@ public class AiDecide {
     if (likelihood < 35 && roll <= 15 && !(check)) { // BLUFF
       if (aiPot > toBet) {
         toDo = "call," + toBet;
+        //TODO: remove System.out.println("BLUFF!!!");
         System.out.println("BLUFF!!!");
         howMuchToTakeAwayFromAiPot = toBet;
       }
