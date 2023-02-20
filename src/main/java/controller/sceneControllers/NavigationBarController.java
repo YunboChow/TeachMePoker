@@ -46,7 +46,7 @@ public class NavigationBarController {
     }
 
     /**
-     * Triggers the close event of the window, which is handled in the class Main.java.
+     * Triggers the close event of the window, which is handled in the class controller.Main.java.
      * @param mouseEvent
      */
     public void exitPressed(MouseEvent mouseEvent) {

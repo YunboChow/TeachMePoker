@@ -22,133 +22,133 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class ConfirmBox {
 
 
-
-  /**
-   * Creates a window containing an informative message with only an OK-button.
-   * @param title String title of the window from the classes that uses ConfirmBox. 
+     /**
+      * Creates a window containing an informative message with only an OK-button.
+      * @param title String title of the window from the classes that uses ConfirmBox.
    * @param message String message to display in the window from the classes that uses ConfirmBox.
-   */
-  public static void display(String title, String message) {
-    Stage window = new Stage();
-    Font font = new Font("Tw Cen MT", 18);
-    window.initModality(Modality.APPLICATION_MODAL);
-    window.setTitle(title);
-    window.setMinWidth(150);
-    window.setMaxWidth(600);
-    window.setHeight(400);
-    window.setOnCloseRequest(e -> window.close());
+      */
+     public static void display(String title, String message) {
+          Stage window = new Stage();
+          Font font = new Font("Tw Cen MT", 18);
+          window.initModality(Modality.APPLICATION_MODAL);
+          window.setTitle(title);
+          window.setMinWidth(150);
+          window.setMaxWidth(600);
+          window.setHeight(400);
+          window.setOnCloseRequest(e -> window.close());
 
-    Label label = new Label();
-    label.setFont(font);
-    label.setText(message);
-    label.setWrapText(true);
+          Label label = new Label();
+          label.setFont(font);
+          label.setText(message);
+          label.setWrapText(true);
 
-    Button buttonOk = new Button("Ok");
-    buttonOk.setFont(font);
+          Button buttonOk = new Button("Ok");
+          buttonOk.setFont(font);
 
-    buttonOk.setOnAction(e -> {
-      window.close();
-    });
+          buttonOk.setOnAction(e -> {
+               window.close();
+          });
 
-    VBox layout = new VBox(10);
-    layout.setPadding(new Insets(10, 10, 10, 10));
-    layout.getChildren().addAll(label, buttonOk);
-    layout.setAlignment(Pos.CENTER);
+          VBox layout = new VBox(10);
+          layout.setPadding(new Insets(10, 10, 10, 10));
+          layout.getChildren().addAll(label, buttonOk);
+          layout.setAlignment(Pos.CENTER);
 
-    Scene scene = new Scene(layout);
-    window.setScene(scene);
-    window.showAndWait();
-  }
-  public static void display(String title, String message, String imagePath) {
-    Stage window = new Stage();
-    Font font = new Font("Tw Cen MT", 18);
-    window.initModality(Modality.APPLICATION_MODAL);
-    window.setTitle(title);
-    window.setMinWidth(150);
-    window.setMaxWidth(600);
-    window.setHeight(700);
-    window.setOnCloseRequest(e -> window.close());
+          Scene scene = new Scene(layout);
+          window.setScene(scene);
+          window.showAndWait();
+     }
 
-    Label label = new Label();
-    label.setFont(font);
-    label.setText(message);
-    label.setWrapText(true);
+     public static void display(String title, String message, String imagePath) {
+          Stage window = new Stage();
+          Font font = new Font("Tw Cen MT", 18);
+          window.initModality(Modality.APPLICATION_MODAL);
+          window.setTitle(title);
+          window.setMinWidth(150);
+          window.setMaxWidth(600);
+          window.setHeight(700);
+          window.setOnCloseRequest(e -> window.close());
 
-    Image image = new Image(ConfirmBox.class.getResourceAsStream(imagePath));
-    ImageView imageView = new ImageView();
-    imageView.setImage(image);
-    imageView.setX(10);
-    imageView.setY(10);
-    imageView.setFitWidth(500);
-    imageView.setPreserveRatio(true);
+          Label label = new Label();
+          label.setFont(font);
+          label.setText(message);
+          label.setWrapText(true);
 
-    Button buttonOk = new Button("Ok");
-    buttonOk.setFont(font);
+          Image image = new Image(ConfirmBox.class.getResourceAsStream(imagePath));
+          ImageView imageView = new ImageView();
+          imageView.setImage(image);
+          imageView.setX(10);
+          imageView.setY(10);
+          imageView.setFitWidth(500);
+          imageView.setPreserveRatio(true);
 
-    buttonOk.setOnAction(e -> {
-      window.close();
-    });
+          Button buttonOk = new Button("Ok");
+          buttonOk.setFont(font);
 
-    VBox layout = new VBox(10);
-    layout.setPadding(new Insets(10, 10, 10, 10));
-    layout.getChildren().addAll(label,imageView,buttonOk);
-    layout.setAlignment(Pos.CENTER);
+          buttonOk.setOnAction(e -> {
+               window.close();
+          });
 
-    Scene scene = new Scene(layout);
-    window.setScene(scene);
-    window.showAndWait();
-  }
+          VBox layout = new VBox(10);
+          layout.setPadding(new Insets(10, 10, 10, 10));
+          layout.getChildren().addAll(label,imageView,buttonOk);
+          layout.setAlignment(Pos.CENTER);
 
-  /**
-   * Creates a window containing an question with Yes and No buttons.
-   * @param title String title of the window from the classes that uses ConfirmBox.
-   * @param message String message to display in the window from the classes that uses ConfirmBox.
-   * @return The users answer (Yes = true, No = false)
-   */
-  public static boolean yesNoOption(String title, String message) {
-    Stage window = new Stage();
-    Font font = new Font("Tw Cen MT", 18);
-    AtomicBoolean answer = new AtomicBoolean(false);
+          Scene scene = new Scene(layout);
+          window.setScene(scene);
+          window.showAndWait();
+     }
 
-    window.initModality(Modality.APPLICATION_MODAL);
-    window.setTitle(title);
-    window.setMinWidth(150);
-    window.setMaxWidth(600);
-    window.setHeight(200);
-    window.setOnCloseRequest(e -> window.close());
+     /**
+      * Creates a window containing an question with Yes and No buttons.
+      * @param title String title of the window from the classes that uses ConfirmBox.
+      * @param message String message to display in the window from the classes that uses ConfirmBox.
+      * @return The users answer (Yes = true, No = false)
+      */
+     public static boolean yesNoOption(String title, String message) {
+          Stage window = new Stage();
+          Font font = new Font("Tw Cen MT", 18);
+          AtomicBoolean answer = new AtomicBoolean(false);
 
-    Label label = new Label();
-    label.setFont(font);
-    label.setText(message);
-    label.setWrapText(true);
+          window.initModality(Modality.APPLICATION_MODAL);
+          window.setTitle(title);
+          window.setMinWidth(150);
+          window.setMaxWidth(600);
+          window.setHeight(200);
+          window.setOnCloseRequest(e -> window.close());
 
-    Button buttonYes = new Button("Ja");
-    buttonYes.setFont(font);
+          Label label = new Label();
+          label.setFont(font);
+          label.setText(message);
+          label.setWrapText(true);
 
-    buttonYes.setOnAction(e -> {
-      answer.set(true);
-      window.close();
-    });
+          Button buttonYes = new Button("Ja");
+          buttonYes.setFont(font);
 
-    Button buttonNo = new Button("Nej");
-    buttonNo.setFont(font);
+          buttonYes.setOnAction(e -> {
+               answer.set(true);
+               window.close();
+          });
 
-    buttonNo.setOnAction(e -> {
-      answer.set(false);
-      window.close();
-    });
+          Button buttonNo = new Button("Nej");
+          buttonNo.setFont(font);
 
-    VBox layout = new VBox(10);
-    layout.setPadding(new Insets(10, 10, 10, 10));
-    layout.getChildren().addAll(label, buttonYes, buttonNo);
-    layout.setAlignment(Pos.CENTER);
+          buttonNo.setOnAction(e -> {
+               answer.set(false);
+               window.close();
+          });
 
-    Scene scene = new Scene(layout);
-    window.setScene(scene);
-    window.showAndWait();
+          VBox layout = new VBox(10);
+          layout.setPadding(new Insets(10, 10, 10, 10));
+          layout.getChildren().addAll(label, buttonYes, buttonNo);
+          layout.setAlignment(Pos.CENTER);
 
-    return answer.get();
-  }
+          Scene scene = new Scene(layout);
+          window.setScene(scene);
+          window.showAndWait();
+
+          return answer.get();
+     }
 
 
 }

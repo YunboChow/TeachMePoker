@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import model.Card;
 
 /**
- * Main class for Ai-player that depending on turn, creates a calculation and returns a respond to
+ * controller.Main class for Ai-player that depending on turn, creates a calculation and returns a respond to
  * controller.
  * 
  * @author Max Frennessen 17-05-25

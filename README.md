@@ -13,7 +13,7 @@ Lägga till senaste versionen av JDK och Java-FX i projektet:
 Gå in på File → Project structure och i menyvalet Project Settings →  Project kan du ändra Project SDK till 15.
 Välj sedan Libraries under Project Settings i samma meny till vänster, och tryck sedan på + och Java för att lägga till ett nytt Java-bibliotek. Leta fram din mappen där du har lagt ditt Java-FX och markera undermappen som heter “lib” och lägg till den.
 
-Högerklicka på Main-klassen och välj “Edit Main.main()” eller “More Run/Debug → Modify Run Configuration” om det finns. Annars kan man köra main en gång (vilket kommer att generera fel) och sedan klicka på “Main” bredvid den gröna pilen för att köra programmet högst upp till höger, och välja “Edit Configurations”.
+Högerklicka på controller.Main-klassen och välj “Edit controller.Main.main()” eller “More Run/Debug → Modify Run Configuration” om det finns. Annars kan man köra main en gång (vilket kommer att generera fel) och sedan klicka på “controller.Main” bredvid den gröna pilen för att köra programmet högst upp till höger, och välja “Edit Configurations”.
  
 Om fältet VM-options ej finns, tryck på “Modify Options” och lägg till den. I fältet VM-options, lägg till följande: --upgrade-module-path "Din\Path\Till\JavaFX\lib". Det vill säga er egen path till er Java-FX “lib”-mapp är vad som fylls i inom citationstecken.
 
