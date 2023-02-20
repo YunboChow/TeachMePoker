@@ -1,30 +1,31 @@
 package controller.gameControllers;
 
 import controller.SPController;
-import javafx.application.Application;
 import controller.Main;
+
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-
-
+/**
+ * @author: Anthon Haväng
+ * Test cases for controller.gameControllers.GameController.java
+ */
 class GameControllerTest {
-     Pane mainroot;
-     Stage mainStage;
-     static GameController gameController;
-     static SPController spController;
+     private static GameController gameController;
+     private static SPController spController;
+
+     /**
+      * -------------- TEST ENVIRONMENT SETUP --------------
+      */
 
      /**
       * @author: Anthon Haväng
@@ -43,16 +44,6 @@ class GameControllerTest {
           new Thread(() -> Application.launch(Main.class)).start();
      }
 
-     @Test
-     static void startMainProgram() {
-          try {
-               Thread.sleep(2000);
-          } catch (InterruptedException e) {
-               throw new RuntimeException(e);
-          }
-          Main main = Main.getMain();
-     }
-
      /**
       * @author: Anthon Haväng
       */
@@ -64,7 +55,6 @@ class GameControllerTest {
                     FXMLLoader loaderGameState = new FXMLLoader(GameController.class.getResource("/GameState.fxml"));
                     Pane gameState = loaderGameState.load();
                     gameController = loaderGameState.getController();
-                    spController = new SPController();
                } catch (IOException e) {
                     e.printStackTrace();
                }
@@ -77,7 +67,12 @@ class GameControllerTest {
      }
 
      /**
+      * -------------- TEST CASES BELOW --------------
+      */
+
+     /**
       * @author: Anthon Haväng
+      * Krav: KF-3.4.3.4
       */
      @Test
      void playerAllInTest(){
