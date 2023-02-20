@@ -64,6 +64,9 @@ public class SPController extends Thread {
           gameController.setAiPlayers(aiPlayers, false, 69);
           potSplits = new int[numberOfPlayers][1];
 
+          gameController.resetUnchangeableImages();
+          nbrOfAiOut = 0;
+
           try {
                setActive(true);
                setupPhase();
@@ -140,8 +143,6 @@ public class SPController extends Thread {
                 * if not, reset the all-in check and potsplit counter Create a new deck, shuffle it and deal
                 * cards
                 */
-               gameController.resetUnchangeableImages();
-               nbrOfAiOut = 0;
                doAllInCheck = false;
                psCounter = 0;
                deck = new Deck();
