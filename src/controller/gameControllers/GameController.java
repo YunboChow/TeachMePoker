@@ -1407,4 +1407,8 @@ public class GameController {
             mainPot.setVisible(true);
         });
     }
+
+    public void resetUnchangeableImages(){
+        unchangableImages.clear();
+    }
 }
