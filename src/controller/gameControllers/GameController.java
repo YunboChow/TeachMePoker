@@ -749,7 +749,7 @@ public class GameController {
             ivSmallBlind.relocate(520, 425);
 
         });
-        updatePots(new int[1][0], spController.getPotSize());
+        //updatePots(new int[5], spController.getPotSize());
 
     }
 
@@ -767,7 +767,7 @@ public class GameController {
             ivBigBlind.relocate(520, 425);
 
         });
-        updatePots(new int[1][0], spController.getPotSize());
+        //updatePots(new int[5], spController.getPotSize());
     }
 
 
@@ -1379,7 +1379,7 @@ public class GameController {
      * @param potSplits an Array of subPots during All-ins
      * @param tablePot  the main tablePot
      */
-    public void updatePots(int[][] potSplits, int tablePot) {
+    public void updatePots(int[] potSplits, int tablePot) {
 
         if (spController.getFixedNumberOfAIs() == 5) {
             this.collectionOfPots = new Label[]{subPotOne, subPotTwo, subPotThree, subPotFour, subPotFive, subPotSix};
@@ -1392,8 +1392,8 @@ public class GameController {
             String[] potOrder = {"Sub-Pot One: ", "Sub-Pot Two: ", "Sub-Pot Three: ", "Sub-Pot Four: ",
                     "Sub-Pot Five: ", "Sub-Pot Six: "};
             for (int i = 0; i < collectionOfPots.length; i++) {
-                if (potSplits[i][0] > 0) {
-                    collectionOfPots[i].setText(potOrder[i] + "$" + potSplits[i][0]);
+                if (potSplits[i] >  0) {
+                    collectionOfPots[i].setText(potOrder[i] + "$" + potSplits[i]);
                     collectionOfPots[i].setVisible(true);
                     collectionOfPots[i].setLayoutX(10);
                     collectionOfPots[i].setLayoutY(30 * (i + 1) + 70);

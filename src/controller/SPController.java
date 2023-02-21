@@ -24,7 +24,7 @@ public class SPController extends Thread {
                potSize, currentPotSize, currentMaxBet, blindCounter, fixedNumberOfAIs;
      private int playTurn, dealer, currentPlayer, numberOfPlayers, psCounter = 0;
      private int bigBlind = 10;
-     private int[][] potSplits;
+     private int[] potSplits;
      private boolean doAllInCheck;
      private boolean allCalledOrFolded, winnerDeclared = false;
      private volatile boolean active = false;
@@ -62,7 +62,7 @@ public class SPController extends Thread {
                aiPlayers.add(new Ai(potSize, name.remove(0)));
           }
           gameController.setAiPlayers(aiPlayers, false, 69);
-          potSplits = new int[numberOfPlayers][1];
+          potSplits = new int[numberOfPlayers];
 
           gameController.resetUnchangeableImages();
           nbrOfAiOut = 0;
@@ -155,7 +155,7 @@ public class SPController extends Thread {
 
                gameController.setStartingHand(card1, card2);
                this.currentPotSize = 0;
-               potSplits = new int[numberOfPlayers][1];
+               potSplits = new int[numberOfPlayers];
                gameController.updatePots(potSplits, currentPotSize);
                gameController.playerReset("");
                /*
@@ -510,18 +510,18 @@ public class SPController extends Thread {
 
           int allInPotSize;
           for (int i = potSplits.length - 1; i >= 0; i--) {
-               if (potSplits[i][0] > 0) {
-                    allInPotSize = potSplits[i][0];
+               if (potSplits[i] > 0) {
+                    allInPotSize = potSplits[i];
                     for (Ai test : aiPlayers) {
                          if (test.getAllInViability() <= i && !test.getDecision().contains("fold")
                                    && !test.getDecision().contains("lost")) {
-                              potSplits[i][0] += potSplits[i][0];
+                              potSplits[i] += potSplits[i];
 
                          }
                     }
-                    potSplits[i][0] -= potSplits[i][0];
+                    potSplits[i] -= potSplits[i];
 
-                    currentPotSize -= potSplits[i][0];
+                    currentPotSize -= potSplits[i];
                     ArrayList<Integer> secWin = new ArrayList<Integer>();
 
                     String winner = "";
@@ -670,7 +670,7 @@ public class SPController extends Thread {
                     currentPotSize += allin;
                     allin = currentPotSize;
                     doAllInCheck = true;
-                    potSplits[psCounter][0] = allin;
+                    potSplits[psCounter] = allin;
                     gameController.setAllInViability(psCounter);
                     // Check if AiPlayers are viable for the same subpot
                     for (Ai aips : aiPlayers) {
@@ -686,7 +686,7 @@ public class SPController extends Thread {
                     currentPotSize += allin;
                     allin = currentPotSize;
                     doAllInCheck = true;
-                    potSplits[psCounter][0] = allin;
+                    potSplits[psCounter] = allin;
                     gameController.setAllInViability(psCounter);
                     // Check if AiPlayers are viable for the same subpot
                     for (Ai aips : aiPlayers) {
@@ -782,7 +782,7 @@ public class SPController extends Thread {
                     currentMaxBet = allin;
                     currentPotSize += allin;
                     doAllInCheck = true;
-                    potSplits[psCounter][0] = allin;
+                    potSplits[psCounter] = allin;
                     // Check if the player is viable for the same subpot
                     if (gameController.getPlayerPot() + gameController.getPlayerAlreadyPaid() > allin) {
                          gameController.setAllInViability(psCounter);
@@ -796,7 +796,7 @@ public class SPController extends Thread {
                } else {
                     currentPotSize += allin;
                     doAllInCheck = true;
-                    potSplits[psCounter][0] = allin;
+                    potSplits[psCounter] = allin;
                     if (gameController.getPlayerPot() + gameController.getPlayerAlreadyPaid() > allin) {
                          gameController.setAllInViability(psCounter);
                     }
