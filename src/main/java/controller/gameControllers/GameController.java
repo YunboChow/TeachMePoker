@@ -939,8 +939,10 @@ public class GameController {
 
           Platform.runLater(() -> {
                winnerBox = new WinnerBox();
-               winnerBox.displayWinner("Förlust",
-                         "Tyvärr, du förlorade och dina pengar är slut. Bättre lycka nästa gång!", 5,
+               winnerBox.displayWinner(
+                         "Förlust",
+                         "Tyvärr, du förlorade och dina pengar är slut. Bättre lycka nästa gång!",
+                         5,
                          winnerHand);
                SceneController.switchScene(Scenes.MainMenu);
           });
@@ -1364,4 +1366,11 @@ public class GameController {
           return GameController.gameController;
      }
 
+     public Label getHandsWonLabel() {
+          return this.handsWonLabel;
+     }
+
+     public Slider getSlider() {
+          return slider;
+     }
 }

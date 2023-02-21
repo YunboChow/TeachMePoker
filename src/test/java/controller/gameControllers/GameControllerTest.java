@@ -48,7 +48,6 @@ class GameControllerTest {
       * @author: Anthon Haväng
       */
      @BeforeEach
-     @Test
      void prepTests() {
           Platform.runLater(() -> {
                try {
@@ -79,5 +78,25 @@ class GameControllerTest {
           gameController.setPlayerPot(1000);
           gameController.playerAllIn();
           Assertions.assertEquals(0, gameController.getPlayerPot());
+     }
+
+     /**
+      * @author: Anthon Haväng & Erik Larsson
+      */
+     @Test
+     void handsWonTest() {
+          gameController.updateHandsWon(10);
+          Assertions.assertEquals("Hands won: 10", gameController.getHandsWonLabel().getText());
+     }
+
+     /**
+      * @author Anthon Haväng
+      */
+     @Test
+     void playerRaiseTest(){
+          gameController.getSlider().setValue(500);
+          gameController.setPlayerPot(1);
+          gameController.playerRaise();
+          Assertions.assertEquals(500, gameController.getPlayerAlreadyPaid());
      }
 }
