@@ -749,7 +749,7 @@ public class GameController {
             ivSmallBlind.relocate(520, 425);
 
         });
-        updatePots(new int[1][0], spController.getPotSize());
+        updatePots(new int[1][1], spController.getPotSize());
 
     }
 
@@ -767,7 +767,7 @@ public class GameController {
             ivBigBlind.relocate(520, 425);
 
         });
-        updatePots(new int[1][0], spController.getPotSize());
+        updatePots(new int[1][1], spController.getPotSize());
     }
 
 
@@ -1204,7 +1204,7 @@ public class GameController {
         Platform.runLater(() -> {
             winnerBox = new WinnerBox();
             winnerBox.displayWinner("Grattis",
-                    "Wallah du mycket djurig och vann detta", 5,
+                    "Wallah du mycket djurig och vann detta spelet!!!!!!", 5,
                     winnerHand);
             SceneController.switchScene(Scenes.MainMenu);
         });

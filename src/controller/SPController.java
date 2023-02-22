@@ -380,7 +380,12 @@ public class SPController extends Thread {
                     // Set new dealer
                     dealer = (dealer + 1) % numberOfPlayers;
                }
-               if (active) {
+
+               if(nbrOfAiOut == aiPlayers.size()){
+                    gameController.playerWon();
+               }
+
+               if (active && nbrOfAiOut != aiPlayers.size()) {
                     try {
                          setupPhase();
                     } catch (InstantiationException e) {
@@ -492,11 +497,6 @@ public class SPController extends Thread {
                          gameController.setWinnerLabel(winner, bestHand);
                     }
                }
-          }
-          // TODO: 2023-02-16 HÄR KAN VI LÄGGA TLL ATT DEN KOLLAR OM ALLA ANDRA HAR ÅKT UT FÖR O KUNNA VINNA SPELET
-          if(nbrOfAiOut == aiPlayers.size()){
-               // TODO: 2023-02-20 Win method
-               gameController.playerWon();
           }
      }
 
