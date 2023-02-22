@@ -749,7 +749,8 @@ public class GameController {
             ivSmallBlind.relocate(520, 425);
 
         });
-        updatePots(new int[1][1], spController.getPotSize());
+        //updatePots(new int[1][1], spController.getPotSize());
+        updateTablePot(spController.getPotSize()); 
 
     }
 
@@ -767,7 +768,8 @@ public class GameController {
             ivBigBlind.relocate(520, 425);
 
         });
-        updatePots(new int[1][1], spController.getPotSize());
+        //updatePots(new int[1][1], spController.getPotSize());
+        updateTablePot(spController.getPotSize());
     }
 
 
@@ -1401,6 +1403,16 @@ public class GameController {
                     collectionOfPots[i].setVisible(false);
                 }
             }
+            mainPot.setText("Table Pot: $" + tablePot);
+            mainPot.setLayoutX(295.0);
+            mainPot.setLayoutY(290.0);
+            mainPot.setVisible(true);
+        });
+    }
+
+    public void updateTablePot(int tablePot){
+        Platform.runLater(() -> {
+
             mainPot.setText("Table Pot: $" + tablePot);
             mainPot.setLayoutX(295.0);
             mainPot.setLayoutY(290.0);
