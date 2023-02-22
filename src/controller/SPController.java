@@ -259,7 +259,7 @@ public class SPController extends Thread {
                               if (!gameController.getPlayerDecision().equals("fold")
                                         && !gameController.getPlayerDecision().contains("allin") && active) {
                                    if (!(checkLivePlayers() > 1) && active) {
-                                        gameController.setPlayerPot(currentPotSize);
+                                        gameController.setPlayerPot(currentPotSize + gameController.getPlayerPot());
                                         winner = gameController.getUsername();
                                         gameController.setWinnerLabel(winner, 99);
                                         gameController.addLogMessage(winner + " vann potten på " + currentPotSize + " kronor!");
@@ -435,20 +435,20 @@ public class SPController extends Thread {
                if (!gameController.getPlayerDecision().contains("fold")) {
                     // Player wins
                     if (gameController.getHandStrength() > bestHand) {
-                         gameController.setPlayerPot(currentPotSize);
+                         gameController.setPlayerPot(currentPotSize + gameController.getPlayerPot());
                          winner = gameController.getUsername();
                          gameController.setWinnerLabel(winner, gameController.getHandStrength());
                          // draw
                     } else if (gameController.getHandStrength() == bestHand) {
                          // Player wins
                          if (gameController.getGetHighCard() > bestHandPlayer.getHighCard()) {
-                              gameController.setPlayerPot(currentPotSize);
+                              gameController.setPlayerPot(currentPotSize + gameController.getPlayerPot());
                               winner = gameController.getUsername();
                               gameController.setWinnerLabel(winner, gameController.getHandStrength());
                               // Draw
                          } else if (gameController.getGetHighCard() == bestHandPlayer.getHighCard()) {
-                              bestHandPlayer.updateWinner(currentPotSize / 2);
-                              gameController.setPlayerPot(currentPotSize / 2);
+                              bestHandPlayer.updateWinner((currentPotSize / 2) + bestHandPlayer.aiPot());
+                              gameController.setPlayerPot((currentPotSize / 2) + gameController.getPlayerPot());
                               winner = gameController.getUsername() + " och " + bestHandPlayer.getName();
                               gameController.setWinnerLabel(winner, bestHand);
                               // AI wins and there are second winners.
@@ -548,17 +548,17 @@ public class SPController extends Thread {
                     if (!gameController.getPlayerDecision().contains("fold")
                               && gameController.getAllInViability() <= i) {
                          if (gameController.getHandStrength() > bestHand) {
-                              gameController.setPlayerPot(allInPotSize);
+                              gameController.setPlayerPot(allInPotSize + gameController.getPlayerPot());
                               winner = gameController.getUsername();
                               gameController.setWinnerLabel(winner, gameController.getHandStrength());
                          } else if (gameController.getHandStrength() == bestHand) {
                               if (gameController.getGetHighCard() > bestHandPlayer.getHighCard()) {
-                                   gameController.setPlayerPot(allInPotSize);
+                                   gameController.setPlayerPot(allInPotSize + gameController.getPlayerPot());
                                    winner = gameController.getUsername();
                                    gameController.setWinnerLabel(winner, gameController.getHandStrength());
                               } else if (gameController.getGetHighCard() == bestHandPlayer.getHighCard()) {
                                    bestHandPlayer.updateWinner(allInPotSize / 2);
-                                   gameController.setPlayerPot(allInPotSize / 2);
+                                   gameController.setPlayerPot((allInPotSize / 2) + gameController.getPlayerPot());
                                    winner = gameController.getUsername() + " och " + bestHandPlayer.getName();
                                    gameController.setWinnerLabel(winner, bestHand);
                               } else {
