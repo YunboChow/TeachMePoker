@@ -8,15 +8,19 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
+import model.Card;
+import model.Suit;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
- * @author: Anthon Haväng
+ * @author Anthon Haväng
  * Test cases for controller.gameControllers.GameController.java
  */
 class GameControllerTest {
@@ -28,7 +32,7 @@ class GameControllerTest {
       */
 
      /**
-      * @author: Anthon Haväng
+      * @author Anthon Haväng
       */
      @BeforeEach
      void prepSPController() {
@@ -37,7 +41,7 @@ class GameControllerTest {
      }
 
      /**
-      * @author: Anthon Haväng
+      * @author Anthon Haväng
       */
      @BeforeAll
      static void initJFXRuntime() {
@@ -45,7 +49,7 @@ class GameControllerTest {
      }
 
      /**
-      * @author: Anthon Haväng
+      * @author Anthon Haväng
       */
      @BeforeEach
      void prepTests() {
@@ -70,7 +74,7 @@ class GameControllerTest {
       */
 
      /**
-      * @author: Anthon Haväng
+      * @author Anthon Haväng
       * Krav: KF-3.4.3.4
       */
      @Test
@@ -81,7 +85,7 @@ class GameControllerTest {
      }
 
      /**
-      * @author: Anthon Haväng & Erik Larsson
+      * @author Anthon Haväng & Erik Larsson
       */
      @Test
      void handsWonTest() {
@@ -98,5 +102,76 @@ class GameControllerTest {
           gameController.setPlayerPot(1);
           gameController.playerRaise();
           Assertions.assertEquals(500, gameController.getPlayerAlreadyPaid());
+     }
+
+     /**
+      * @author Anthon Haväng
+      */
+     @Test
+     void playerRaiseWithAllInTest(){
+          gameController.getSlider().setValue(500);
+          gameController.setPlayerPot(0);
+          gameController.playerRaise();
+          Assertions.assertEquals(500, gameController.getPlayerAlreadyPaid());
+     }
+
+     /**
+      * @author Anthon Haväng & Erik Larsson
+      */
+     @Test
+     void playerFoldTest(){
+          gameController.playerFold();
+          Assertions.assertEquals("Fold", gameController.getLbPlayerAction().getText());
+     }
+
+     /**
+      * @author Anthon Haväng & Erik Larsson
+      */
+     @Test
+     void playerCallTest(){
+          gameController.playerCall();
+          Assertions.assertEquals("Call, $0", gameController.getLbPlayerAction().getText());
+     }
+
+     /**
+      * @author Anthon Haväng & Erik Larsson
+      */
+     @Test
+     void playerCheckTest(){
+          gameController.playerCheck();
+          Assertions.assertEquals("Check", gameController.getLbPlayerAction().getText());
+     }
+
+     /**
+      * @author Anthon Haväng & Erik Larsson
+      */
+     @Test
+     void setStartingHandTest(){
+
+          Card[] cards = new Card[2];
+
+          cards[0] = new Card(Suit.HEARTS, 10, new ImageIcon());
+          cards[1] = new Card(Suit.CLUBS, 9, new ImageIcon());
+
+          gameController.setStartingHand(cards[0], cards[1]);
+
+          Assertions.assertEquals(gameController.getCards().get(0), cards[0]);
+          Assertions.assertEquals(gameController.getCards().get(1), cards[1]);
+     }
+
+     @Test
+     void setFlopTurnRiverTest(){
+          ArrayList<Card> cards = new ArrayList<>();
+          cards.add(new Card(Suit.HEARTS, 10, new ImageIcon()));
+          cards.add(new Card(Suit.CLUBS, 9, new ImageIcon()));
+
+          SPController spController1 = new SPController();
+          spController1.setAllKnownCards(cards);
+
+          Card[] card1 = new Card[2];
+          card1[0] = cards.get(0);
+          card1[1] = cards.get(1);
+
+          Assertions.assertEquals(1,gameController.setFlopTurnRiver(card1));
      }
 }

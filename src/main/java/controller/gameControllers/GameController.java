@@ -368,7 +368,6 @@ public class GameController {
 
           slider.valueProperty().addListener(e -> {
                raiseLabel.setText(String.valueOf((int) slider.getValue()));
-
           });
      }
 
@@ -498,7 +497,7 @@ public class GameController {
       *
       * @param setOfCards Set of cards shown on the table.
       */
-     public void setFlopTurnRiver(Card[] setOfCards) {
+     public int setFlopTurnRiver(Card[] setOfCards) {
 
           this.cards = new ArrayList<Card>(); // Clears the cards list
           cards.add(card1); // Adds card one and card two (player's cards in the hand)
@@ -542,6 +541,7 @@ public class GameController {
           });
           handHelp();
           checkHand();
+          return 1;
      }
 
 
@@ -1372,5 +1372,369 @@ public class GameController {
 
      public Slider getSlider() {
           return slider;
+     }
+
+     public Label getLbPlayerAction() {
+          return lbPlayerAction;
+     }
+
+     public ArrayList<Card> getCards() {
+          return cards;
+     }
+
+     public ImageView getBtCheck() {
+          return btCheck;
+     }
+
+     public ImageView getBtCall() {
+          return btCall;
+     }
+
+     public ImageView getBtFold() {
+          return btFold;
+     }
+
+     public ImageView getBtRaise() {
+          return btRaise;
+     }
+
+     public ImageView getBtAllIn() {
+          return btAllIn;
+     }
+
+     public Label getLbPotValue() {
+          return lbPotValue;
+     }
+
+     public Label getLbAllIn() {
+          return lbAllIn;
+     }
+
+     public Pane getPowerBarArea() {
+          return powerBarArea;
+     }
+
+     public Pane getPlayerCardsArea() {
+          return playerCardsArea;
+     }
+
+     public Pane getTableCardArea() {
+          return tableCardArea;
+     }
+
+     public Label getAdviceLabel() {
+          return adviceLabel;
+     }
+
+     public Label getHelpLabel() {
+          return helpLabel;
+     }
+
+     public Label getUserName() {
+          return userName;
+     }
+
+     public Label getRaiseLabel() {
+          return raiseLabel;
+     }
+
+     public ImageView getImgRoundStatus() {
+          return imgRoundStatus;
+     }
+
+     public Pane getPaneRounds() {
+          return paneRounds;
+     }
+
+     public ImageView getImgPlayerOneCards() {
+          return imgPlayerOneCards;
+     }
+
+     public ImageView getImgPlayerTwoCards() {
+          return imgPlayerTwoCards;
+     }
+
+     public ImageView getImgPlayerThreeCards() {
+          return imgPlayerThreeCards;
+     }
+
+     public ImageView getImgPlayerFourCards() {
+          return imgPlayerFourCards;
+     }
+
+     public ImageView getImgPlayerFiveCards() {
+          return imgPlayerFiveCards;
+     }
+
+     public Label getLabelPlayerOneName() {
+          return labelPlayerOneName;
+     }
+
+     public Label getLabelPlayerTwoName() {
+          return labelPlayerTwoName;
+     }
+
+     public Label getLabelPlayerThreeName() {
+          return labelPlayerThreeName;
+     }
+
+     public Label getLabelPlayerFourName() {
+          return labelPlayerFourName;
+     }
+
+     public Label getLabelPlayerFiveName() {
+          return labelPlayerFiveName;
+     }
+
+     public Label getLabelPlayerOnePot() {
+          return labelPlayerOnePot;
+     }
+
+     public Label getLabelPlayerTwoPot() {
+          return labelPlayerTwoPot;
+     }
+
+     public Label getLabelPlayerThreePot() {
+          return labelPlayerThreePot;
+     }
+
+     public Label getLabelPlayerFourPot() {
+          return labelPlayerFourPot;
+     }
+
+     public Label getLabelPlayerFivePot() {
+          return labelPlayerFivePot;
+     }
+
+     public Label getLabelPlayerOneAction() {
+          return labelPlayerOneAction;
+     }
+
+     public Label getLabelPlayerTwoAction() {
+          return labelPlayerTwoAction;
+     }
+
+     public Label getLabelPlayerThreeAction() {
+          return labelPlayerThreeAction;
+     }
+
+     public Label getLabelPlayerFourAction() {
+          return labelPlayerFourAction;
+     }
+
+     public Label getLabelPlayerFiveAction() {
+          return labelPlayerFiveAction;
+     }
+
+     public ImageView getImgCard1() {
+          return imgCard1;
+     }
+
+     public ImageView getImgCard2() {
+          return imgCard2;
+     }
+
+     public ImageView getImgCard3() {
+          return imgCard3;
+     }
+
+     public ImageView getImgCard4() {
+          return imgCard4;
+     }
+
+     public ImageView getImgCard5() {
+          return imgCard5;
+     }
+
+     public ImageView getImgCard6() {
+          return imgCard6;
+     }
+
+     public ImageView getImgCard7() {
+          return imgCard7;
+     }
+
+     public ImageView getIvBigBlind() {
+          return ivBigBlind;
+     }
+
+     public ImageView getIvSmallBlind() {
+          return ivSmallBlind;
+     }
+
+     public ImageView getIvDealer() {
+          return ivDealer;
+     }
+
+     public ScrollPane getLogScrollPane() {
+          return logScrollPane;
+     }
+
+     public TextFlow getLogTextFlow() {
+          return logTextFlow;
+     }
+
+     public Text getLogText() {
+          return logText;
+     }
+
+     public ImageView getIvSound() {
+          return ivSound;
+     }
+
+     public MenuItem getMiNewGame() {
+          return miNewGame;
+     }
+
+     public MenuItem getMiClose() {
+          return miClose;
+     }
+
+     public MenuItem getMiSettings() {
+          return miSettings;
+     }
+
+     public MenuItem getMiAbout() {
+          return miAbout;
+     }
+
+     public MenuItem getMiTutorial() {
+          return miTutorial;
+     }
+
+     public Pane getPanePot() {
+          return panePot;
+     }
+
+     public Label getSubPotOne() {
+          return subPotOne;
+     }
+
+     public Label getSubPotTwo() {
+          return subPotTwo;
+     }
+
+     public Label getSubPotThree() {
+          return subPotThree;
+     }
+
+     public Label getSubPotFour() {
+          return subPotFour;
+     }
+
+     public Label getSubPotFive() {
+          return subPotFive;
+     }
+
+     public Label getSubPotSix() {
+          return subPotSix;
+     }
+
+     public Label getMainPot() {
+          return mainPot;
+     }
+
+     public ImageView getHandsWonImage() {
+          return handsWonImage;
+     }
+
+     public TextField getHandsWonField() {
+          return handsWonField;
+     }
+
+     public WinnerBox getWinnerBox() {
+          return winnerBox;
+     }
+
+     public int getPowerBarValue() {
+          return powerBarValue;
+     }
+
+     public Image getImage() {
+          return image;
+     }
+
+     public Hand getHand() {
+          return hand;
+     }
+
+     public int getTablePotValue() {
+          return tablePotValue;
+     }
+
+     public int getAlreadyPaid() {
+          return alreadyPaid;
+     }
+
+     public ImageView getImgPowerBar() {
+          return imgPowerBar;
+     }
+
+     public SPController getSpController() {
+          return spController;
+     }
+
+     public boolean isPlayerMadeDecision() {
+          return playerMadeDecision;
+     }
+
+     public boolean isReady() {
+          return isReady;
+     }
+
+     public String getDecision() {
+          return decision;
+     }
+
+     public Card getCard1() {
+          return card1;
+     }
+
+     public Card getCard2() {
+          return card2;
+     }
+
+     public LinkedList<Ai> getAiPlayers() {
+          return aiPlayers;
+     }
+
+     public Label[][] getCollectionOfLabelsAi() {
+          return collectionOfLabelsAi;
+     }
+
+     public ImageView[] getCollectionOfCardsAi() {
+          return collectionOfCardsAi;
+     }
+
+     public ImageView[] getCollectionOfCardsTable() {
+          return collectionOfCardsTable;
+     }
+
+     public int[][] getAiPositions() {
+          return aiPositions;
+     }
+
+     public int getHighCard() {
+          return highCard;
+     }
+
+     public int getPrevPlayerActive() {
+          return prevPlayerActive;
+     }
+
+     public String getWinnerHand() {
+          return winnerHand;
+     }
+
+     public Label[] getCollectionOfPots() {
+          return collectionOfPots;
+     }
+
+     public int getHandsWon() {
+          return handsWon;
+     }
+
+     public int getMatchesWon() {
+          return matchesWon;
      }
 }
