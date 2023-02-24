@@ -28,6 +28,9 @@ public class SPController extends Thread {
      private boolean doAllInCheck;
      private boolean allCalledOrFolded, winnerDeclared = false;
      private volatile boolean active = false;
+
+
+
      private ArrayList<Card> allKnownCards = new ArrayList<>();
      private ArrayList<String> name = new ArrayList<String>();
      private LinkedList<Ai> aiPlayers = new LinkedList<Ai>();
@@ -943,6 +946,10 @@ public class SPController extends Thread {
 
      public void setActive(boolean active) {
           this.active = active;
+     }
+
+     public void setAllKnownCards(ArrayList<Card> allKnownCards) {
+          this.allKnownCards = allKnownCards;
      }
 }
 

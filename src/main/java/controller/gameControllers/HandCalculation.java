@@ -19,6 +19,7 @@ public class HandCalculation {
     private ArrayList<String> nbrForStraight = new ArrayList<String>();
     private ArrayList<String> nbrForStraight1 = new ArrayList<String>();
     private ArrayList<String> aiCards = new ArrayList<String>();
+
     private ArrayList<Integer> cardNbr = new ArrayList<Integer>();
     private ArrayList<String> cardClr = new ArrayList<String>();
     private boolean highCards = false;
@@ -884,5 +885,9 @@ public class HandCalculation {
         }
 
         return handStrenght;
+    }
+
+    public void setCardNbr(ArrayList<Integer> cardNbr) {
+        this.cardNbr = cardNbr;
     }
 }
