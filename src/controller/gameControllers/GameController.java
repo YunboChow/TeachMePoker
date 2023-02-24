@@ -3,6 +3,7 @@ package controller.gameControllers;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 import controller.SceneController;
@@ -183,6 +184,8 @@ public class GameController {
     private int handsWon;
     private int matchesWon;
 
+    private HashSet<Integer> unchangableImages = new HashSet<>();
+
 
     /**
      * Method for initializing FXML
@@ -285,8 +288,14 @@ public class GameController {
      *                 active (currently it's turn).
      */
     public void setUIAiStatus(int position, String state) {
-
         String resource = "resources/images/"; // 122, 158
+        //if(collectionOfCardsAi[position].getImage().getUrl().equals(Paths.get(resource + "aiBarWithCardsOut.png").toUri().toString())){
+          //  return;
+        //}
+        if(unchangableImages.contains(position)){
+            return;
+        }
+
         Image hideCards = new Image(Paths.get(resource + "aiBarWithoutCards.png").toUri().toString(),
                 122, 158, true, true);
         Image showCards = new Image(Paths.get(resource + "aiBarWithCards.png").toUri().toString(), 122,
@@ -306,6 +315,7 @@ public class GameController {
             collectionOfCardsAi[position].setImage(showActiveCards);
         } else if (state.equals("out")){
             collectionOfCardsAi[position].setImage(showOutCards);
+            unchangableImages.add(position);
         }
     }
 
@@ -739,7 +749,7 @@ public class GameController {
             ivSmallBlind.relocate(520, 425);
 
         });
-        updatePots(new int[1][0], spController.getPotSize());
+        updatePots(new int[1][1], spController.getPotSize());
 
     }
 
@@ -757,7 +767,7 @@ public class GameController {
             ivBigBlind.relocate(520, 425);
 
         });
-        updatePots(new int[1][0], spController.getPotSize());
+        updatePots(new int[1][1], spController.getPotSize());
     }
 
 
@@ -1086,10 +1096,10 @@ public class GameController {
             Ai ai = aiPlayers.get(currentAI);
 
             if (decision.contains("fold") || decision.contains("lost") || decision.isEmpty()) {
-                if(decision.contains("lost")){
-                    setUIAiStatus(currentAIPosition, "out");
-                } else {
+                if(decision.contains("fold") || decision.isEmpty()){
                     setUIAiStatus(currentAIPosition, "inactive");
+                } else {
+                    setUIAiStatus(currentAIPosition, "out");
                 }
             } else {
                 setUIAiStatus(currentAIPosition, "active");
@@ -1188,6 +1198,19 @@ public class GameController {
             SceneController.switchScene(Scenes.MainMenu);
         });
     }
+
+    public void playerWon() {
+
+        Platform.runLater(() -> {
+            winnerBox = new WinnerBox();
+            winnerBox.displayWinner("Grattis",
+                    "Wallah du mycket djurig och vann detta spelet!!!!!!", 5,
+                    winnerHand);
+            SceneController.switchScene(Scenes.MainMenu);
+        });
+    }
+
+
 
 
     /**
@@ -1383,5 +1406,9 @@ public class GameController {
             mainPot.setLayoutY(290.0);
             mainPot.setVisible(true);
         });
+    }
+
+    public void resetUnchangeableImages(){
+        unchangableImages.clear();
     }
 }

@@ -147,7 +147,7 @@ public class Ai {
    * 
    * @param reset whatToDo.
    */
-  public void setDecision(String reset) {
+  public synchronized void setDecision(String reset) {
     whatToDo = reset;
   }
 
@@ -157,7 +157,7 @@ public class Ai {
    * 
    * @return returns the Decision the ai-player made.
    */
-  public String getDecision() {
+  public synchronized String getDecision() {
     return whatToDo;
   }
 

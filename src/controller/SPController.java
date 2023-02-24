@@ -32,6 +32,9 @@ public class SPController extends Thread {
      private ArrayList<String> name = new ArrayList<String>();
      private LinkedList<Ai> aiPlayers = new LinkedList<Ai>();
 
+     //used for win con.
+     private int nbrOfAiOut;
+
      /**
       * Method which receives and sets a number of starting variables and for the game to be set up.
       *
@@ -60,6 +63,9 @@ public class SPController extends Thread {
           }
           gameController.setAiPlayers(aiPlayers, false, 69);
           potSplits = new int[numberOfPlayers][1];
+
+          gameController.resetUnchangeableImages();
+          nbrOfAiOut = 0;
 
           try {
                setActive(true);
@@ -253,7 +259,7 @@ public class SPController extends Thread {
                               if (!gameController.getPlayerDecision().equals("fold")
                                         && !gameController.getPlayerDecision().contains("allin") && active) {
                                    if (!(checkLivePlayers() > 1) && active) {
-                                        gameController.setPlayerPot(currentPotSize);
+                                        gameController.setPlayerPot(currentPotSize + gameController.getPlayerPot());
                                         winner = gameController.getUsername();
                                         gameController.setWinnerLabel(winner, 99);
                                         gameController.addLogMessage(winner + " vann potten på " + currentPotSize + " kronor!");
@@ -349,7 +355,9 @@ public class SPController extends Thread {
                               gameController.addLogMessage(ai.getName() + " förlorade...");
                               ai.setDecision("lost");
                               ai.updateWinner(-ai.aiPot());
-                              gameController.setUIAiStatus(aiPlayers.indexOf(ai), "inactive");
+                              gameController.setUIAiStatus(aiPlayers.indexOf(ai), "out");
+                              // TODO: 2023-02-20 Öka variabel för hur många som har åkt ut för win con.
+                              nbrOfAiOut++;
                          }
                          System.out.println(ai.getName() + " : " + ai.getDecision() + (ai.aiPot() < bigBlind));
                     }
@@ -372,7 +380,12 @@ public class SPController extends Thread {
                     // Set new dealer
                     dealer = (dealer + 1) % numberOfPlayers;
                }
-               if (active) {
+
+               if(nbrOfAiOut == aiPlayers.size()){
+                    gameController.playerWon();
+               }
+
+               if (active && nbrOfAiOut != aiPlayers.size()) {
                     try {
                          setupPhase();
                     } catch (InstantiationException e) {
@@ -427,20 +440,20 @@ public class SPController extends Thread {
                if (!gameController.getPlayerDecision().contains("fold")) {
                     // Player wins
                     if (gameController.getHandStrength() > bestHand) {
-                         gameController.setPlayerPot(currentPotSize);
+                         gameController.setPlayerPot(currentPotSize + gameController.getPlayerPot());
                          winner = gameController.getUsername();
                          gameController.setWinnerLabel(winner, gameController.getHandStrength());
                          // draw
                     } else if (gameController.getHandStrength() == bestHand) {
                          // Player wins
                          if (gameController.getGetHighCard() > bestHandPlayer.getHighCard()) {
-                              gameController.setPlayerPot(currentPotSize);
+                              gameController.setPlayerPot(currentPotSize + gameController.getPlayerPot());
                               winner = gameController.getUsername();
                               gameController.setWinnerLabel(winner, gameController.getHandStrength());
                               // Draw
                          } else if (gameController.getGetHighCard() == bestHandPlayer.getHighCard()) {
-                              bestHandPlayer.updateWinner(currentPotSize / 2);
-                              gameController.setPlayerPot(currentPotSize / 2);
+                              bestHandPlayer.updateWinner((currentPotSize / 2) + bestHandPlayer.aiPot());
+                              gameController.setPlayerPot((currentPotSize / 2) + gameController.getPlayerPot());
                               winner = gameController.getUsername() + " och " + bestHandPlayer.getName();
                               gameController.setWinnerLabel(winner, bestHand);
                               // AI wins and there are second winners.
@@ -485,7 +498,6 @@ public class SPController extends Thread {
                     }
                }
           }
-          // TODO: 2023-02-16 HÄR KAN VI LÄGGA TLL ATT DEN KOLLAR OM ALLA ANDRA HAR ÅKT UT FÖR O KUNNA VINNA SPELET
      }
 
 
@@ -536,17 +548,17 @@ public class SPController extends Thread {
                     if (!gameController.getPlayerDecision().contains("fold")
                               && gameController.getAllInViability() <= i) {
                          if (gameController.getHandStrength() > bestHand) {
-                              gameController.setPlayerPot(allInPotSize);
+                              gameController.setPlayerPot(allInPotSize + gameController.getPlayerPot());
                               winner = gameController.getUsername();
                               gameController.setWinnerLabel(winner, gameController.getHandStrength());
                          } else if (gameController.getHandStrength() == bestHand) {
                               if (gameController.getGetHighCard() > bestHandPlayer.getHighCard()) {
-                                   gameController.setPlayerPot(allInPotSize);
+                                   gameController.setPlayerPot(allInPotSize + gameController.getPlayerPot());
                                    winner = gameController.getUsername();
                                    gameController.setWinnerLabel(winner, gameController.getHandStrength());
                               } else if (gameController.getGetHighCard() == bestHandPlayer.getHighCard()) {
                                    bestHandPlayer.updateWinner(allInPotSize / 2);
-                                   gameController.setPlayerPot(allInPotSize / 2);
+                                   gameController.setPlayerPot((allInPotSize / 2) + gameController.getPlayerPot());
                                    winner = gameController.getUsername() + " och " + bestHandPlayer.getName();
                                    gameController.setWinnerLabel(winner, bestHand);
                               } else {
@@ -695,6 +707,11 @@ public class SPController extends Thread {
       */
      private void askForAiDecision() throws InterruptedException {
           Ai ai = aiPlayers.get(currentPlayer);
+          if(ai.aiPot() == 0){
+               ai.setDecision("lost");
+               aiAction(currentPlayer);
+               return;
+          }
           // Starting Hand
           if (playTurn == 0) {
                ai.makeDecision(currentMaxBet);
