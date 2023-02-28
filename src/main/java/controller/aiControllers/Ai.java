@@ -202,7 +202,7 @@ public class Ai {
   public void setBigBlind(int bigBlind, boolean b) {
     this.isBigBlind = b;
     if (bigBlind > 0) {
-      System.out.println("AI " + name + " paid the big Blind (" + bigBlind + ")");
+      System.out.println("AI " + name + " betalade stora mörken (" + bigBlind + ")");
     }
     aiPot -= bigBlind;
     this.paidThisTurn += bigBlind;
@@ -218,7 +218,7 @@ public class Ai {
   public void setSmallBlind(int smallBlind, boolean b) {
     this.isSmallBlind = b;
     if (smallBlind > 0) {
-      System.out.println("AI " + name + " paid the small Blind (" + smallBlind + ")");
+      System.out.println("AI " + name + " betalade lilla mörken (" + smallBlind + ")");
     }
     aiPot -= smallBlind;
     this.paidThisTurn += smallBlind;
@@ -314,7 +314,7 @@ public class Ai {
     if (allInViability < AllInViability) {
       AllInViability = allInViability;
     } else {
-      System.out.println("AI was already viable");
+      System.out.println("AI var redan gneomförbar"); //AI was already viable
     }
   }
 }

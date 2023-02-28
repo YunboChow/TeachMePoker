@@ -70,7 +70,7 @@ public class Tutorial {
       * Runs everytime the user presses Next to update the picture.
       */
      public void placeImg(){
-          System.out.println("button pressed");
+          System.out.println("Kappen är nedtryckt");
           tutorialProgress = tutorialProgress+1;
           System.out.println(tutorialProgress);
           if(tutorialProgress == 18){

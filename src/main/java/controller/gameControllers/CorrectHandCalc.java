@@ -31,7 +31,7 @@ public class CorrectHandCalc {
         boolean[] checked = new boolean[15]; //Index motsvarar kortets valör
         int[] sameValue = new int[size];
         int counter = 0;
-        String bestHand = "HIGH CARD";
+        String bestHand = "HÖGT KORT";
 
         for (int in = 0; in < size; in++) {
             System.out.print(allKnownCards.get(in) + ", ");
@@ -54,38 +54,38 @@ public class CorrectHandCalc {
 
         for(int i = 0; i < size; i++) {
             if (sameValue[i] == 4) {
-                bestHand = "FOUR OF A KIND";
+                bestHand = "FYRA KORT AV SAMMA VALÖR"; // Four of a kind
                 return bestHand;
             }
             else if (sameValue[i] == 3) {
                 for (int j = i+1; j < size; j++) {
                     if (sameValue[j] == 2) {
-                        bestHand = "FULL HOUSE";
+                        bestHand = "KÅK"; //full house
                         return bestHand;
                     }
-                    else bestHand = "THREE OF A KIND";
+                    else bestHand = "TRE KORT AV SAMMA VALÖR"; // tre of a kind
                 }
             }
             else if (checkFlush()) {
-                bestHand = "FLUSH";
+                bestHand = "FÄRG"; //FLUSH
                 return bestHand;
             }
             else if (checkStraight()) {
-                bestHand = "STRAIGHT";
+                bestHand = "STEGE"; //STRAIGHT
                 return bestHand;
             }
             else if (sameValue[i] == 3) {
-                bestHand = "THREE OF A KIND";
+                bestHand = "TRE KORT AV SAMMA VALÖR";
                 return bestHand;
             }
 
             else if (sameValue[i] == 2) {
                 for (int j = i+1; j < size; j++) {
                     if (sameValue[j] == 2) {
-                        bestHand = "TWO PAIR";
+                        bestHand = "TVÅ PAR"; //TWO PAIR
                         return bestHand;
                     } else  {
-                        bestHand = "ONE PAIR";
+                        bestHand = "ETT PAR"; //ONE PAIR
                     }
                 }
             }
