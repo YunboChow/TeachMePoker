@@ -1284,7 +1284,7 @@ public class GameController {
     }
 
     public void updateHandsWon(int wins){
-        handsWonLabel.setText("Händer vunna: " + wins);
+        handsWonLabel.setText("Rundor vunna: " + wins);
         System.out.println("I updated hands won with " + wins);
     }
 
