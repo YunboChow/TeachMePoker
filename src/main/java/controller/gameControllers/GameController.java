@@ -343,7 +343,7 @@ public class GameController {
         this.decision = "check";
         lbPlayerAction.setText("check");
         playerMadeDecision = true;
-        updatePlayerValues("Check");
+        updatePlayerValues("Passa");
         Sound.playSound("check");
     }
 
@@ -357,7 +357,7 @@ public class GameController {
         this.decision = "fold";
         lbPlayerAction.setText("fold");
         playerMadeDecision = true;
-        updatePlayerValues("Fold");
+        updatePlayerValues("La sig");
         Sound.playSound("fold");
     }
 
@@ -381,7 +381,7 @@ public class GameController {
         this.decision = "call," + Integer.toString(alreadyPaid);
         playerMadeDecision = true;
         Sound.playSound("chipSingle");
-        updatePlayerValues("Call, $" + Integer.toString(alreadyPaid));
+        updatePlayerValues("Syna, $" + Integer.toString(alreadyPaid));
     }
 
 
@@ -411,7 +411,7 @@ public class GameController {
             playerMadeDecision = true;
             Sound.playSound("chipMulti");
 
-            updatePlayerValues("Raise, $" + raisedBet);
+            updatePlayerValues("Höja, $" + raisedBet);
 
             try {
                 if (playerPot == 0) { // Checks if the player has gone all in.
@@ -422,7 +422,7 @@ public class GameController {
                     //showAllIn();
                     disableButtons();
                 } else {
-                    updatePlayerValues("Raise, $" + raisedBet);
+                    updatePlayerValues("Höja, $" + raisedBet);
                     this.alreadyPaid += raisedBet;
 
                     /*
