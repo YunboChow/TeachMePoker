@@ -1149,18 +1149,18 @@ public class GameController {
         String actionText = "Error";
 
         switch (decision) {
-            case "fold"     -> actionText = "Fold";
-            case "lost"     -> actionText = "Lost";
-            case "check"    -> actionText = "Check";
-            case "call"     -> actionText = "Call";
+            case "fold"     -> actionText = "La sig";
+            case "lost"     -> actionText = "Förlorat";
+            case "check"    -> actionText = "Passa";
+            case "call"     -> actionText = "Syna";
             case "raise"    -> {
                 String[] decisionAi = decision.split(",");
                 actionText = "Raise, $" + decisionAi[1];
             }
             case "all-in"       -> actionText = "All-In";
             case "Dealer"       -> actionText = "Dealer";
-            case "SmallBlind"   -> actionText = "Small Blind, $" + spController.getSmallBlind();
-            case "BigBlind"     -> actionText = "Big Blind, $" + spController.getBigBlind();
+            case "SmallBlind"   -> actionText = "Liten mörk, $" + spController.getSmallBlind();
+            case "BigBlind"     -> actionText = "Stor mörk, $" + spController.getBigBlind();
         }
         return actionText;
     }
@@ -1284,7 +1284,7 @@ public class GameController {
     }
 
     public void updateHandsWon(int wins){
-        handsWonLabel.setText("Hands won: " + wins);
+        handsWonLabel.setText("Händer vunna: " + wins);
         System.out.println("I updated hands won with " + wins);
     }
 
@@ -1405,7 +1405,7 @@ public class GameController {
                     collectionOfPots[i].setVisible(false);
                 }
             }
-            mainPot.setText("Table Pot: $" + tablePot);
+            mainPot.setText("Bords-Pot: $" + tablePot);
             mainPot.setLayoutX(295.0);
             mainPot.setLayoutY(290.0);
             mainPot.setVisible(true);

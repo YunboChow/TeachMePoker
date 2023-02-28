@@ -650,39 +650,39 @@ public class HandCalculation {
         //im overwriting it with a better card. starting from high card only and ending on straight flush.
 
         //HIGH CARD
-        String advice = "Du har bara 'HIGH CARD'. \nOm det är billigt så kan du prova och se.\n";
+        String advice = "Du har bara 'HÖGT KORT'. \nOm det är billigt så kan du prova och se.\n";
 
         if (highCards) {
-            advice = "Du har ett högt 'HIGH CARD'. \nOm det är billigt så kan du prova och se.\n";
+            advice = "Du har ett högt 'HÖGT KORT'. \nOm det är billigt så kan du prova och se.\n";
         }
 
 
         // ONE PAIR
         if (pairsNmore == 2) {
-            helper = "'ONE-PAIR' i " + yourCardInt + "\n";
+            helper = "'ETT PAR' i " + yourCardInt + "\n";
             if (aiCards.size() == 2) {
-                advice = "'ONE-PAIR' på första-handen är en stark hand!\nSå kör på!\n";
+                advice = "'ETT PAR' på första-handen är en stark hand!\nSå kör på!\n";
                 if (highCards) {
-                    advice = "'ONE-PAIR' på första-handen är en stark hand!\nOch då detta är även är ett högt par, Så kör verkligen!!\n";
+                    advice = "'ETT PAR' på första-handen är en stark hand!\nOch då detta är även är ett högt par, Så kör verkligen!!\n";
                 }
             }
             if (aiCards.size() == 5) {
-                advice = "'ONE-PAIR' är en ok hand. Om det inte kostar för mycket. Så kör på!\n";
+                advice = "'ETT PAR' är en ok hand. Om det inte kostar för mycket. Så kör på!\n";
                 if (lowCards) {
-                    advice = "'ONE-PAIR' är en ok hand, även då detta är ett lågt par.\nOm det inte kostar för mycket. Så kör på!\n";
+                    advice = "'ETT PAR' är en ok hand, även då detta är ett lågt par.\nOm det inte kostar för mycket. Så kör på!\n";
                 }
                 if (highCards) {
-                    advice = "'ONE-PAIR' är en ok hand. Och detta är även ett högt par vilket är ännu bättre.\nOm det inte kostar för mycket. Kör på!\n";
+                    advice = "'ETT PAR' är en ok hand. Och detta är även ett högt par vilket är ännu bättre.\nOm det inte kostar för mycket. Kör på!\n";
                 }
             }
 
             if (aiCards.size() > 5) {
-                advice = "'ONE-PAIR' är en hyfsat ok hand. Om det inte kostar för mycket. Så kör på!\n";
+                advice = "'ETT PAR' är en hyfsat ok hand. Om det inte kostar för mycket. Så kör på!\n";
                 if (lowCards) {
-                    advice = "'ONE-PAIR' är en hyfsat ok hand, även då detta är ett lågt par.\nOm det inte kostar för mycket. Så kör på!\n";
+                    advice = "'ETT PAR' är en hyfsat ok hand, även då detta är ett lågt par.\nOm det inte kostar för mycket. Så kör på!\n";
                 }
                 if (highCards) {
-                    advice = "'ONE-PAIR'  är en hyfsat ok hand. Och detta är även ett högt par vilket är ännu bättre.\nOm det inte kostar för mycket."
+                    advice = "'ETT PAR'  är en hyfsat ok hand. Och detta är även ett högt par vilket är ännu bättre.\nOm det inte kostar för mycket."
                             + " Kör på!\n";
                 }
             }
@@ -702,8 +702,8 @@ public class HandCalculation {
 
         //TWO PAIRS
         if (pairsNmore == 22) {
-            helper = "'TWO PAIRS'  i " + cardOne + " och " + cardTwo;
-            advice = "'TWO PAIRS' är en bra hand, kör på.\n";
+            helper = "'TVÅ PAR'  i " + cardOne + " och " + cardTwo;
+            advice = "'TVÅ PAR' är en bra hand, kör på.\n";
             // writes the active cards to highlight
             if (straightChance < 5 && colorChance < 5) {
                 toHighlight.clear();
@@ -723,8 +723,8 @@ public class HandCalculation {
 
         //THREE OF A KIND
         if (pairsNmore == 3) {
-            helper = "'THREE OF A KIND' i " + yourCardInt;
-            advice = "'THREE OF A KIND' är en väldigt stark hand. Kör på! Fundera även på att höja!\n";
+            helper = "'TRETAL' i " + yourCardInt;
+            advice = "'TRETAL' är en väldigt stark hand. Kör på! Fundera även på att höja!\n";
             // writes the active cards to highlight
             if (straightChance < 5 && colorChance < 5) {
                 toHighlight.clear();
@@ -741,8 +741,8 @@ public class HandCalculation {
 
         //STRAIGHT
         if (straightChance == 5) {
-            helper = "En 'STRAIGHT'!! Du har 5/5.\n";
-            advice = "En 'STRAIGHT' är en riktigt bra hand. Kör på! \nFundera även på att höja!\n";
+            helper = "En 'STEGE'!! Du har 5/5.\n";
+            advice = "En 'STEGE' är en riktigt bra hand. Kör på! \nFundera även på att höja!\n";
             toHighlight.clear();
             toHighlight = getToHighlight();
 
@@ -751,8 +751,8 @@ public class HandCalculation {
 
         //FLUSH
         if (colorChance == 5) {
-            helper = "En 'FLUSH' i " + theColor + "!! Du har 5/5!!\n";
-            advice = "Du har en 'FLUSH'! Kör på, din hand är svår att slå!\n";
+            helper = "En 'FÄRG' i " + theColor + "!! Du har 5/5!!\n";
+            advice = "Du har en 'FÄRG'! Kör på, din hand är svår att slå!\n";
             //To HIHGLIGHT IS IN checkSuit Method.
             toHighlight.clear();
             checkSuit();
@@ -761,7 +761,7 @@ public class HandCalculation {
 
         //FULL HOUSE
         if (pairsNmore == 23 || pairsNmore == 32) {
-            helper = "'FULL HOUSE' med " + cardOne + " och " + cardTwo + "!!";
+            helper = "'KÅK' med " + cardOne + " och " + cardTwo + "!!";
             advice = "Det är inte mycket som slår denna hand! Höja är rekomenderat!\n";
             // writes the active cards to hihglight
             toHighlight.clear();
@@ -781,8 +781,8 @@ public class HandCalculation {
 
         //FOUR OF A KIND
         if (pairsNmore == 4 || pairsNmore == 42 || pairsNmore == 24) {
-            helper = "'FOUR OF A KIND' i " + yourCardInt;
-            advice = "'FOUR OF A KIND' är en av de bästa händerna. Kör på! Fundera även på att höja!\n";
+            helper = "'FYRTAL' i " + yourCardInt;
+            advice = "'FYRTAL' är en av de bästa händerna. Kör på! Fundera även på att höja!\n";
             // writes the active cards to hihglight
             if (straightChance < 5 && colorChance < 5) {
                 toHighlight.clear();
@@ -798,35 +798,35 @@ public class HandCalculation {
 
         //STRAIGHT FLUSH
         if (straightChance == 5 && colorChance == 5) {                            //"i stegen  " + whatStraight;
-            helper = "'STRAIGHT FLUSH' i färgen " + theColor + "! ";   //ev add what straight it is ex 2-6.
-            advice = "'STRAIGHT FLUSH' är bästa handen i spelet. Kör på och höj!\n";
+            helper = "'FÄRGSTEGE' i färgen " + theColor + "! ";   //ev add what straight it is ex 2-6.
+            advice = "'FÄRGSTEGE' är bästa handen i spelet. Kör på och höj!\n";
             // Highlightning happens in checkStraight and checkSuit.
         }
 
         //STRAIGHTCHANCE TEXT AND COLORCHANCE TEXT
         if (aiCards.size() < 3) {
             if (straightChance == 2) {
-                advice += "Du har en chans på en 'STRAIGHT', du har 2/5. \n";
+                advice += "Du har en chans på en 'STEGE', du har 2/5. \n";
             }
             if (colorChance == 2) {
-                advice += "Du har en chans för en 'FLUSH' i " + theColor + ", du har 2/5.\n";
+                advice += "Du har en chans för en 'FÄRG' i " + theColor + ", du har 2/5.\n";
             }
         }
         if (aiCards.size() < 6) {
             if (straightChance == 3) {
-                advice += "Du har en chans på en 'STRAIGHT', du har 3/5.\n";
+                advice += "Du har en chans på en 'STEGE', du har 3/5.\n";
             }
             if (colorChance == 3) {
-                advice += "Du har en chans för en 'FLUSH' i " + theColor + ", du har 3/5.\n";
+                advice += "Du har en chans för en 'FÄRG' i " + theColor + ", du har 3/5.\n";
             }
         }
 
         if (aiCards.size() < 7) {
             if (straightChance == 4) {
-                advice += "Du har en chans på en 'STRAIGHT', du har 4/5.\n";
+                advice += "Du har en chans på en 'STEGE', du har 4/5.\n";
             }
             if (colorChance == 4) {
-                advice += "Du har en chans för en 'FLUSH' i " + theColor + ", du har 4/5.\n";
+                advice += "Du har en chans för en 'FÄRG' i " + theColor + ", du har 4/5.\n";
             }
         }
 

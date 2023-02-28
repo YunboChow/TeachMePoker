@@ -30,7 +30,7 @@ public class ProgressForm {
 
       // PROGRESS BAR
       final Label label = new Label();
-      label.setText("Loading...");
+      label.setText("Laddar in...");
 
       pb.setProgress(-1F);
       pin.setProgress(-1F);
