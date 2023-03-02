@@ -47,6 +47,7 @@ public class SPController extends Thread {
       */
      public void startGame(int noOfAi, int potSize, String playerName) {
           gameController.setUsername(playerName);
+          gameController.setHandsWon(0);
           this.fixedNumberOfAIs = noOfAi;
           gameController.disableButtons();
           this.potSize = potSize;

@@ -1193,7 +1193,6 @@ public class GameController {
      * Method which creates a popup to inform the player that s/he lost.
      */
     public void playerLost() {
-
         Platform.runLater(() -> {
             winnerBox = new WinnerBox();
             winnerBox.displayWinner("Förlust",
@@ -1204,7 +1203,6 @@ public class GameController {
     }
 
     public void playerWon() {
-
         Platform.runLater(() -> {
             winnerBox = new WinnerBox();
             winnerBox.displayWinner("Grattis",
@@ -1443,5 +1441,10 @@ public class GameController {
 
     public Card getCard1() {
         return card1;
+    }
+
+    public void setHandsWon(int newHandsWon) {
+        handsWon = newHandsWon;
+        updateHandsWon(handsWon);
     }
 }
