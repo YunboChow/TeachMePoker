@@ -213,7 +213,7 @@
 
 				<AnchorPane id="winCounter" layoutX="1180.0" layoutY="1.0" minHeight="80" minWidth="140">
    					<ImageView id="handsWon.png" fx:id="handsWonImage" fitHeight="56.0" fitWidth="120.0" layoutX="-31.0" layoutY="13.0">
-   						<Image url="@images/handsWon.png" />
+   						<Image url="@images/handsWon2.png" />
    					</ImageView>
 					<Label id="handsWonLabel" fx:id="handsWonLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="-30.0" layoutY="30.0" prefHeight="18.0" prefWidth="82.0" text="Rundor vunna: 0" textOverrun="CLIP">
 						<labelFor>
