@@ -32,7 +32,7 @@ public class ConfirmBox {
           Font font = new Font("Tw Cen MT", 18);
           window.initModality(Modality.APPLICATION_MODAL);
           window.setTitle(title);
-
+          window.setResizable(false);
 
           window.setOnCloseRequest(e -> window.close());
 
