@@ -1444,4 +1444,8 @@ public class GameController {
     public Card getCard1() {
         return card1;
     }
+
+    public Pane getTableCardArea(){
+        return tableCardArea;
+    }
 }

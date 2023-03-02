@@ -174,4 +174,15 @@ class GameControllerTest {
 
           Assertions.assertEquals(1,gameController.setFlopTurnRiver(card1));
      }
+
+     //Test of clearing the cards on the table
+     @Test
+     void clearFlopTurnRiver(){
+          // TODO: 2023-03-02 set up the game så att det kommer toll ett stadie där vi kan tömma den.
+          gameController.clearFlopTurnRiver();
+     }
+
+     // TODO: 2023-03-02 Vi kan skapa ett test där den testar handHelp metoden.
+
+     // TODO: 2023-03-02 Add log metoden är lätt att testa
 }
