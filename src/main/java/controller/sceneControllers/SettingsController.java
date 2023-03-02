@@ -194,10 +194,11 @@ public class SettingsController {
           // in real life this method would get the result of the task and update the UI based on its value:
           task.setOnSucceeded(event -> {
                pForm.getDialogStage().close();
-
-               SceneController.switchScene(Scenes.Game);
                ConfirmBox.display("Snart börjar spelet", "Dags att spela poker! Glömmer du reglerna så hittar du" +
-                         " dem högst upp i menyn.\n\nNu kör vi!");
+                       " dem högst upp i menyn.\n\nNu kör vi!");
+               
+               SceneController.switchScene(Scenes.Game);
+
                spController.startGame(aiValue, potValue, name);
                Sound.stopMusic();
                Sound.playSound("shuffle");
