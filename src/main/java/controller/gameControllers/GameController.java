@@ -1447,4 +1447,8 @@ public class GameController {
         handsWon = newHandsWon;
         updateHandsWon(handsWon);
     }
+
+    public void setLog(){
+        logTextFlow.getChildren().clear();
+    }
 }
