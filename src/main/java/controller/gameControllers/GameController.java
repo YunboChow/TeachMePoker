@@ -866,13 +866,14 @@ public class GameController {
     //Cornelia: logg-test
 
 
-    public void addLogMessage(String logMessage) {
+    public String addLogMessage(String logMessage) {
         Platform.runLater(() -> {
             Text newLogText = new Text(logMessage + "\n");
             newLogText.setFont(Font.font("Tw Cen MT", FontWeight.SEMI_BOLD, 16));
             logTextFlow.getChildren().add(newLogText);
             logScrollPane.setVvalue(1.0);
         });
+        return logMessage;
     }
 
 
@@ -1447,5 +1448,9 @@ public class GameController {
 
     public Pane getTableCardArea(){
         return tableCardArea;
+    }
+
+    public TextFlow getLogTextFlow() {
+        return logTextFlow;
     }
 }

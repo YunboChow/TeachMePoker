@@ -8,6 +8,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import model.Card;
 import model.Suit;
 import org.junit.jupiter.api.Assertions;
@@ -179,10 +181,22 @@ class GameControllerTest {
      @Test
      void clearFlopTurnRiver(){
           // TODO: 2023-03-02 set up the game så att det kommer toll ett stadie där vi kan tömma den.
+
           gameController.clearFlopTurnRiver();
      }
 
      // TODO: 2023-03-02 Vi kan skapa ett test där den testar handHelp metoden.
 
      // TODO: 2023-03-02 Add log metoden är lätt att testa
+
+
+     @Test
+     void addLogMessage(){
+          gameController.addLogMessage("ADDING LOG MESSAGE");
+          TextFlow textFlow = gameController.getLogTextFlow();
+          try{
+               Thread.sleep(3500);
+          } catch (Exception e){}
+          Assertions.assertEquals("ADDING LOG MESSAGE\n", ((Text)(textFlow.getChildren().get(0))).getText());
+     }
 }
