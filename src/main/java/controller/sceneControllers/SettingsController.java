@@ -196,6 +196,7 @@ public class SettingsController {
 
                spController.startGame(aiValue, potValue, name);
 
+               Sound.lowerVolume();
                Sound.playSound("shuffle");
           });
           System.out.println("Spel startas!");

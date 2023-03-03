@@ -88,6 +88,14 @@ public class Sound {
 	}
 
 	/**
+	 * Sänker volymen på MediaPlayer
+	 */
+	public static void lowerVolume(){
+		mp.setVolume(0.5);
+		System.out.println(mp.getVolume() + " volym nu");
+	}
+
+	/**
 	 * Toggles the sound on and off.
 	 */
 	public static void toggleMute(){
