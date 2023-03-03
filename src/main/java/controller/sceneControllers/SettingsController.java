@@ -7,10 +7,7 @@ import controller.gameControllers.ProgressForm;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import model.Scenes;
 import view.ConfirmBox;
@@ -34,8 +31,6 @@ public class SettingsController {
      @FXML
      private TextField tfNameInput;
      @FXML
-     private Slider aiSlider;
-     @FXML
      private Slider potSlider;
      @FXML
      private CheckBox cbOn;
@@ -56,14 +51,15 @@ public class SettingsController {
      @FXML
      private Label lblTutorialInfo;
 
+     @FXML
+     private ToggleGroup group;
+
      /**
       * Method for initializing FXML.
       */
      public void initialize() {
           potSlider.setSnapToTicks(true);
           potSlider.setValue(5000);
-          aiSlider.setSnapToTicks(true);
-
      }
 
      /**
@@ -86,8 +82,9 @@ public class SettingsController {
       * Stores the value from the Slider that the user has chosen.
 	 */
      public void aiSliderChange() {
-          Double val = aiSlider.getValue();
-          aiValue = val.intValue();
+          String value = ((RadioButton)group.getSelectedToggle()).getText();
+          aiValue = Integer.parseInt(value);
+          System.out.println(aiValue + " ai value");
 
      }
 
@@ -133,8 +130,6 @@ public class SettingsController {
       * Starts the game and checks so the Username it not empty and checks if the Tutorial should be playing at the beginning.
       */
      public void startGame() {
-
-
           potSliderChange();
           aiSliderChange();
           if (!tfNameInput.getText().isEmpty()) {

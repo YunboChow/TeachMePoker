@@ -4,8 +4,10 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -16,16 +18,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.sceneControllers.SettingsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.sceneControllers.SettingsController">
    <children>
       <ImageView id="background" fx:id="background" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/background2.png" />
          </image>
       </ImageView>
-      <VBox alignment="TOP_RIGHT" layoutX="740.0" layoutY="70.0" prefHeight="452.0" prefWidth="472.0">
+      <VBox alignment="TOP_RIGHT" layoutX="740.0" layoutY="95.0" prefHeight="427.0" prefWidth="472.0">
          <children>
-            <TextField fx:id="tfNameInput" onAction="#tfNameInputChange" prefHeight="98.0" prefWidth="472.0" promptText="Skriv ditt namn här...">
+            <TextField fx:id="tfNameInput" onAction="#tfNameInputChange" prefHeight="73.0" prefWidth="472.0" promptText="Skriv ditt namn här...">
                <VBox.margin>
                   <Insets bottom="40.0" />
                </VBox.margin>
@@ -33,14 +35,18 @@
                   <Font name="Tw Cen MT" size="45.0" />
                </font>
             </TextField>
-            <Slider fx:id="aiSlider" blockIncrement="0.0" majorTickUnit="2.0" max="5.0" min="1.0" minorTickCount="0" onDragDone="#aiSliderChange" onDragDropped="#aiSliderChange" onDragOver="#aiSliderChange" onMouseReleased="#aiSliderChange" prefHeight="16.0" prefWidth="415.0" showTickLabels="true" snapToTicks="true" value="5.0">
-               <VBox.margin>
-                  <Insets bottom="100.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Slider>
+            <HBox prefHeight="18.0" prefWidth="472.0" />
+            <HBox prefHeight="112.0" prefWidth="472.0" spacing="170.0">
+               <children>
+                  <RadioButton fx:id="radiobutton" depthTest="DISABLE" mnemonicParsing="false" prefHeight="18.0" prefWidth="21.0" text="1">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="group" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="radiobutton3" mnemonicParsing="false" prefHeight="18.0" prefWidth="31.0" text="3" toggleGroup="$group" />
+                  <RadioButton fx:id="radiobutton5" mnemonicParsing="false" prefHeight="18.0" prefWidth="14.0" text="5" toggleGroup="$group" />
+               </children>
+            </HBox>
             <Slider fx:id="potSlider" blockIncrement="0.0" majorTickUnit="500.0" max="5000.0" min="1000.0" minorTickCount="0" onDragDetected="#potSliderChange" showTickLabels="true" value="5000.0">
                <tooltip>
                   <Tooltip text="Kolla" />
@@ -50,7 +56,7 @@
                </cursor></Slider>
             <HBox prefHeight="0.0" prefWidth="440.0">
                <children>
-                  <CheckBox fx:id="cbOn" disable="true" mnemonicParsing="false" onAction="#cbOnClicked" selected="true" text="På" textFill="WHITE">
+                  <CheckBox fx:id="cbOn" disable="true" mnemonicParsing="false" onAction="#cbOnClicked" prefHeight="32.0" prefWidth="83.0" selected="true" text="På" textFill="WHITE">
                      <font>
                         <Font name="Tw Cen MT" size="24.0" />
                      </font>
@@ -86,7 +92,7 @@
             </Lighting>
          </effect>
       </VBox>
-      <VBox layoutX="1230.0" layoutY="210.0" prefHeight="300.0" prefWidth="40.0">
+      <VBox layoutX="1230.0" layoutY="229.0" prefHeight="281.0" prefWidth="40.0">
          <children>
             <ImageView fx:id="ivQuestionAi" fitHeight="32.0" fitWidth="30.0" onMouseClicked="#ivQuestionAiHovered" onMouseEntered="#ivQuestionAiHovered" pickOnBounds="true" preserveRatio="true">
                <image>
