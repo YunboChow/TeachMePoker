@@ -10,7 +10,9 @@ import controller.SceneController;
 import controller.aiControllers.Ai;
 import controller.SPController;
 import controller.Sound;
+import javafx.event.EventHandler;
 import javafx.scene.control.*;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.text.*;
 import model.Card;
 import model.Scenes;
@@ -36,6 +38,8 @@ public class GameController {
     private ImageView btCheck, btCall, btFold, btRaise, btAllIn;
     @FXML
     private Slider slider;
+    @FXML
+    private TextField sliderTextField;
     @FXML
     private Label lbPlayerAction, lbPotValue, lbAllIn;
     @FXML
@@ -396,7 +400,8 @@ public class GameController {
         /*
          * If the player hasn't matched the current maxbet
          */
-        if (spController.getCurrentMaxBet() != alreadyPaid) {}
+
+       // if (spController.getCurrentMaxBet() != alreadyPaid) {}
 
             int raisedBet = (int) (slider.getValue());
             this.playerPot -= raisedBet;
@@ -464,6 +469,7 @@ public class GameController {
 
         lbPotValue.setText("$" + (playerPot));
         lbPlayerAction.setText(action);
+        setSlider();
         setSliderValues();
     }
 
@@ -1446,6 +1452,11 @@ public class GameController {
     public void setHandsWon(int newHandsWon) {
         handsWon = newHandsWon;
         updateHandsWon(handsWon);
+    }
+
+    //TODO fixa sen 
+    public void setSlider(){
+        sliderTextField.textProperty().addListener((observable, oldVal, newVal) -> slider.setValue(Integer.parseInt(newVal)));
     }
 
     public void setLog(){
