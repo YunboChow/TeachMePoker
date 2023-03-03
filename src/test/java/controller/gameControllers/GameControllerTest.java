@@ -6,11 +6,13 @@ import controller.Main;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import model.Card;
+import model.Deck;
 import model.Suit;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -19,6 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
@@ -186,17 +189,94 @@ class GameControllerTest {
      }
 
      // TODO: 2023-03-02 Vi kan skapa ett test där den testar handHelp metoden.
+     //Kan göra flera stycken här, där vi testar, stark, mediumStark, mediumSvag, Svag
+     //Kolla hur man sätter spelarens kort.
 
-     // TODO: 2023-03-02 Add log metoden är lätt att testa
 
+     @Test
+     void handHelpStrong() {
+          Deck deck = new Deck();
+          Card card1 = deck.getCardByIndex(0);
+          Card card2 = deck.getCardByIndex(13);
+          System.out.println(card1.getCardSuit() + " " + card1.getCardValue());
+          System.out.println(card2.getCardSuit() + " " + card2.getCardValue());
+
+          gameController.setStartingHand(card1, card2);
+          sleep(4000);
+          String powerBarWeakHand = "resources/images/weakHand.png";
+          String powerBarMediumWeakHand = "resources/images/mediumWeakHand.png";
+          String powerBarMediumStrongHand = "resources/images/mediumStrongHand.png";
+          String powerBarStrongHand = "resources/images/StrongHand.png";
+
+          Image image = new Image(Paths.get(powerBarStrongHand).toUri().toString());
+          Assertions.assertEquals(image.getUrl(), gameController.getImage().getUrl());
+     }
+     @Test
+     void handHelpMediumStrong() {
+          Deck deck = new Deck();
+          Card card1 = deck.getCardByIndex(0);
+          Card card2 = deck.getCardByIndex(1);
+          System.out.println(card1.getCardSuit() + " " + card1.getCardValue());
+          System.out.println(card2.getCardSuit() + " " + card2.getCardValue());
+
+          gameController.setStartingHand(card1, card2);
+          sleep(4000);
+          String powerBarWeakHand = "resources/images/weakHand.png";
+          String powerBarMediumWeakHand = "resources/images/mediumWeakHand.png";
+          String powerBarMediumStrongHand = "resources/images/mediumStrongHand.png";
+          String powerBarStrongHand = "resources/images/StrongHand.png";
+
+          Image image = new Image(Paths.get(powerBarMediumStrongHand).toUri().toString());
+          Assertions.assertEquals(image.getUrl(), gameController.getImage().getUrl());
+     }
+     @Test
+     void handHelpMediumWeak() {
+          Deck deck = new Deck();
+          Card card1 = deck.getCardByIndex(0);
+          Card card2 = deck.getCardByIndex(17);
+          System.out.println(card1.getCardSuit() + " " + card1.getCardValue());
+          System.out.println(card2.getCardSuit() + " " + card2.getCardValue());
+
+          gameController.setStartingHand(card1, card2);
+          sleep(4000);
+          String powerBarWeakHand = "resources/images/weakHand.png";
+          String powerBarMediumWeakHand = "resources/images/mediumWeakHand.png";
+          String powerBarMediumStrongHand = "resources/images/mediumStrongHand.png";
+          String powerBarStrongHand = "resources/images/StrongHand.png";
+
+          Image image = new Image(Paths.get(powerBarMediumWeakHand).toUri().toString());
+          Assertions.assertEquals(image.getUrl(), gameController.getImage().getUrl());
+     }
+     @Test
+     void handHelpWeak() {
+          Deck deck = new Deck();
+          Card card1 = deck.getCardByIndex(0);
+          Card card2 = deck.getCardByIndex(44);
+          System.out.println(card1.getCardSuit() + " " + card1.getCardValue());
+          System.out.println(card2.getCardSuit() + " " + card2.getCardValue());
+
+          gameController.setStartingHand(card1, card2);
+          sleep(4000);
+          String powerBarWeakHand = "resources/images/weakHand.png";
+          String powerBarMediumWeakHand = "resources/images/mediumWeakHand.png";
+          String powerBarMediumStrongHand = "resources/images/mediumStrongHand.png";
+          String powerBarStrongHand = "resources/images/StrongHand.png";
+
+          Image image = new Image(Paths.get(powerBarWeakHand).toUri().toString());
+          Assertions.assertEquals(image.getUrl(), gameController.getImage().getUrl());
+     }
 
      @Test
      void addLogMessage(){
           gameController.addLogMessage("ADDING LOG MESSAGE");
           TextFlow textFlow = gameController.getLogTextFlow();
-          try{
-               Thread.sleep(3500);
-          } catch (Exception e){}
+          sleep(3500);
           Assertions.assertEquals("ADDING LOG MESSAGE\n", ((Text)(textFlow.getChildren().get(0))).getText());
+     }
+
+     void sleep(int ms){
+          try{
+               Thread.sleep(ms);
+          } catch (Exception e){}
      }
 }
