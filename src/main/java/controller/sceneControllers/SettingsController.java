@@ -195,7 +195,7 @@ public class SettingsController {
                SceneController.switchScene(Scenes.Game);
 
                spController.startGame(aiValue, potValue, name);
-               Sound.stopMusic();
+
                Sound.playSound("shuffle");
           });
           System.out.println("Spel startas!");

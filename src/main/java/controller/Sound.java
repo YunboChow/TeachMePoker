@@ -4,6 +4,8 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+import java.util.Random;
+
 /**
  * Sound class containing all the sounds that the program uses.
  * 
@@ -26,6 +28,9 @@ public class Sound {
 	public static AudioClip wrongSound = new AudioClip(Sound.class.getResource("/sounds/bruh.mp3").toString());
 	public static AudioClip allin = new AudioClip(Sound.class.getResource("/sounds/allin.mp3").toString());
 	private static double volume = 1;
+	private static Random rand = new Random();
+	private static int max = 10;
+	private static int min = 1;
 	
 
 	/**
@@ -45,7 +50,13 @@ public class Sound {
 				case "chipMulti" 	-> chipMulti.play();
 				case "coinSound" 	-> coinSound.play();
 				case "wrong" 		-> wrongSound.play();
-				case "allin" 		-> allin.play();
+				case "allin" -> {
+					int randomNum = rand.nextInt((max - min) + 1) + min;
+					System.out.println(randomNum + " randomizade nummer");
+					if (randomNum == 5){
+						allin.play();
+					}
+				}
 			}
 		}
 	}

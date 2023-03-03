@@ -1206,7 +1206,7 @@ public class GameController {
         Platform.runLater(() -> {
             winnerBox = new WinnerBox();
             winnerBox.displayWinner("Grattis",
-                    "Wallah du mycket djurig och vann detta spelet!!!!!!", 5,
+                    "Du vann matchen!", 5,
                     winnerHand);
             SceneController.switchScene(Scenes.MainMenu);
         });
