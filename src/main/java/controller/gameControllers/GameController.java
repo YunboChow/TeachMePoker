@@ -1295,8 +1295,11 @@ public class GameController {
      * Amended by: Anthon Haväng, Erik Larsson, Jens Bjerre: simplified a long else if-else if section to a simple
      * switch-case. Automatically convert from else-if to switch-case by OpenAI.
      */
-    public void setWinnerLabel(String winner, int hand) {
+    public void setWinnerLabel(String winner, int hand, ArrayList<String> cards, int potSize) {
         //TODO: remove
+
+        ArrayList<String> cardsWithNames = new ArrayList<String>();
+
         System.out.println("setWinnerLabel körs");
 
         synchronized (this) {
@@ -1315,14 +1318,46 @@ public class GameController {
                 case 97 -> winnerHand = "Du förlorade!";
             }
 
+
+            for (int i = 0; i < 2; i++){
+                String tempValue = "";
+                String tempColor = "";
+                String[] cardName = cards.get(i).split(",");
+
+                switch (cardName[0]){
+                    case "2" -> tempValue = "2";
+                    case "3" -> tempValue = "3";
+                    case "4" -> tempValue = "4";
+                    case "5" -> tempValue = "5";
+                    case "6" -> tempValue = "6";
+                    case "7" -> tempValue = "7";
+                    case "8" -> tempValue = "8";
+                    case "9" -> tempValue = "9";
+                    case "10" -> tempValue = "10";
+                    case "11" -> tempValue = "knekt";
+                    case "12" -> tempValue = "dam";
+                    case "13" -> tempValue = "kung";
+                    case "14" -> tempValue = "ess";
+                }
+                switch (cardName[1]){
+                    case "C" -> tempColor = "klöver";
+                    case "D" -> tempColor = "ruter";
+                    case "H" -> tempColor = "hjärter";
+                    case "S" -> tempColor = "spader";
+                }
+                cardsWithNames.add(tempColor + " " + tempValue);
+            }
+
             if (!winner.equals(getUsername()) && (hand < 10)) {
                 Platform.runLater(() -> {
+                    addLogMessage(winner + " vann " + potSize + "$ denna runda med " + winnerHand + " med handen " + cardsWithNames.toString());
                     winnerBox = new WinnerBox();
                     winnerBox.displayWinner("Rundans vinnare", winner, 2, winnerHand);
                 });
             } else if (winner.equals(getUsername()) && (hand < 10)) {
                 Platform.runLater(() -> {
                     Sound.playSound("coinSound");
+                    addLogMessage(winner + " vann " + potSize + "$ denna runda med " + winnerHand + " med handen " + cardsWithNames);
                     winnerBox = new WinnerBox();
                     winnerBox.displayWinner("Rundans vinnare", winner, 1, winnerHand);
                     handsWon++;
@@ -1333,18 +1368,20 @@ public class GameController {
             } else if (winner.equals(getUsername()) && (hand > 10)) {
                 Platform.runLater(() -> {
                     Sound.playSound("coinSound");
+                    addLogMessage(winner + " vann " + potSize + "$ denna runda med " + winnerHand + " med handen " + cardsWithNames);
                     winnerBox = new WinnerBox();
                     winnerBox.displayWinner("Rundans vinnare", winner, 3, winnerHand);
                     handsWon++;
                     updateHandsWon(handsWon);
                     //TODO: remove
                     System.out.println("Matches won: " + matchesWon + "\nRounds won: " + handsWon);
+
                 });
             } else if (!winner.equals(getUsername()) && (hand > 10)) {
                 Platform.runLater(() -> {
+                    addLogMessage(winner + " vann " + potSize + "$ denna runda med " + winnerHand + " med handen " + cardsWithNames);
                     winnerBox = new WinnerBox();
                     winnerBox.displayWinner("Rundans vinnare", winner, 4, winnerHand);
-
                 });
             }
         }
@@ -1431,7 +1468,15 @@ public class GameController {
         return image;
     }
 
-    public ArrayList<Card> getCards() {
+    public ArrayList getCardsToString() {
+        ArrayList<String> cardsString = new ArrayList<String>();
+        for (Card obj : cards) {
+            cardsString.add(obj.getCardValue() + "," + obj.getCardSuit().charAt(0));
+        }
+        return cardsString;
+    }
+
+    public ArrayList<Card> getCards(){
         return cards;
     }
 
