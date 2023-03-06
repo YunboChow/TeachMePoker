@@ -1310,8 +1310,8 @@ public class GameController {
                 case 6 -> winnerHand = "full house";
                 case 7 -> winnerHand = "four of a kind";
                 case 8 -> winnerHand = "straight flush";
-                case 99 -> winnerHand = "Du vann när resten av spelarna foldade!";
-                case 98 -> winnerHand = "när resterande spelare foldade.";
+                case 99 -> winnerHand = "Du vann eftersom resten av spelarna lade sig!";
+                case 98 -> winnerHand = "när resterande spelare lade sig.";
                 case 97 -> winnerHand = "Du förlorade!";
             }
 
