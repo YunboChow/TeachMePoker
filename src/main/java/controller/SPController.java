@@ -747,16 +747,21 @@ public class SPController extends Thread {
      private void aiAction(int currentPlayer) {
           Ai ai = aiPlayers.get(currentPlayer);
           String aiDecision = ai.getDecision();
+
           String[] split = aiDecision.split(",");
+
           if (aiDecision.contains("raise")) {
+
                currentMaxBet = Integer.parseInt(split[1]);
                currentPotSize += Integer.parseInt(split[1]);
                gameController.aiAction(currentPlayer, aiDecision);
+
                gameController.addLogMessage(ai.getName() + " höjde med " + Integer.parseInt(split[1]));
           } else if (aiDecision.contains("fold")) {
                gameController.aiAction(currentPlayer, aiDecision);
                gameController.addLogMessage(ai.getName() + " la sig");
           } else if (aiDecision.contains("call")) {
+
                if (Integer.parseInt(split[1]) > currentMaxBet) {
                     currentMaxBet = Integer.parseInt(split[1]);
                }
@@ -769,6 +774,7 @@ public class SPController extends Thread {
                     gameController.aiAction(currentPlayer, split[0]);
                     gameController.addLogMessage(ai.getName() + " synar med " + Integer.parseInt(split[1]));
                }
+
           } else if (aiDecision.contains("check")) {
                gameController.aiAction(currentPlayer, aiDecision);
                gameController.addLogMessage(ai.getName() + " passar insats");

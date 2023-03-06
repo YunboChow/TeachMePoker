@@ -1148,19 +1148,19 @@ public class GameController {
 
         String actionText = "Error";
 
-        switch (decision) {
+        switch (decision.substring(0, 4)) {
             case "fold"     -> actionText = "La sig";
             case "lost"     -> actionText = "Förlorat";
-            case "check"    -> actionText = "Passa";
+            case "chec"    -> actionText = "Passa";
             case "call"     -> actionText = "Syna";
-            case "raise"    -> {
+            case "rais"    -> {
                 String[] decisionAi = decision.split(",");
-                actionText = "Raise, $" + decisionAi[1];
+                actionText = "Höjde, $" + decisionAi[1];
             }
-            case "all-in"       -> actionText = "All-In";
-            case "Dealer"       -> actionText = "Dealer";
-            case "SmallBlind"   -> actionText = "Liten mörk, $" + spController.getSmallBlind();
-            case "BigBlind"     -> actionText = "Stor mörk, $" + spController.getBigBlind();
+            case "all-"       -> actionText = "All-In";
+            case "Deal"       -> actionText = "Dealer";
+            case "Smal"   -> actionText = "Liten mörk, $" + spController.getSmallBlind();
+            case "BigB"     -> actionText = "Stor mörk, $" + spController.getBigBlind();
         }
         return actionText;
     }
