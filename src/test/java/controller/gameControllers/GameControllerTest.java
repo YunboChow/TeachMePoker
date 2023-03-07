@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.testfx.api.FxRobot;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -272,6 +273,11 @@ class GameControllerTest {
           TextFlow textFlow = gameController.getLogTextFlow();
           sleep(3500);
           Assertions.assertEquals("ADDING LOG MESSAGE\n", ((Text)(textFlow.getChildren().get(0))).getText());
+     }
+
+     @Test
+     void testesttest() {
+          FxRobot fxRobot = new FxRobot();
      }
 
      void sleep(int ms){
