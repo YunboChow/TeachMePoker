@@ -266,7 +266,7 @@ public class SPController extends Thread {
                                    if (!(checkLivePlayers() > 1) && active) {
                                         gameController.setPlayerPot(currentPotSize + gameController.getPlayerPot());
                                         winner = gameController.getUsername();
-                                        gameController.setWinnerLabel(winner, 99);
+                                        gameController.setWinnerLabel(winner, 99, gameController.getCardsToString(), currentPotSize);
                                         gameController.addLogMessage(winner + " vann potten på " + currentPotSize + " kronor!");
                                         winnerDeclared = true;
                                         break;
@@ -292,7 +292,7 @@ public class SPController extends Thread {
                                         if (!(checkLivePlayers() > 1) && active) {
                                              aiPlayers.get(currentPlayer).updateWinner(currentPotSize);
                                              winner = aiPlayers.get(currentPlayer).getName();
-                                             gameController.setWinnerLabel(winner, 98);
+                                             gameController.setWinnerLabel(winner, 98, aiPlayers.get(currentPlayer).getAiCards(), currentPotSize);
                                              gameController.addLogMessage(winner + " vann potten på " + currentPotSize + " kronor!");
                                              winnerDeclared = true;
                                              break;
@@ -447,32 +447,34 @@ public class SPController extends Thread {
                     if (gameController.getHandStrength() > bestHand) {
                          gameController.setPlayerPot(currentPotSize + gameController.getPlayerPot());
                          winner = gameController.getUsername();
-                         gameController.setWinnerLabel(winner, gameController.getHandStrength());
+                         gameController.setWinnerLabel(winner, gameController.getHandStrength(), gameController.getCardsToString(), currentPotSize);
                          // draw
                     } else if (gameController.getHandStrength() == bestHand) {
                          // Player wins
                          if (gameController.getGetHighCard() > bestHandPlayer.getHighCard()) {
                               gameController.setPlayerPot(currentPotSize + gameController.getPlayerPot());
                               winner = gameController.getUsername();
-                              gameController.setWinnerLabel(winner, gameController.getHandStrength());
+                              gameController.setWinnerLabel(winner, gameController.getHandStrength(), gameController.getCardsToString(), (currentPotSize / 2));
                               // Draw
                          } else if (gameController.getGetHighCard() == bestHandPlayer.getHighCard()) {
                               bestHandPlayer.updateWinner((currentPotSize / 2) + bestHandPlayer.aiPot());
                               gameController.setPlayerPot((currentPotSize / 2) + gameController.getPlayerPot());
                               winner = gameController.getUsername() + " och " + bestHandPlayer.getName();
-                              gameController.setWinnerLabel(winner, bestHand);
+                              gameController.setWinnerLabel(bestHandPlayer.getName(), bestHand, bestHandPlayer.getAiCards(),(currentPotSize / 2)); //kanske är fel
                               // AI wins and there are second winners.
                          } else {
                               if (!secWin.isEmpty()) {
                                    int divBy = currentPotSize = secWin.size();
                                    for (int i : secWin) {
                                         aiPlayers.get(i).updateWinner(divBy);
+                                        gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),divBy);
+
                                    }
                                    // Ai wins and there aren't
                               } else {
                                    bestHandPlayer.updateWinner(currentPotSize);
                                    winner = bestHandPlayer.getName();
-                                   gameController.setWinnerLabel(winner, bestHand);
+                                   gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(), (currentPotSize));
                               }
                          }
                          // Same thing as above but the player lost and no draw.
@@ -481,11 +483,13 @@ public class SPController extends Thread {
                               int divBy = currentPotSize = secWin.size();
                               for (int i : secWin) {
                                    aiPlayers.get(i).updateWinner(divBy);
+                                   gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),divBy);
+
                               }
                          } else {
                               bestHandPlayer.updateWinner(currentPotSize);
                               winner = bestHandPlayer.getName();
-                              gameController.setWinnerLabel(winner, bestHand);
+                              gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),currentPotSize);
                          }
                     }
                     // Same thing as above but the player had folded.
@@ -494,12 +498,14 @@ public class SPController extends Thread {
                          int divBy = currentPotSize = secWin.size();
                          for (int i : secWin) {
                               aiPlayers.get(i).updateWinner(divBy);
+                              gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),divBy);
+
                          }
 
                     } else {
                          bestHandPlayer.updateWinner(currentPotSize);
                          winner = bestHandPlayer.getName();
-                         gameController.setWinnerLabel(winner, bestHand);
+                         gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),currentPotSize);
                     }
                }
           }
@@ -513,20 +519,15 @@ public class SPController extends Thread {
           //This method does the same thing as checkWinners except the pot is split over multiple subpots
           //and one winner is declared for each subpot
 
+          ArrayList<Ai> winnerList = new ArrayList<>();
+          int playerPotBefore = 0;
+          int playerWins = 0;
+
           int allInPotSize;
           for (int i = potSplits.length - 1; i >= 0; i--) {
                if (potSplits[i][0] > 0) {
                     allInPotSize = potSplits[i][0];
-                    for (Ai test : aiPlayers) {
-                         if (test.getAllInViability() <= i && !test.getDecision().contains("fold")
-                                   && !test.getDecision().contains("lost")) {
-                              potSplits[i][0] += potSplits[i][0];
 
-                         }
-                    }
-                    potSplits[i][0] -= potSplits[i][0];
-
-                    currentPotSize -= potSplits[i][0];
                     ArrayList<Integer> secWin = new ArrayList<Integer>();
 
                     String winner = "";
@@ -538,44 +539,59 @@ public class SPController extends Thread {
                               if (ai.handStrength() > bestHand) {
                                    bestHandPlayer = ai;
                                    bestHand = ai.handStrength();
+                                   winnerList = checkIfUserIsWinner(winnerList, bestHandPlayer);
                                    secWin.clear();
                               } else if (ai.handStrength() == bestHand) {
                                    if (ai.getHighCard() > bestHandPlayer.getHighCard()) {
                                         bestHandPlayer = ai;
                                         bestHand = ai.handStrength();
+                                        winnerList = checkIfUserIsWinner(winnerList, bestHandPlayer);
                                         secWin.clear();
                                    } else if (ai.getHighCard() == bestHandPlayer.getHighCard()) {
+                                        playerWins++;
                                         secWin.add(aiPlayers.indexOf((ai)));
+
                                    }
                               }
                          }
                     }
+
                     if (!gameController.getPlayerDecision().contains("fold")
                               && gameController.getAllInViability() <= i) {
                          if (gameController.getHandStrength() > bestHand) {
+                              playerPotBefore = gameController.getPlayerPot();
                               gameController.setPlayerPot(allInPotSize + gameController.getPlayerPot());
                               winner = gameController.getUsername();
-                              gameController.setWinnerLabel(winner, gameController.getHandStrength());
+                              playerWins++;
+
                          } else if (gameController.getHandStrength() == bestHand) {
                               if (gameController.getGetHighCard() > bestHandPlayer.getHighCard()) {
+                                   playerPotBefore = gameController.getPlayerPot();
                                    gameController.setPlayerPot(allInPotSize + gameController.getPlayerPot());
                                    winner = gameController.getUsername();
-                                   gameController.setWinnerLabel(winner, gameController.getHandStrength());
+                                   playerWins++;
+
                               } else if (gameController.getGetHighCard() == bestHandPlayer.getHighCard()) {
                                    bestHandPlayer.updateWinner(allInPotSize / 2);
+                                   playerPotBefore = gameController.getPlayerPot();
                                    gameController.setPlayerPot((allInPotSize / 2) + gameController.getPlayerPot());
                                    winner = gameController.getUsername() + " och " + bestHandPlayer.getName();
-                                   gameController.setWinnerLabel(winner, bestHand);
+                                   playerWins++;
+                                   winnerList = checkIfUserIsWinner(winnerList, bestHandPlayer);
+
+
                               } else {
                                    if (!secWin.isEmpty()) {
                                         int divBy = allInPotSize = secWin.size();
                                         for (int x : secWin) {
                                              aiPlayers.get(x).updateWinner(divBy);
+                                             gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),divBy);
                                         }
                                    } else {
                                         bestHandPlayer.updateWinner(allInPotSize);
                                         winner = bestHandPlayer.getName();
-                                        gameController.setWinnerLabel(winner, bestHand);
+                                        gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),allInPotSize);
+                                        winnerList = checkIfUserIsWinner(winnerList, bestHandPlayer);
                                    }
                               }
                          } else {
@@ -583,11 +599,14 @@ public class SPController extends Thread {
                                    int divBy = allInPotSize = secWin.size();
                                    for (int x : secWin) {
                                         aiPlayers.get(x).updateWinner(divBy);
+                                        gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),divBy);
                                    }
                               } else {
                                    bestHandPlayer.updateWinner(allInPotSize);
                                    winner = bestHandPlayer.getName();
-                                   gameController.setWinnerLabel(winner, bestHand);
+                                   gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),allInPotSize);
+                                   playerWins++;
+                                   //gameController.setWinnerLabel(winner, bestHand);
                               }
                          }
                     } else {
@@ -595,16 +614,38 @@ public class SPController extends Thread {
                               int divBy = allInPotSize = secWin.size();
                               for (int x : secWin) {
                                    aiPlayers.get(x).updateWinner(divBy);
+                                   gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),divBy);
                               }
 
                          } else {
                               bestHandPlayer.updateWinner(allInPotSize);
                               winner = bestHandPlayer.getName();
-                              gameController.setWinnerLabel(winner, bestHand);
+                              gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),allInPotSize);
+                              playerWins++;
                          }
                     }
                }
           }
+          if(playerWins > 0){
+               int i = gameController.getPlayerPot() - playerPotBefore;
+               gameController.setWinnerLabel(gameController.getUsername(), gameController.getHandStrength(), gameController.getCardsToString(), i);
+          }
+
+          for (int i = 0; i < winnerList.size();i++){
+
+          }
+
+     }
+
+     private ArrayList<Ai> checkIfUserIsWinner(ArrayList<Ai> winnerList, Ai winner){
+          for (int i = 0; i < winnerList.size(); i++){
+               if(winner == winnerList.get(i)){
+                    return winnerList;
+               }else{
+                    winnerList.add(winner);
+               }
+          }
+          return winnerList;
      }
 
      /**

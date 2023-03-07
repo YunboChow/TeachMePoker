@@ -317,5 +317,9 @@ public class Ai {
       System.out.println("AI var redan gneomförbar"); //AI was already viable
     }
   }
+
+  public ArrayList getAiCards(){
+    return aiCards;
+  }
 }
 
