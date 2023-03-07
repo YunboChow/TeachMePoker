@@ -9,9 +9,13 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import model.Scenes;
 import view.ConfirmBox;
 import view.Tutorial;
+
+import java.nio.file.Paths;
 
 /**
  * Controller for FXML-doc GameSettingMenu.fxml
@@ -28,7 +32,9 @@ public class SettingsController {
      private int aiValue;
      private int potValue;
 
-     @FXML
+
+
+    @FXML
      private TextField tfNameInput;
      @FXML
      private Slider potSlider;
@@ -168,7 +174,9 @@ public class SettingsController {
 	 */
      public void startGameWindow(){
           ProgressForm pForm = new ProgressForm();
-          // In real life this task would do something useful and return some meaningful result:
+
+
+         // In real life this task would do something useful and return some meaningful result:
           Task<Void> task = new Task<Void>() {
                @Override
                public Void call() throws InterruptedException {
@@ -189,8 +197,12 @@ public class SettingsController {
           // in real life this method would get the result of the task and update the UI based on its value:
           task.setOnSucceeded(event -> {
                pForm.getDialogStage().close();
-               ConfirmBox.display("Snart börjar spelet", "Dags att spela poker! Glömmer du reglerna så hittar du" +
-                       " dem högst upp i menyn.\n\nNu kör vi!");
+               ConfirmBox.display
+                       ("       Snart börjar spelet",
+                               "Dags att spela poker! Glömmer du reglerna så hittar du dem " +
+                                       "högst upp i menyn." + "\n\n                 " +
+                                       "Nu kör vi!");
+
                
                SceneController.switchScene(Scenes.Game);
 
