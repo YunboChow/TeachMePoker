@@ -467,12 +467,14 @@ public class SPController extends Thread {
                                    int divBy = currentPotSize = secWin.size();
                                    for (int i : secWin) {
                                         aiPlayers.get(i).updateWinner(divBy);
+                                        gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),divBy);
+
                                    }
                                    // Ai wins and there aren't
                               } else {
                                    bestHandPlayer.updateWinner(currentPotSize);
                                    winner = bestHandPlayer.getName();
-                                   gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(), (currentPotSize / 2));
+                                   gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(), (currentPotSize));
                               }
                          }
                          // Same thing as above but the player lost and no draw.
@@ -481,6 +483,8 @@ public class SPController extends Thread {
                               int divBy = currentPotSize = secWin.size();
                               for (int i : secWin) {
                                    aiPlayers.get(i).updateWinner(divBy);
+                                   gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),divBy);
+
                               }
                          } else {
                               bestHandPlayer.updateWinner(currentPotSize);
@@ -494,6 +498,8 @@ public class SPController extends Thread {
                          int divBy = currentPotSize = secWin.size();
                          for (int i : secWin) {
                               aiPlayers.get(i).updateWinner(divBy);
+                              gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),divBy);
+
                          }
 
                     } else {
@@ -555,27 +561,29 @@ public class SPController extends Thread {
                          if (gameController.getHandStrength() > bestHand) {
                               gameController.setPlayerPot(allInPotSize + gameController.getPlayerPot());
                               winner = gameController.getUsername();
-                              gameController.setWinnerLabel(winner, gameController.getHandStrength(), gameController.getCardsToString(),currentPotSize);
+                              gameController.setWinnerLabel(winner, gameController.getHandStrength(), gameController.getCardsToString(),allInPotSize);
                          } else if (gameController.getHandStrength() == bestHand) {
                               if (gameController.getGetHighCard() > bestHandPlayer.getHighCard()) {
                                    gameController.setPlayerPot(allInPotSize + gameController.getPlayerPot());
                                    winner = gameController.getUsername();
-                                   gameController.setWinnerLabel(winner, gameController.getHandStrength(), gameController.getCardsToString(),currentPotSize);
+                                   gameController.setWinnerLabel(winner, gameController.getHandStrength(), gameController.getCardsToString(),allInPotSize);
                               } else if (gameController.getGetHighCard() == bestHandPlayer.getHighCard()) {
                                    bestHandPlayer.updateWinner(allInPotSize / 2);
                                    gameController.setPlayerPot((allInPotSize / 2) + gameController.getPlayerPot());
                                    winner = gameController.getUsername() + " och " + bestHandPlayer.getName();
-                                   gameController.setWinnerLabel(winner, bestHand, gameController.getCardsToString(),currentPotSize/2); //kanske är fel
+                                   gameController.setWinnerLabel(winner, bestHand, gameController.getCardsToString(),allInPotSize/2); //kanske är fel
                               } else {
                                    if (!secWin.isEmpty()) {
                                         int divBy = allInPotSize = secWin.size();
                                         for (int x : secWin) {
                                              aiPlayers.get(x).updateWinner(divBy);
+                                             gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),divBy);
+
                                         }
                                    } else {
                                         bestHandPlayer.updateWinner(allInPotSize);
                                         winner = bestHandPlayer.getName();
-                                        gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),currentPotSize);
+                                        gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),allInPotSize);
                                    }
                               }
                          } else {
@@ -583,11 +591,13 @@ public class SPController extends Thread {
                                    int divBy = allInPotSize = secWin.size();
                                    for (int x : secWin) {
                                         aiPlayers.get(x).updateWinner(divBy);
+                                        gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),divBy);
+
                                    }
                               } else {
                                    bestHandPlayer.updateWinner(allInPotSize);
                                    winner = bestHandPlayer.getName();
-                                   gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),currentPotSize);
+                                   gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),allInPotSize);
                               }
                          }
                     } else {
@@ -595,12 +605,14 @@ public class SPController extends Thread {
                               int divBy = allInPotSize = secWin.size();
                               for (int x : secWin) {
                                    aiPlayers.get(x).updateWinner(divBy);
+                                   gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),divBy);
+
                               }
 
                          } else {
                               bestHandPlayer.updateWinner(allInPotSize);
                               winner = bestHandPlayer.getName();
-                              gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),currentPotSize);
+                              gameController.setWinnerLabel(winner, bestHand, bestHandPlayer.getAiCards(),allInPotSize);
                          }
                     }
                }
