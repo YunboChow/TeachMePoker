@@ -44,7 +44,7 @@
                      </toggleGroup>
                   </RadioButton>
                   <RadioButton fx:id="radiobutton3" mnemonicParsing="false" prefHeight="18.0" prefWidth="31.0" text="3" toggleGroup="$group" />
-                  <RadioButton fx:id="radiobutton5" mnemonicParsing="false" prefHeight="18.0" prefWidth="14.0" text="5" toggleGroup="$group" />
+                  <RadioButton fx:id="radiobutton5" mnemonicParsing="false" prefHeight="18.0" prefWidth="14.0" text="5" toggleGroup="$group" selected="true"/>
                </children>
             </HBox>
             <Slider fx:id="potSlider" blockIncrement="0.0" majorTickUnit="500.0" max="5000.0" min="1000.0" minorTickCount="0" onDragDetected="#potSliderChange" showTickLabels="true" value="5000.0">
