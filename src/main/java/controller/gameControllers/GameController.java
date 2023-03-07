@@ -1226,9 +1226,9 @@ public class GameController {
     }
 
 
-    public void setBlindsMarker(int dealer, int smallBlindPlayer, int bigBlindPlayer) {
-
+    public void setBlindsMarker(int dealer, int smallBlindPlayer, int bigBlindPlayer, int noOfPlayers) {
         int[][] markerPos = new int[5][2];
+
         Platform.runLater(() -> {
 
             // set MarkerPos TEST
@@ -1247,15 +1247,39 @@ public class GameController {
             markerPos[4][0] = 1010;
             markerPos[4][1] = 360;
 
-            if (dealer <= 4) {
-                ivDealer.relocate(markerPos[dealer][0], markerPos[dealer][1]);
+            System.out.println("DEALER !! = " + dealer);
+            System.out.println(noOfPlayers);
+
+            if(noOfPlayers == 6){
+                if (dealer <= 4) {
+                    ivDealer.relocate(markerPos[dealer][0], markerPos[dealer][1]);
+                }
+                if (smallBlindPlayer <= 4) {
+                    ivSmallBlind.relocate(markerPos[smallBlindPlayer][0], markerPos[smallBlindPlayer][1]);
+                }
+                if (bigBlindPlayer <= 4) {
+                    ivBigBlind.relocate(markerPos[bigBlindPlayer][0], markerPos[bigBlindPlayer][1]);
+                }
+            }else if (noOfPlayers == 4){
+                if (dealer <= 2) {
+                    ivDealer.relocate(markerPos[dealer+dealer][0], markerPos[dealer+dealer][1]);
+                }
+                if (smallBlindPlayer <= 2) {
+                    ivSmallBlind.relocate(markerPos[smallBlindPlayer*2][0], markerPos[smallBlindPlayer*2][1]);
+                }
+                if (bigBlindPlayer <= 1) {
+                    ivBigBlind.relocate(markerPos[bigBlindPlayer*2][0], markerPos[bigBlindPlayer*2][1]);
+                }
+            }else{
+                if (dealer == 0) {
+                    ivDealer.relocate(markerPos[dealer + 2][0], markerPos[dealer + 2][1]);
+                    ivSmallBlind.relocate(markerPos[smallBlindPlayer + 2][0]+20, markerPos[smallBlindPlayer + 2][1]);
+                }
+                if (bigBlindPlayer == 0) {
+                    ivBigBlind.relocate(markerPos[bigBlindPlayer+2][0], markerPos[bigBlindPlayer+2][1]);
+                }
             }
-            if (smallBlindPlayer <= 4) {
-                ivSmallBlind.relocate(markerPos[smallBlindPlayer][0], markerPos[smallBlindPlayer][1]);
-            }
-            if (bigBlindPlayer <= 4) {
-                ivBigBlind.relocate(markerPos[bigBlindPlayer][0], markerPos[bigBlindPlayer][1]);
-            }
+
         });
     }
 
