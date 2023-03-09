@@ -55,7 +55,7 @@
                                     </AnchorPane>
                                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="106.0" prefWidth="1100.0">
                                        <children>
-                                          <TextArea blendMode="DARKEN" editable="false" layoutY="-7.0" maxHeight="-Infinity" prefHeight="105.0" prefWidth="1100.0" text="I Texas Hold’em använder man sig av en dealerknapp för att markera vart korten ska delas ifrån. Efter varje spel flyttas dealerknappen vidare ett steg. &#10;Lilla och stora mörken (blind) satsas av de två spelare direkt till dealerns vänster.&#10;" wrapText="true">
+                                          <TextArea blendMode="DARKEN" editable="false" layoutY="-7.0" maxHeight="-Infinity" prefHeight="105.0" prefWidth="1100.0" text="I Texas Hold’em använder man sig av en givare-knapp för att markera vart korten ska delas ifrån. Efter varje spel flyttas givare-knappen vidare ett steg. &#10;Lilla och stora mörken satsas av de två spelare direkt till givarens vänster.&#10;" wrapText="true">
                                              <padding>
                                                 <Insets top="40.0" />
                                              </padding>
@@ -66,7 +66,7 @@
                                                 <Font name="Tw Cen MT" size="14.0" />
                                              </font>
                                           </TextArea>
-                                          <Label text="Mörkar/Blinds" underline="true">
+                                          <Label text="Mörkar" underline="true">
                                              <font>
                                                 <Font name="Tw Cen MT" size="24.0" />
                                              </font>
@@ -78,7 +78,7 @@
                                     </AnchorPane>
                                     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="120.0" prefWidth="1100.0">
                                        <children>
-                                          <TextArea blendMode="DARKEN" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="155.0" prefWidth="1100.0" text="När mörkarna är satsade delar dealern ut två nedåtvända kort (hålkort) till samtliga spelare med start från lilla mörken. Dessa kort är spelarnas privata kort. &#10;Spelaren till vänster om stora mörken (big blind) startar första satsningsrundan genom att syna (satsa lika mycket som stora mörken), höja (lägsta höjning är den samma som stora &#10;mörken) eller lägga sig. &#10;Första satsningsrundan är klar när alla spelare satsat lika mycket i potten eller lagt sig (efter en spelares bet).&#10;&#10;" wrapText="true">
+                                          <TextArea blendMode="DARKEN" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="155.0" prefWidth="1100.0" text="När mörkarna är satsade delar givaren ut två nedåtvända kort (hålkort) till samtliga spelare med start från lilla mörken. Dessa kort är spelarnas privata kort. &#10;Spelaren till vänster om stora mörken startar första satsningsrundan genom att syna (satsa lika mycket som stora mörken), höja (lägsta höjning är den samma som stora &#10;mörken) eller lägga sig. &#10;Första satsningsrundan är klar när alla spelare satsat lika mycket i potten eller lagt sig (efter en spelares satsning).&#10;&#10;" wrapText="true">
                                              <padding>
                                                 <Insets top="40.0" />
                                              </padding>
@@ -101,7 +101,7 @@
                                     </AnchorPane>
                                     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="85.0" prefWidth="1100.0">
                                        <children>
-                                          <TextArea blendMode="DARKEN" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="124.0" prefWidth="1100.0" text="Dealern lägger upp tre öppna kort på bordet. Dessa kort kallas The Flop eller floppen, och är tillgängliga för alla spelare. &#10;Spelaren till vänster om dealern startar andra satsningsrundan genom att checka (passa) eller ”öppna potten” genom att satsa. &#10;Andra satsningsrundan är klar när alla spelare satsat lika mycket i potten, checkat (passat) varvet runt eller lagt sig (efter en spelares bet).&#10;" wrapText="true">
+                                          <TextArea blendMode="DARKEN" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="124.0" prefWidth="1100.0" text="Givaren lägger upp tre öppna kort på bordet. Dessa kort kallas The Flop eller floppen, och är tillgängliga för alla spelare. &#10;Spelaren till vänster om givaren startar andra satsningsrundan genom att passa eller ”öppna potten” genom att satsa. &#10;Andra satsningsrundan är klar när alla spelare satsat lika mycket i potten, passat varvet runt eller lagt sig (efter en spelares satsning).&#10;" wrapText="true">
                                              <padding>
                                                 <Insets top="40.0" />
                                              </padding>
@@ -124,7 +124,7 @@
                                     </AnchorPane>
                                     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="136.0" prefWidth="1096.0">
                                        <children>
-                                          <TextArea blendMode="DARKEN" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="136.0" prefWidth="1100.0" text="När den andra satsningsrundan är avklarad bränner dealern åter igen det översta kortet i leken och lägger därefter ytterligare ett öppet kort på bordet. &#10;Detta kort kallas för The Turn. Även detta kort är tillgängligt för alla spelare. &#10;Tredje satsningsrundan går till på exakt samma sätt som andra rundan och är klar när alla spelare satsat lika mycket i potten, checkat (passat) varvet runt eller &#10;lagt sig (efter en spelares bet).&#10;" wrapText="true">
+                                          <TextArea blendMode="DARKEN" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="136.0" prefWidth="1100.0" text="När den andra satsningsrundan är avklarad bränner givaren åter igen det översta kortet i leken och lägger därefter ytterligare ett öppet kort på bordet. &#10;Detta kort kallas för The Turn. Även detta kort är tillgängligt för alla spelare. &#10;Tredje satsningsrundan går till på exakt samma sätt som andra rundan och är klar när alla spelare satsat lika mycket i potten, passat varvet runt eller &#10;lagt sig (efter en spelares bet).&#10;" wrapText="true">
                                              <padding>
                                                 <Insets top="40.0" />
                                              </padding>
@@ -147,7 +147,7 @@
                                     </AnchorPane>
                                     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="101.0" prefWidth="1098.0">
                                        <children>
-                                          <TextArea blendMode="DARKEN" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="124.0" prefWidth="1100.0" text="Dealern lägger ut ytterligare ett öppet kort på bordet. Detta kort kallas för The River eller 5th Street och är det femte och sista öppna kortet spelarna får använda sig av &#10;för att skapa sin hand. &#10;En fjärde och sista satsningsrunda startar och går till på exakt samma sätt som de två tidigare." wrapText="true">
+                                          <TextArea blendMode="DARKEN" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="124.0" prefWidth="1100.0" text="Givaren lägger ut ytterligare ett öppet kort på bordet. Detta kort kallas för The River eller 5th Street och är det femte och sista öppna kortet spelarna får använda sig av &#10;för att skapa sin hand. &#10;En fjärde och sista satsningsrunda startar och går till på exakt samma sätt som de två tidigare." wrapText="true">
                                              <padding>
                                                 <Insets top="40.0" />
                                              </padding>
@@ -246,22 +246,22 @@
                                                       <Font name="Tw Cen MT" size="24.0" />
                                                    </font>
                                                 </Label>
-                                                <Label layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="86.0" text="Blinds" underline="true">
+                                                <Label layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="86.0" text="Mörkar" underline="true">
                                                    <font>
                                                       <Font name="Tw Cen MT" size="24.0" />
                                                    </font>
                                                 </Label>
-                                                <Label layoutX="10.0" layoutY="27.0" prefHeight="50.0" prefWidth="85.0" text="Call" underline="true">
+                                                <Label layoutX="10.0" layoutY="27.0" prefHeight="50.0" prefWidth="85.0" text="Syna" underline="true">
                                                    <font>
                                                       <Font name="Tw Cen MT" size="24.0" />
                                                    </font>
                                                 </Label>
-                                                <Label layoutX="10.0" layoutY="44.0" prefHeight="50.0" prefWidth="87.0" text="Check" underline="true">
+                                                <Label layoutX="10.0" layoutY="44.0" prefHeight="50.0" prefWidth="87.0" text="Passa" underline="true">
                                                    <font>
                                                       <Font name="Tw Cen MT" size="24.0" />
                                                    </font>
                                                 </Label>
-                                                <Label layoutX="10.0" layoutY="61.0" prefHeight="50.0" prefWidth="167.0" text="Fold" underline="true">
+                                                <Label layoutX="10.0" layoutY="61.0" prefHeight="50.0" prefWidth="167.0" text="Lägga sig" underline="true">
                                                    <font>
                                                       <Font name="Tw Cen MT" size="24.0" />
                                                    </font>
@@ -271,7 +271,7 @@
                                                       <Font name="Tw Cen MT" size="24.0" />
                                                    </font>
                                                 </Label>
-                                                <Label layoutX="10.0" layoutY="95.0" prefHeight="50.0" prefWidth="167.0" text="Raise" underline="true">
+                                                <Label layoutX="10.0" layoutY="95.0" prefHeight="50.0" prefWidth="167.0" text="Höja" underline="true">
                                                    <font>
                                                       <Font name="Tw Cen MT" size="24.0" />
                                                    </font>
@@ -340,6 +340,6 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Button layoutX="1040.0" layoutY="2.0" mnemonicParsing="false" onMouseReleased="#closeButtonPressed" text="Close" />
+      <Button layoutX="1040.0" layoutY="2.0" mnemonicParsing="false" onMouseReleased="#closeButtonPressed" text="Stäng" />
    </children>
 </Pane>
