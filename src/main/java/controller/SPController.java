@@ -631,10 +631,6 @@ public class SPController extends Thread {
                gameController.setWinnerLabel(gameController.getUsername(), gameController.getHandStrength(), gameController.getCardsToString(), i);
           }
 
-          for (int i = 0; i < winnerList.size();i++){
-
-          }
-
      }
 
      private ArrayList<Ai> checkIfUserIsWinner(ArrayList<Ai> winnerList, Ai winner){
