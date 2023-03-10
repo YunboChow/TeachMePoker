@@ -274,11 +274,7 @@ class GameControllerTest {
           sleep(3500);
           Assertions.assertEquals("ADDING LOG MESSAGE\n", ((Text)(textFlow.getChildren().get(0))).getText());
      }
-
-     @Test
-     void testesttest() {
-          FxRobot fxRobot = new FxRobot();
-     }
+     
 
      void sleep(int ms){
           try{
