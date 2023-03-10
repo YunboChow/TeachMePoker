@@ -50,6 +50,15 @@ public class Deck {
     return deck.remove(0);
   }
 
+  /**
+   * Used for junit testing
+   * @param
+   * @return
+   */
+  public Card getCardByIndex(int i){
+    return deck.get(i);
+  }
+
 
   /**
    * Returns the current size of the deck
